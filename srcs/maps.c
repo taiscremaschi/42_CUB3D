@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maps.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:05 by paula             #+#    #+#             */
-/*   Updated: 2024/05/02 15:07:07 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/02 15:40:26 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	check_map(char **av, t_main *main)
 	int	fd;
 
 	if (ft_strchr(av[1], '.') == NULL || ft_strncmp(ft_strchr(av[1], '.'),
-			".ber\0", 5) != 0)
+			".cub\0", 5) != 0)
 		exit(write(1, "Error, wrong extension\n", 23));
 	fd = open(av[1], O_RDONLY);
 	if (fd <= 0)
