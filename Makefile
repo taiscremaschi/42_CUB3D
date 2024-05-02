@@ -13,6 +13,7 @@ FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 COLOUR_GREEN=\033[32m
 COLOUR_RED=\033[31m
 COLOUR_END=\033[0m
+COLOUR_MAG=\001\e[0;35m\002
 
 ifeq ($(shell uname), Linux)
 	INCLUDES = -I/usr/include -Imlx_linux
@@ -46,18 +47,29 @@ check:
 
 ${NAME}: ${OBJS}
 	@echo "$(COLOUR_GREEN)----Compiling lib----"
-	@make re -C ./libft
-	@make -C ./mlx_linux
+	@make --no-print-directory re -C ./libft
+	@make --no-print-directory -C ./mlx_linux
 	@cc $(FLAGS) $(OBJS) -Llibft -lft -o $(NAME) $(MLX_FLAGS)
-	@echo "$(COLOUR_GREEN)fdf Compiled! ᕦ$(COLOUR_RED)♥$(COLOUR_GREEN)_$(COLOUR_RED)♥$(COLOUR_GREEN)ᕤ\n$(COLOUR_END)"
+		@echo "  $(COLOUR_MAG)                                                                        ";
+	@echo "💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟";
+	@echo "                                __  _   _  ___  ____ ___   _                           ";
+	@echo "                              / __|| | | || _ )|__ /|   \ | |                          ";
+	@echo "                             | (__ | |_| || _ \ |_ \| |) ||_|                          ";
+	@echo "                              \___| \___/ |___/|___/|___/ (_)                          ";
+	@echo "                                                                  By tbolzan-          ";
+	@echo "                                                                     pde-souz          ";
+	@echo "💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟";
+	@echo "                                                                                         ";
+	@echo "$(COLOUR_GREEN)cub3D Compiled! ᕦ$(COLOUR_RED)♥$(COLOUR_GREEN)_$(COLOUR_RED)♥$(COLOUR_GREEN)ᕤ\n$(COLOUR_END)"
+	@echo "$(COLOUR_MAG)\nTo start the program type ./cub3D <map.cub> \nENJOY!\n$(COLOUR_END)"
 
 clean:
-	@make clean -C ./libft
+	@make --no-print-directory clean -C ./libft
 	@rm -f ${OBJS}
 	@echo "$(COLOUR_RED)Deleting all objs! ⌐(ಠ۾ಠ)¬\n$(COLOUR_END)"
 
 fclean: clean
-	@make fclean -C ./libft
+	@make --no-print-directory fclean -C ./libft
 	@rm -f ${NAME}
 	@clear
 	
