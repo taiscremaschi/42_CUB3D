@@ -2,23 +2,6 @@
 
 #include "cub.h"
 
-void	check_map(char **av, t_main *main)
-{
-	int	fd;
-
-	if (ft_strchr(av[1], '.') == NULL || ft_strncmp(ft_strchr(av[1], '.'),
-			".ber\0", 5) != 0)
-		exit(write(1, "Error, wrong extension\n", 23));
-	fd = open(av[1], O_RDONLY);
-	if (fd <= 0)
-		exit(ft_putstr_fd("Erro na abertura do FD\n", 1));
-	main->map = save_map(NULL, fd);
-	map_rectangle(main);
-	map_validate(main);
-	map_caracteres(main);
-	map_paredes(main);
-	check_map_alg(main, copy_map(main));
-}
 
 int	map_caracteres_valids(char *s)
 {
@@ -58,7 +41,25 @@ char	**save_map(char **map, int fd)
 	if (!map && i != 0)
 		map = malloc(sizeof(char *) * (i + 1));
 	if (!map)
-		exit(ft_putstr_fd("Erro, o mapa é falso\n", 1));
+		exit(ft_putstr_fd("Error, this map is wrong\n", 1));
 	map[i--] = lines_map;
 	return (map);
+}
+
+//funcao sendo refatorada modo cub
+void	check_map(char **av, t_main *main)
+{
+	int	fd;
+
+	if (ft_strchr(av[1], '.') == NULL || ft_strncmp(ft_strchr(av[1], '.'),
+			".cub\0", 5) != 0)
+		exit(write(1, "Error, wrong extension\n", 23));
+	fd = open(av[1], O_RDONLY);
+	if (fd <= 0)
+		exit(ft_putstr_fd("Error in opening FD\n", 1));
+	main->map = save_map(NULL, fd);
+	map_validate(main);
+	map_caracteres(main);
+	map_paredes(main);
+	check_map_alg(main, copy_map(main));
 }

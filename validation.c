@@ -31,31 +31,6 @@ void	map_paredes(t_main *main)
 	}
 }
 
-void	map_rectangle(t_main *main)
-{
-	int	alt;
-	int	i;
-
-	alt = 1;
-	i = 1;
-	main->larg = ft_strlen_sl(main->map[0]);
-	while (main->map[i] != NULL)
-	{
-		if (main->larg == ft_strlen_sl(main->map[alt]))
-		{
-			alt++;
-			i++;
-		}
-		else if (main->map[i][0] == '\n')
-			i++;
-		else
-		{
-			free_map(main->map);
-			exit(ft_putstr_fd("O mapa não é retangulo\n", 1));
-		}
-	}
-	main->altura = alt;
-}
 
 void	check_letters(t_main *main, int i, int j, int *true_p)
 {
