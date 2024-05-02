@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
+/*   Updated: 2024/05/02 15:07:35 by paula            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub.h"
 
@@ -40,8 +51,8 @@ int	main(int ac, char **av)
 		exit(write(1, "Error\n", 6));
 	check_map(av, &main);
 	main.mlx = mlx_init();
-	main.win = mlx_new_window(main.mlx, ((main.larg) * 64), main.altura
-			* 64, "cub3D");
+	main.win = mlx_new_window(main.mlx, ((main.larg) * 64), main.altura * 64,
+			"cub3D");
 	image_inicialize(&main);
 	mlx_loop_hook(main.mlx, render_image, &main);
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);

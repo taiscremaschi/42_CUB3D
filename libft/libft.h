@@ -4,26 +4,25 @@
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+        
 	+:+     */
-/*   By: tbolzan- <tbolzan-@student.42.fr>          +#+  +:+      
+/*   By: paula <paula@student.42.fr>                +#+  +:+      
 	+#+        */
 /*                                                +#+#+#+#+#+  
 	+#+           */
-/*   Created: 2023/04/12 13:55:28 by tbolzan-          #+#    #+#             */
-/*   Updated: 2023/04/12 13:55:28 by tbolzan-         ###   ########.fr       */
+/*   Created: 2024/05/02 15:09:11 by paula             #+#    #+#             */
+/*   Updated: 2024/05/02 15:09:11 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef LIBFT_H
+#ifndef LIBFT_H
 # define LIBFT_H
 
+# include "gnl/get_next_line_bonus.h"
 # include <ctype.h>
 # include <stddef.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <strings.h>
 # include <unistd.h>
-# include <stdio.h>
-# include "gnl/get_next_line_bonus.h"
-
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -50,7 +49,7 @@ char	**ft_split(char const *s, char c);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_putchar_fd(char c, int fd);
-int	ft_putstr_fd(char *s, int fd);
+int		ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
@@ -58,7 +57,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
-void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
@@ -68,7 +67,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}	t_list;
 
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(void *content);
