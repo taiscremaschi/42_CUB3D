@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: dependences
-      run: sudo apt install build-essential libx11-dev libglfw3-dev libglfw3 xorg-dev
+      run: sudo apt install build-essential libx11-dev libglfw3-dev libglfw3 xorg-dev libbsd-dev
     - name: make
       run: make
     - name: install
