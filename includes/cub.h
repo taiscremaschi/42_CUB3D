@@ -29,7 +29,7 @@ typedef struct s_player
 	int			x;
 	int			y;
 }				t_player;
-
+//essa struct é da paula 
 typedef struct s_picture
 {
 	void		*collectable;
@@ -46,8 +46,8 @@ typedef struct s_main
 	int			larg;
 	int			altura;
 	void		*mlx;
-	int			moves_counter;
-	int			col;
+	int			moves_counter; // n preciso
+	int			col; //n preciso
 	t_player	player;
 	t_picture	picture;
 }				t_main;
@@ -60,7 +60,7 @@ void			map_caracteres(t_main *main);
 void			map_validate(t_main *main);
 ////////// MAPS ////////////
 
-int				map_caracteres_valids(char *s);
+int				validate_characteres(char *line_map);
 char			**save_map(char **map, int fd);
 void			check_map(char **av, t_main *main);
 
