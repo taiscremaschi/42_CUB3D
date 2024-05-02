@@ -18,8 +18,7 @@
 # include <stdio.h> /*printf*/
 # include <stdlib.h> /*malloc*/
 # include <unistd.h> /*read*/
-# include "libft/libft.h"
-
+# include "../libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 8
