@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:05 by paula             #+#    #+#             */
-/*   Updated: 2024/05/02 15:40:26 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:05:00 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,34 @@ void	check_map(char **av, t_main *main)
 		exit(write(1, "Error, wrong extension\n", 23));
 	fd = open(av[1], O_RDONLY);
 	if (fd <= 0)
-		exit(ft_putstr_fd("Erro na abertura do FD\n", 1));
+		exit(ft_putstr_fd("Error in opening FD\n", 1));
 	main->map = save_map(NULL, fd);
 	map_rectangle(main);
 	map_validate(main);
 	map_caracteres(main);
 	map_paredes(main);
-	check_map_alg(main, copy_map(main));
+	//check_map_alg(main, copy_map(main));
 }
 
-int	map_caracteres_valids(char *s)
+int	validate_characteres(char *line_map)
 {
-	char	*map;
+	char	*valid_chars;
 	int		i;
 	int		count;
 
 	i = 0;
 	count = 0;
-	map = "PEC01\n";
-	while (s[count] != '\0')
+	valid_chars = "NSEW01\n ";
+	while (line_map[count] != '\0')
 	{
-		if (s[count] == map[i])
+		if (line_map[count] == valid_chars[i])
 		{
 			count++;
 			i = 0;
 		}
-		else if (i == 6)
+		else if (i == 8)
 			return (0);
-		else if (s[count] != map[i])
+		else if (line_map[count] != valid_chars[i])
 			i++;
 	}
 	return (1);
@@ -68,7 +68,7 @@ char	**save_map(char **map, int fd)
 	if (!map && i != 0)
 		map = malloc(sizeof(char *) * (i + 1));
 	if (!map)
-		exit(ft_putstr_fd("Erro, o mapa é falso\n", 1));
+		exit(ft_putstr_fd("Error, this map is false\n", 2));
 	map[i--] = lines_map;
 	return (map);
 }

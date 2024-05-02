@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/02 15:07:12 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/02 17:03:36 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,44 +67,50 @@ void	map_rectangle(t_main *main)
 	main->altura = alt;
 }
 
-void	check_letters(t_main *main, int i, int j, int *true_p)
-{
-	if (main->map[i][j] == 'P')
-	{
-		(*true_p)++;
-		main->player.x = j;
-		main->player.y = i;
-	}
-	else if (main->map[i][j] == 'C')
-		main->col++;
-}
+// void	check_letters(t_main *main, int i, int j, int *true_p)
+// {
+// 	if (main->map[i][j] == 'P')
+// 	{
+// 		(*true_p)++;
+// 		main->player.x = j;
+// 		main->player.y = i;
+// 	}
+// 	else if (main->map[i][j] == 'C')
+// 		main->col++;
+// }
 
 void	map_caracteres(t_main *main)
 {
 	int	i;
 	int	j;
-	int	true_e;
-	int	true_p;
+	int	flag_player;
+	int x; 
+	char *letters;
 
 	i = -1;
-	true_e = 0;
-	true_p = 0;
+	flag_player = 0;
 	main->col = 0;
+	letters = "NSEW";
+	
 	while (main->map[++i] != NULL)
 	{
 		j = -1;
 		while (main->map[i][++j] != '\0')
 		{
-			if (main->map[i][j] == 'E')
-				true_e++;
-			check_letters(main, i, j, &true_p);
+			x = -1;
+			while(++x < 4)
+			{
+				if (main->map[i][j] == letters[x] && flag_player == 0)
+				{
+					flag_player = 1;
+					break ;
+				}
+				else if (main->map[i][j] == letters[x] && flag_player == 1)
+					exit(ft_putstr_fd("Error in character\n", 2));
+			}
 		}
 	}
-	if (true_e != 1 || true_p != 1 || main->col < 1)
-	{
-		free_map(main->map);
-		exit(ft_putstr_fd("Erro no caracter\n", 1));
-	}
+			//check_letters(main, i, j, &true_p);	
 }
 
 void	map_validate(t_main *main)
@@ -114,12 +120,12 @@ void	map_validate(t_main *main)
 	i = 0;
 	while (main->map[i] != NULL)
 	{
-		if (map_caracteres_valids(main->map[i]))
+		if (validate_characteres(main->map[i]))
 			i++;
 		else
 		{
 			free_map(main->map);
-			exit(ft_putstr_fd("Erro nos caracteres\n", 1));
+			exit(ft_putstr_fd("Error in characteres\n", 1));
 		}
 	}
 }
