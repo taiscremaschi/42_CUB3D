@@ -22,6 +22,7 @@
 # include <strings.h>
 # include <unistd.h>
 # include <stdio.h>
+# include "gnl/get_next_line_bonus.h"
 
 
 int		ft_isalnum(int c);
