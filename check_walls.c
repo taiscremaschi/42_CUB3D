@@ -1,5 +1,5 @@
 
-#include "cub.h"
+#include "includes/cub.h"
 
 void	check_map_alg(t_main *main, char **copy_map_temp)
 {

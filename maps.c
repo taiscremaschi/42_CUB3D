@@ -1,6 +1,6 @@
 
 
-#include "cub.h"
+#include "includes/cub.h"
 
 void	check_map(char **av, t_main *main)
 {

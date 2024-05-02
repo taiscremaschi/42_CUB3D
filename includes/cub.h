@@ -3,10 +3,10 @@
 #ifndef CUB_H
 # define CUB_H
 
-# include "libft/libft.h"
-# include "libft/gnl/get_next_line_bonus.h"
-# include "minilibx-linux/mlx.h"
-# include "minilibx-linux/mlx_int.h"
+# include "../libft/libft.h"
+# include "../libft/gnl/get_next_line_bonus.h"
+# include "../mlx_linux/mlx.h"
+# include "../mlx_linux/mlx_int.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <stdio.h>
