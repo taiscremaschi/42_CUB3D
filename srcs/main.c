@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/02 15:29:14 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:57:47 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	end(t_main *main)
 	exit(0);
 }
 
+//line 53: janela; line 56: esc and line 57: close x
 int	main(int ac, char **av)
 {
 	t_main	main;
@@ -49,11 +50,11 @@ int	main(int ac, char **av)
 	check_map(av, &main);
 	main.mlx = mlx_init();
 	main.win = mlx_new_window(main.mlx, ((main.larg) * 100), main.altura
-			* 200, "cub3D"); //janela grande 
+			* 200, "cub3D");
 	image_inicialize(&main);
 	mlx_loop_hook(main.mlx, render_image, &main);
-	mlx_hook(main.win, 2, 1L << 0, read_esc, &main); //fechar com esc
-	mlx_hook(main.win, 33, 1L << 2, end, &main); // fechar com o x
+	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);
+	mlx_hook(main.win, 33, 1L << 2, end, &main);
 	mlx_loop(main.mlx);
 	return (0);
 }
