@@ -4,7 +4,7 @@
 # define CUB_H
 
 # include "libft/libft.h"
-#include "get_next_line_bonus.h"
+# include "gnl/get_next_line_bonus.h"
 # include "minilibx-linux/mlx.h"
 # include "minilibx-linux/mlx_int.h"
 # include <errno.h>
