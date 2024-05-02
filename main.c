@@ -1,5 +1,5 @@
 
-#include "cub3D.h"
+#include "cub.h"
 
 void	free_map(char **m)
 {
@@ -44,7 +44,6 @@ int	main(int ac, char **av)
 			* 64, "cub3D");
 	image_inicialize(&main);
 	mlx_loop_hook(main.mlx, render_image, &main);
-	mlx_key_hook(main.win, key_hook, &main);
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);
 	mlx_hook(main.win, 33, 1L << 2, end, &main);
 	mlx_loop(main.mlx);

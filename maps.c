@@ -1,6 +1,6 @@
 
 
-#include "cub3D.h"
+#include "cub.h"
 
 void	check_map(char **av, t_main *main)
 {

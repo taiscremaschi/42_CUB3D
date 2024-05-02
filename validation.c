@@ -1,6 +1,6 @@
 
 
-#include "cub3D.h"
+#include "cub.h"
 
 void	map_paredes(t_main *main)
 {

@@ -1,6 +1,6 @@
 
 
-#include "cub3D.h"
+#include "cub.h"
 
 #define UP 119
 #define DOWN 115

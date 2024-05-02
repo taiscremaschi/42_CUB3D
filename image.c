@@ -1,6 +1,6 @@
 
 
-#include "cub3D.h"
+#include "cub.h"
 
 void	image_inicialize(t_main *main)
 {

@@ -1,10 +1,10 @@
 
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB_H
+# define CUB_H
 
-# include "getNextLine/get_next_line_bonus.h"
 # include "libft/libft.h"
+#include "get_next_line_bonus.h"
 # include "minilibx-linux/mlx.h"
 # include "minilibx-linux/mlx_int.h"
 # include <errno.h>
@@ -55,7 +55,6 @@ char			**save_map(char **map, int fd);
 void			check_map(char **av, t_main *main);
 
 ///////////// CONTROLS ////////////
-int				key_hook(int keycode, t_main *main);
 int				read_esc(int keycode, t_main *main);
 void			verification_moves(t_main *m, int x, int y);
 int				ft_strlen_sl(const char *s);
