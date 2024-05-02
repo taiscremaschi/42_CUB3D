@@ -31,20 +31,19 @@ SRC_B = 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 
 SRCO = $(SRC:.c=.o)
 
-SRCO_B = $(SRC_B:.c=.o)
-
-CME = ar -rcs
+%.o: %.c
+	@cc $(FLAGS) -c $< -o $@
 
 $(NAME):	$(SRCO)
-			$(CME) $(NAME) $(SRCO)
+			@ar -crs $(NAME) $(SRCO)
 
 all:	$(NAME)
 
 clean:
-		$(RM) $(SRCO)
+		@rm -f $(SRCO)
 
 fclean:	clean
-		$(RM) $(NAME)
+		@rm -f $(NAME)
 
 re:	fclean all
 
