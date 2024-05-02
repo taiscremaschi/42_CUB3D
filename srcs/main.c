@@ -1,5 +1,5 @@
 
-#include "includes/cub.h"
+#include "../includes/cub.h"
 
 void	free_map(char **m)
 {

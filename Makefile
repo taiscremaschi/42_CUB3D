@@ -2,9 +2,11 @@
 
 NAME = cub3D
 
-SRCS = $(wildcard *.c)
+SRC = check_walls.c controls.c image.c maps.c validation.c
+MAIN = main.c
+SRCS = $(SRC) $(MAIN)
 
-OBJS = ${SRCS:.c=.o}
+OBJS = $(addprefix objs/, $(SRCS:.c=.o))
 
 FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
@@ -27,7 +29,8 @@ else
 	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
 endif
 
-.c.o: %.o : %.c
+objs/%.o: */%.c
+	@mkdir -p objs
 	@cc ${FLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 all: ${NAME}
