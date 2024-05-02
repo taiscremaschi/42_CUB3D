@@ -1,0 +1,22 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build:
+    name: build and test cub3D
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: dependences
+      run: sudo apt install build-essential libx11-dev libglfw3-dev libglfw3 xorg-dev libbsd-dev
+    - name: make
+      run: make
+    - name: install
+      run: make install
+    - name: make check
+      run: make check
