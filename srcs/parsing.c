@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/03 20:12:34 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:25:23 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,17 +126,8 @@ void	parsing_map(char **av, t_main *main)
 	check_arg_and_fd(av, fd);
 	main->file_content = save_file(NULL, fd);
     inicialize_txt(main);
-	// verificar os paths se estao corretos
 	if (search_and_save_args(main) != 6)
 		exit(ft_putstr_fd("Error in args of file\n", 2));
-    printf("norte %s\n", main->textures.north);
-    printf("sul %s\n", main->textures.south);
-    printf("west %s\n", main->textures.west);
-    printf(" east %s\n", main->textures.east);
-    printf("floor %s\n", main->textures.floor_color);
-    printf("celing %s\n", main->textures.ceiling_color);
-
-
 	// separar o mapa dos paths
 	// verificar se o mapa esta correto com os caracteres depois as paredes
 	// com uma especie de flood fill
