@@ -44,7 +44,7 @@ typedef struct s_picture
 typedef struct s_main
 {
 	void		*win;
-	char		**map;
+	char		**file_content;
 	int			larg;
 	int			altura;
 	void		*mlx;
@@ -64,7 +64,6 @@ void			map_validate(t_main *main);
 ////////// MAPS ////////////
 
 int				validate_characteres(char *line_map);
-char			**save_map(char **map, int fd);
 void			check_map(char **av, t_main *main);
 
 ///////////// CONTROLS ////////////
@@ -88,5 +87,7 @@ void			check_map_alg(t_main *main, char **copy_map_temp);
 
 //////////////////// PARSING ///////////////////
 void	parsing_map(char **av, t_main *main);
+char	**save_file(char **map, int fd);
+
 
 #endif
