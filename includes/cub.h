@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
+# ifndef CUB_H
 # define CUB_H
 
 # include "../libft/libft.h"
@@ -94,5 +94,9 @@ void			free_map(char **m);
 int				algoritmo(int x, int y, char **map_copy, int col);
 char			**copy_map(t_main *main);
 void			check_map_alg(t_main *main, char **copy_map_temp);
+
+
+//////////////////// PARSING ///////////////////
+void	parsing_map(char **av, t_main *main);
 
 #endif

@@ -6,29 +6,13 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:05 by paula             #+#    #+#             */
-/*   Updated: 2024/05/02 17:05:00 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/03 11:19:51 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	check_map(char **av, t_main *main)
-{
-	int	fd;
 
-	if (ft_strchr(av[1], '.') == NULL || ft_strncmp(ft_strchr(av[1], '.'),
-			".cub\0", 5) != 0)
-		exit(write(1, "Error, wrong extension\n", 23));
-	fd = open(av[1], O_RDONLY);
-	if (fd <= 0)
-		exit(ft_putstr_fd("Error in opening FD\n", 1));
-	main->map = save_map(NULL, fd);
-	map_rectangle(main);
-	map_validate(main);
-	map_caracteres(main);
-	map_paredes(main);
-	//check_map_alg(main, copy_map(main));
-}
 
 int	validate_characteres(char *line_map)
 {

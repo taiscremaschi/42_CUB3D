@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/08 12:20:13 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:20:50 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		exit(write(2, "Error\n", 6));
-	check_map(av, &main);
+	parsing_map(av, &main); //meu parsing 
 	main.mlx = mlx_init();
 	main.win = mlx_new_window(main.mlx, ((main.larg) * 100), main.altura
 			* 200, "cub3D");
