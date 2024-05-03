@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:52 by paula             #+#    #+#             */
-/*   Updated: 2024/05/02 17:04:49 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:20:55 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 // {
 // 	if (copy_map_temp == NULL)
 // 	{
-// 		free_map(main->map);
+// 		free_map(main->file_content);
 // 		exit(ft_putstr_fd("erro", 1));
 // 	}
 // 	if (algoritmo(main->player.x, main->player.y, copy_map_temp,
 // 			main->col) == 1)
 // 	{
-// 		free_map(main->map);
+// 		free_map(main->file_content);
 // 		free_map(copy_map_temp);
 // 		exit(ft_putstr_fd("caminho nao valido\n", 1));
 // 	}
@@ -42,12 +42,12 @@
 // 	while (x < main->altura)
 // 	{
 // 		y = 0;
-// 		c_map[x] = malloc(sizeof(char) * (ft_strlen(main->map[x]) + 1));
+// 		c_map[x] = malloc(sizeof(char) * (ft_strlen(main->file_content[x]) + 1));
 // 		if (!c_map)
 // 			return (NULL);
-// 		while (main->map[x][y] != '\0')
+// 		while (main->file_content[x][y] != '\0')
 // 		{
-// 			c_map[x][y] = main->map[x][y];
+// 			c_map[x][y] = main->file_content[x][y];
 // 			y++;
 // 		}
 // 		c_map[x][y] = '\0';
