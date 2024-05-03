@@ -24,6 +24,18 @@
 # include <unistd.h>
 
 //////////// STRUCTS  //////////////
+
+typedef struct s_textures
+{
+	char *north;
+	char *south;
+	char *west;
+	char *east;
+	char *floor_color;
+	char *ceiling_color;
+	char **values;
+
+}	t_textures;
 typedef struct s_player
 {
 	int			x;
@@ -50,6 +62,7 @@ typedef struct s_main
 	int			col; //n preciso
 	t_player	player;
 	t_picture	picture;
+	t_textures	textures;
 }				t_main;
 
 ///////////// VALIDATION //////////

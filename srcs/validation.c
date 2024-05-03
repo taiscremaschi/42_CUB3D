@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/02 17:03:36 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/03 10:46:43 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,51 @@ void	map_rectangle(t_main *main)
 		}
 	}
 	main->altura = alt;
+}
+
+// void search_map(t_main *main)
+// {
+	
+	
+
+	
+// }
+
+// char  **search_and_save_txt(int fd)
+// {
+// 	static int i;
+// 	int j = 0;
+// 	char *tmp;
+	
+// 	tmp = get_next_line(fd);
+// 	while (tmp[j] != '\0' || tmp[j] != '\n')
+// 	{
+// 		if (tmp[j] == " " || tmp[j] == "\t")
+// 			j++;
+// 		if (tmp[j] == )
+		
+
+	
+		
+// 	}
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+// 	NO ./path_to_the_north_texture
+// SO ./path_to_the_south_texture
+// WE ./path_to_the_west_texture
+// EA ./path_to_the_east_texture
+// F 220,100,0
+// C 225,30,0
+	
 }
 
 // void	check_letters(t_main *main, int i, int j, int *true_p)
