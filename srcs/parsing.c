@@ -6,15 +6,102 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/03 12:25:29 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:13:39 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-// char  **search_and_save_txt(int fd)
-// {
-// }
+int search_and_save_file(t_main *main)
+{
+    int i = 0;
+    int j;
+    char *line;
+    int flag = 0;
+    int check_paths = 0; 
+    while(main->file_content[i]!= NULL)
+    {
+        line = ft_substr(main->file_content[i], 0, ft_strlen(main->file_content[i]));
+        
+        j = 0;
+        while (line[j] != '\0' && line[j] != '\n')
+        {
+            while ((line[j] != '\0' && line[j] == ' ' )|| line[j] == '\t')
+                j++;
+            if(ft_strncmp(&line[j], "NO ", 3) == 0)
+            {
+                j += 4;
+                flag = j;
+                while(line[flag] != ' ' || line[flag] != '\t' || line[flag] != '\n' || line[flag] != '\0')
+                    flag++;
+                main->textures.north = ft_substr(line, (j), (flag - j));
+                j = flag;
+                check_paths++;
+            }
+            if(ft_strncmp(&line[j], "SO ", 3) == 0)
+            {
+                j += 4;
+                flag = j;
+                while(line[flag] != ' ' || line[flag] != '\t' || line[flag] != '\n' || line[flag] != '\0')
+                    flag++;
+                main->textures.south = ft_substr(line, (j), (flag - j));
+                j = flag;
+                check_paths++;
+
+            }
+            if(ft_strncmp(&line[j], "WE ", 3) == 0)
+            {
+                j += 4;
+                flag = j;
+                while(line[flag] != ' ' || line[flag] != '\t' || line[flag] != '\n' || line[flag] != '\0')
+                    flag++;
+                main->textures.west= ft_substr(line, (j), (flag - j));
+                j = flag;
+                check_paths++;
+
+            }
+            if(ft_strncmp(&line[j], "EA ", 3) == 0)
+            {
+                j += 4;
+                flag = j;
+                while(line[flag] != ' ' || line[flag] != '\t' || line[flag] != '\n' || line[flag] != '\0')
+                    flag++;
+                main->textures.east = ft_substr(line, (j), (flag - j));
+                j = flag; 
+                check_paths++;
+
+            }
+            if(ft_strncmp(&line[j], "F ", 2) == 0)
+            {
+                j += 3;
+                flag = j;
+                while(line[flag] != ' ' || line[flag] != '\t' || line[flag] != '\n' || line[flag] != '\0')
+                    flag++;
+                main->textures.floor_color = ft_substr(line, (j), (flag - j));
+                j = flag;   
+                check_paths++;
+
+            }
+            if(ft_strncmp(&line[j], "C ", 2) == 0)
+            {
+                j += 3;
+                flag = j;
+                while(line[flag] != ' ' || line[flag] != '\t' || line[flag] != '\n' || line[flag] != '\0')
+                    flag++;
+                main->textures.ceiling_color = ft_substr(line, (j), (flag - j));
+                j = flag;
+                check_paths++;
+            }
+            j++;
+        }
+        if(line)
+            free (line);
+        i++;
+    }
+    if(check_paths != 6)
+		exit(ft_putstr_fd("Error in args of file\n", 2));
+    return 0;
+}
 
 char	**save_file(char **map, int fd)
 {
@@ -39,9 +126,9 @@ void check_arg_and_fd(char **av, int fd)
 {
 	if (ft_strchr(av[1], '.') == NULL || ft_strncmp(ft_strchr(av[1], '.'),
 			".cub\0", 5) != 0)
-		exit(write(1, "Error, wrong extension\n", 23));
+		exit(write(2, "Error, wrong extension\n", 23));
 	if (fd <= 0)
-		exit(ft_putstr_fd("Error in opening FD\n", 1));
+		exit(ft_putstr_fd("Error in opening FD\n", 2));
     
 }
 
@@ -51,6 +138,7 @@ void	parsing_map(char **av, t_main *main)
 	fd = open(av[1], O_RDONLY);
     check_arg_and_fd(av, fd);
 	main->file_content = save_file(NULL, fd);
+    search_and_save_file(main);
     //separar o mapa dos paths 
     //verificar os paths se estao corretos
     //verificar se o mapa esta correto com os caracteres depois as paredes 
