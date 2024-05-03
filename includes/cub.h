@@ -33,7 +33,6 @@ typedef struct s_textures
 	char *east;
 	char *floor_color;
 	char *ceiling_color;
-	char **values;
 
 }	t_textures;
 typedef struct s_player

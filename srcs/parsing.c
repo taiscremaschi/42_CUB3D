@@ -6,13 +6,13 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/03 14:13:39 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:21:25 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-int search_and_save_file(t_main *main)
+int search_and_save_args(t_main *main)
 {
     int i = 0;
     int j;
@@ -138,9 +138,9 @@ void	parsing_map(char **av, t_main *main)
 	fd = open(av[1], O_RDONLY);
     check_arg_and_fd(av, fd);
 	main->file_content = save_file(NULL, fd);
-    search_and_save_file(main);
-    //separar o mapa dos paths 
     //verificar os paths se estao corretos
+    search_and_save_args(main);
+    //separar o mapa dos paths 
     //verificar se o mapa esta correto com os caracteres depois as paredes 
     // com uma especie de flood fill 
 	map_rectangle(main); //esse n preciso
