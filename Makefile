@@ -2,7 +2,7 @@
 
 NAME = cub3D
 
-SRC = check_walls.c controls.c image.c maps.c validation.c
+SRC = check_walls.c controls.c image.c maps.c validation.c parsing.c
 MAIN = main.c
 SRCS = $(SRC) $(MAIN)
 

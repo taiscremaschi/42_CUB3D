@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/03 10:46:43 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/03 10:47:30 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	map_rectangle(t_main *main)
 // F 220,100,0
 // C 225,30,0
 	
-}
+// }
 
 // void	check_letters(t_main *main, int i, int j, int *true_p)
 // {
