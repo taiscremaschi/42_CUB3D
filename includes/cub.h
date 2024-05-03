@@ -21,23 +21,23 @@ typedef struct s_textures
 	char *south;
 	char *west;
 	char *east;
-	char *floor_color;
+	char *floor_color; //falta o parsing para cores
 	char *ceiling_color;
 
 }	t_textures;
+
 typedef struct s_player
 {
 	int			x;
 	int			y;
 }				t_player;
-//essa struct é da paula 
+
 typedef struct s_picture
 {
-	void		*collectable;
-	void		*wall;
-	void		*player;
-	void		*floor;
-	void		*exit;
+	void		*p_north;
+	void		*p_south;
+	void 		*p_west;
+	void 		*p_east;
 }				t_picture;
 
 typedef struct s_main

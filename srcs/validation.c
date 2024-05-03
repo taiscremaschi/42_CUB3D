@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/03 12:20:55 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:16:30 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,6 @@ void	map_rectangle(t_main *main)
 		}
 		else if (main->file_content[i][0] == '\n')
 			i++;
-		else
-		{
-			free_map(main->file_content);
-			exit(ft_putstr_fd("O mapa não é retangulo\n", 1));
-		}
 	}
 	main->altura = alt;
 }
