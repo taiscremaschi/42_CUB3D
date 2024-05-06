@@ -99,4 +99,10 @@ void	parsing_map(char **av, t_main *main);
 char	**save_file(char **map, int fd);
 
 
+/////////////////////// textures ////////////////
+
+void inicialize_txt(t_main *main);
+int	search_and_save_args(t_main *main);
+
+
 #endif

@@ -6,11 +6,21 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/03 20:16:30 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:17:54 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+int	ft_strlen_sl(const char *s)
+{
+	int	x;
+
+	x = 0;
+	while (s[x] != '\0' && s[x] != '\n')
+		x++;
+	return (x);
+}
 
 void	map_paredes(t_main *main)
 {
@@ -62,51 +72,6 @@ void	map_rectangle(t_main *main)
 	main->altura = alt;
 }
 
-// void search_map(t_main *main)
-// {
-	
-	
-
-	
-// }
-
-// char  **search_and_save_txt(int fd)
-// {
-// 	static int i;
-// 	int j = 0;
-// 	char *tmp;
-	
-// 	tmp = get_next_line(fd);
-// 	while (tmp[j] != '\0' || tmp[j] != '\n')
-// 	{
-// 		if (tmp[j] == " " || tmp[j] == "\t")
-// 			j++;
-// 		if (tmp[j] == )
-		
-
-	
-		
-// 	}
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-// 	NO ./path_to_the_north_texture
-// SO ./path_to_the_south_texture
-// WE ./path_to_the_west_texture
-// EA ./path_to_the_east_texture
-// F 220,100,0
-// C 225,30,0
-	
-// }
-
 // void	check_letters(t_main *main, int i, int j, int *true_p)
 // {
 // 	if (main->file_content[i][j] == 'P')
@@ -152,6 +117,32 @@ void	map_caracteres(t_main *main)
 	}
 			//check_letters(main, i, j, &true_p);	
 }
+
+
+int	validate_characteres(char *line_map)
+{
+	char	*valid_chars;
+	int		i;
+	int		count;
+
+	i = 0;
+	count = 0;
+	valid_chars = "NSEW01\n ";
+	while (line_map[count] != '\0')
+	{
+		if (line_map[count] == valid_chars[i])
+		{
+			count++;
+			i = 0;
+		}
+		else if (i == 8)
+			return (0);
+		else if (line_map[count] != valid_chars[i])
+			i++;
+	}
+	return (1);
+}
+
 
 void	map_validate(t_main *main)
 {
