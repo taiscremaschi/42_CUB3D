@@ -76,7 +76,6 @@ void			validate_map(t_main *main);
 ////////// MAPS ////////////
 
 int				validate_characteres(char *line_map);
-void			check_map(char **av, t_main *main);
 
 ///////////// CONTROLS ////////////
 int				read_esc(int keycode, t_main *main);
@@ -92,7 +91,7 @@ int				end(t_main *main);
 void			free_map(char **m);
 
 ////////// ALGORITMO  /////////////
-int				algoritmo(int x, int y, char **map_copy, int col);
+int				algoritmo(char **map_copy, int col);
 char			**copy_map(t_main *main);
 void			check_map_alg(t_main *main, char **copy_map_temp);
 

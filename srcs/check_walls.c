@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:52 by paula             #+#    #+#             */
-/*   Updated: 2024/05/06 15:53:18 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:02:51 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,16 @@ int	util_alg(int x, int y, char **map_copy, int height)
 {
 	if (map_copy[y][x] != '1' && map_copy[y][x] != 'z')
 	{
-		return (algoritmo(x, y, map_copy, height));
+		return (algoritmo(map_copy, height));
 	}
 	return (1);
 }
 
 
-int	algoritmo(int j, int i, char **map_copy, int height)
+int	algoritmo(char **map_copy, int height)
 {
-    int	i;
+    int	i = 0;
     int j = 0;
-	int	largura;
 
 	i = 0;
 
@@ -58,8 +57,6 @@ int	algoritmo(int j, int i, char **map_copy, int height)
         }
         i++;
     }
-    
-
 	return (1);
 }
 
@@ -71,7 +68,7 @@ void	check_map_alg(t_main *main, char **copy_map_temp)
 		free_map(main->file_content);
 		exit(ft_putstr_fd("Error in copy map\n", 2));
 	}
-	if (algoritmo(main->player.x, main->player.y, copy_map_temp, main->height) == 1)
+	if (algoritmo(copy_map_temp, main->height) == 1)
 	{
 		free_map(main->file_content);
 		free_map(copy_map_temp);

@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:05 by paula             #+#    #+#             */
-/*   Updated: 2024/05/06 14:42:04 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:03:05 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@
 void search_height(t_main *main)
 {
     int i = 0;
-    int j = 0 ;
     while(main->file_content[i])
     {
         i++;
