@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/08 12:21:41 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:22:06 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	main(int ac, char **av)
 		exit(write(2, "Error\n", 6));
 	parsing_map(av, &main); //meu parsing 
 	main.mlx = mlx_init();
-	main.win = mlx_new_window(main.mlx, ((main.larg) * 100), main.altura
-			* 200, "cub3D");
+	main.win = mlx_new_window(main.mlx, ((main.larg) * 100), main.height
+			* 200, "cub3D"); //janela grande 
 	image_inicialize(&main);
 	mlx_loop_hook(main.mlx, render_image, &main);
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);

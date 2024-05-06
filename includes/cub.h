@@ -55,7 +55,7 @@ typedef struct s_main
 	void		*win;
 	char		**file_content;
 	int			larg; //tbm acho que n usarei
-	int			altura; //acho que nao preciso
+	int			height; //acho que nao preciso
 	void		*mlx;
 	int			moves_counter; // n preciso
 	int			col; //n preciso
@@ -107,5 +107,7 @@ char	**save_file(char **map, int fd);
 void inicialize_txt(t_main *main);
 int	search_and_save_args(t_main *main);
 
+////////////////utils que nao sei onde por ainda ///
+void search_height(t_main *main);
 
 #endif
