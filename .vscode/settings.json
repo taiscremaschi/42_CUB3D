@@ -2,6 +2,7 @@
     "files.associations": {
         "ft_printf.h": "c",
         "libft.h": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "cub.h": "c"
     }
 }

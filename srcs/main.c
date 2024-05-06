@@ -6,11 +6,24 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/03 20:43:35 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:18:12 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+#define UP 119
+#define DOWN 115
+#define RIGHT 100
+#define LEFT 97
+
+int	read_esc(int keycode, t_main *main)
+{
+	if (keycode == 65307)
+		end(main);
+	return (0);
+}
+
 
 void	free_map(char **m)
 {
