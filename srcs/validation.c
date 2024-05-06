@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/06 14:43:47 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:05:26 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	validate_map(t_main *main)
 {
 	check_chars(main);
 	check_and_save_player(main, "NSEW");
-	check_walls(main);
+	//check_map(main);
 	search_height(main);
 	//posso fazer uma coisa pra poupar linha se qualquer uma das validacoes
 	//derem merda dou free aqui no mapa

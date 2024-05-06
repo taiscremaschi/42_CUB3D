@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/06 15:37:54 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:55:49 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ void	parsing_map(char **av, t_main *main)
 	change_file_content(main); //agr meu arquivo esta sem os args hehehehhe ohhhhhhhhhh yessss.
 	validate_map(main);
 	// verificar as paredes com uma especie de flood fill
-	// check_map_alg(main, copy_map(main));
+ 	check_map_alg(main, copy_map(main));
 }
