@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/06 13:38:12 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:01:31 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,8 @@ void	parsing_map(char **av, t_main *main)
 	if (search_and_save_args(main) != 6)
 		exit(ft_putstr_fd("Error in args of file\n", 2));
 	change_file_content(main); //agr meu arquivo esta sem os args hehehehhe ohhhhhhhhhh yessss.
-	// verificar se o mapa esta correto com os caracteres depois as paredes
-	// com uma especie de flood fill
 	validate_map(main);
-	map_rectangle(main); // esse n preciso
-	// check_chars(main); ///chamo essa no validate map
-	// map_caracteres(main); //tbm chamo no validate map
-	map_paredes(main);
+	// verificar as paredes com uma especie de flood fill
+	//map_paredes(main); //essa funcao nao tem como eu fazer assim
 	// check_map_alg(main, copy_map(main));
 }
