@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/03 20:25:23 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:13:17 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	search_and_save_args(t_main *main)
 	count = 0;
 	while (main->file_content[i] != NULL)
 	{
+		if(count == 6)
+			break ;
 		line = ft_strdup(main->file_content[i]);
 		j = 0;
 		while (line[j] != '\0' && line[j] != '\n')
@@ -76,6 +78,7 @@ int	search_and_save_args(t_main *main)
 			free(line);
 		i++;
 	}
+	main->textures.line_help = i;
 	return (count);
 }
 
@@ -118,16 +121,41 @@ void inicialize_txt(t_main *main)
     
 }
 
+
+void change_file_content(t_main *main)
+{
+	int i = main->textures.line_help;
+	int j  = 0;
+
+	while(i > 0)
+	{
+		main->file_content[j] = NULL;;
+		main->file_content[j] = "\n";
+		i--;
+		j++;
+	}
+}
+
+void print_double_pointer(char **array) 
+{
+    for (int i = 0; array[i] != NULL; i++) 
+	{
+        printf("%s", array[i]);
+    }
+}
+
 void	parsing_map(char **av, t_main *main)
 {
 	int fd;
 
 	fd = open(av[1], O_RDONLY);
 	check_arg_and_fd(av, fd);
-	main->file_content = save_file(NULL, fd);
-    inicialize_txt(main);
+	main->file_content = save_file(NULL, fd); // file content salva todo meu arquivo.
+    inicialize_txt(main); //aqui pode ser uma funcao para inicializar all que chama o inicialize txt 
 	if (search_and_save_args(main) != 6)
 		exit(ft_putstr_fd("Error in args of file\n", 2));
+	change_file_content(main);
+	//print_double_pointer(main->file_content);
 	// separar o mapa dos paths
 	// verificar se o mapa esta correto com os caracteres depois as paredes
 	// com uma especie de flood fill

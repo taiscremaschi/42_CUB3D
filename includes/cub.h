@@ -33,7 +33,7 @@ typedef struct s_textures
 	char *east;
 	char *floor_color; //falta o parsing para cores
 	char *ceiling_color;
-
+	int	 line_help;
 }	t_textures;
 
 typedef struct s_player
