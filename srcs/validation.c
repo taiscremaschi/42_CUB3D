@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/06 13:17:54 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:37:42 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,40 +123,52 @@ int	validate_characteres(char *line_map)
 {
 	char	*valid_chars;
 	int		i;
-	int		count;
-
+	int		j;
+		
 	i = 0;
-	count = 0;
-	valid_chars = "NSEW01\n ";
-	while (line_map[count] != '\0')
+	j = 0;
+	valid_chars = "NSEW01\t\n ";
+	while (line_map[j] != '\0')
 	{
-		if (line_map[count] == valid_chars[i])
+		if (line_map[j] == valid_chars[i])
 		{
-			count++;
+			j++;
 			i = 0;
 		}
-		else if (i == 8)
-			return (0);
-		else if (line_map[count] != valid_chars[i])
+		else if (i == 9)
+			return (1);
+		else if (line_map[j] != valid_chars[i])
 			i++;
 	}
-	return (1);
+	return (0);
 }
 
 
-void	map_validate(t_main *main)
+void	check_chars(t_main *main)
 {
 	int	i;
 
 	i = 0;
 	while (main->file_content[i] != NULL)
 	{
-		if (validate_characteres(main->file_content[i]))
+		if (validate_characteres(main->file_content[i]) == 0)
 			i++;
 		else
 		{
 			free_map(main->file_content);
-			exit(ft_putstr_fd("Error in characteres\n", 1));
+			exit(ft_putstr_fd("Error: charactere invalid\n", 2));
 		}
 	}
+}
+
+
+void	validate_map(t_main *main)
+{
+	check_chars(main);
+	map_caracteres(main);
+
+
+	
+
+	
 }
