@@ -54,8 +54,8 @@ typedef struct s_main
 {
 	void		*win;
 	char		**file_content;
-	int			larg;
-	int			altura;
+	int			larg; //tbm acho que n usarei
+	int			altura; //acho que nao preciso
 	void		*mlx;
 	int			moves_counter; // n preciso
 	int			col; //n preciso
@@ -69,7 +69,10 @@ typedef struct s_main
 void			map_paredes(t_main *main);
 void			map_rectangle(t_main *main);
 void			map_caracteres(t_main *main);
-void			map_validate(t_main *main);
+void			check_chars(t_main *main);
+void			validate_map(t_main *main);
+
+
 ////////// MAPS ////////////
 
 int				validate_characteres(char *line_map);
