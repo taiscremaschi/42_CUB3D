@@ -6,22 +6,11 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/07 14:44:11 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:04:12 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-int	ft_strlen_sl(const char *s)
-{
-	int	x;
-
-	x = 0;
-	while (s[x] != '\0' && s[x] != '\n')
-		x++;
-	return (x);
-}
-
 
 void	check_and_save_player(t_main *main, char *letters)
 {
@@ -100,8 +89,5 @@ void	validate_map(t_main *main)
 {
 	check_chars(main);
 	check_and_save_player(main, "NSEW");
-	//check_map(main);
-	search_height(main);
-	//posso fazer uma coisa pra poupar linha se qualquer uma das validacoes
-	//derem merda dou free aqui no mapa
+	check_map_with_alg(main, copy_map(main));
 }
