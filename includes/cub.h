@@ -91,7 +91,7 @@ int				end(t_main *main);
 void			free_map(char **m);
 
 ////////// ALGORITMO  /////////////
-int				algoritmo(char **map_copy, int col);
+int				algoritmo(char **map_copy, int x, int y);
 char			**copy_map(t_main *main);
 void			check_map_alg(t_main *main, char **copy_map_temp);
 
