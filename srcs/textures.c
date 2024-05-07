@@ -6,22 +6,11 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:09:59 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/06 13:14:16 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:20:00 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-void inicialize_txt(t_main *main)
-{
-    main->textures.ceiling_color = NULL;
-    main->textures.east = NULL;
-    main->textures.floor_color = NULL;
-    main->textures.north  = NULL;
-    main->textures.south  = NULL;
-    main->textures.west  = NULL;
-    
-}
 
 int	save_textures(int *j, char *line, char **filename, int size)
 {

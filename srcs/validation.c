@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/07 15:04:12 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:33:42 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void	check_and_save_player(t_main *main, char *letters)
 			}
 		}
 	}
+	if(flag_player == 0)
+		exit(ft_putstr_fd("Error: no player in game\n", 2));
+		
 }
 
 int	validate_characteres(char *line_map)
