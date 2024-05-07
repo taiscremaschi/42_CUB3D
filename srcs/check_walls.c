@@ -6,67 +6,12 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:52 by paula             #+#    #+#             */
-/*   Updated: 2024/05/07 13:42:35 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:48:20 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-// int	util_alg(int x, int y, char **map_copy)
-// {
-// 	if (map_copy[y][x] == '1' || map_copy[y][x] == 'z')
-// 	{
-// 		return (algoritmo(map_copy, x, y));
-// 	}
-// 	return (1);
-// }
-
-
-// int	algoritmo(char **map_copy, int x, int y)
-// {
-
-//     while(map_copy[y])
-//     {
-// 		x = 0;
-//         while(map_copy[y][x] != '\0' && map_copy[y][x] != '\n')
-//         {
-//             while(map_copy[y][x] == ' ' || map_copy[y][x] == '\t')
-//             {
-// 				x++;
-// 			}
-//             if(map_copy[y][x] == '0' || map_copy[y][x] == 'S')
-//             {
-//                 if(map_copy[y][x] == '0')
-//                 {
-//                     if (util_alg(x, y - 1, map_copy) == 0)
-// 					{
-// 	            		map_copy[y][x] = 'z';
-//                         return (0);
-// 					}
-//                     if (util_alg(x, y + 1, map_copy) == 0)
-// 					{
-// 	            		map_copy[y][x] = 'z';
-//                         return (0);
-// 					}
-//                     if (util_alg(x + 1, y, map_copy) == 0)
-// 					{
-// 	            		map_copy[y][x] = 'z';
-//                         return (0);
-// 					}
-//                     if (util_alg(x - 1, y, map_copy) == 0)
-// 					{
-// 	            		map_copy[y][x] = 'z';
-//                         return (0);
-// 					}
-//                 }
-//             }
-//             x++;
-// 			print_double_pointer(map_copy);
-//         }
-//         y++;
-//     }
-// 	return (1);
-// }
 
 
 void check_player(char **map_copy, int x, int y)
@@ -189,7 +134,8 @@ void	check_map_alg(t_main *main, char **copy_map_temp)
 		free_map(main->file_content);
 		exit(ft_putstr_fd("Error in copy map\n", 2));
 	}
-	if(alg_tata(copy_map_temp, main->player.x, main->player.y, main->height) == false)
+	check_player(copy_map_temp, main->player.x, main->player.y);
+	if(alg_tata(copy_map_temp, 0, 0, main->height) == false)
 	{
 		//free_map(main->file_content);
 		//free_map(copy_map_temp);

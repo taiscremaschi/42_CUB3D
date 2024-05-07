@@ -6,11 +6,21 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/06 19:48:08 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:48:41 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+void search_height(t_main *main)
+{
+    int i = 0;
+    while(main->file_content[i])
+    {
+        i++;
+    }
+    main->height = i;
+}
 
 void change_file_content(t_main *main)
 {
@@ -66,6 +76,5 @@ void	parsing_map(char **av, t_main *main)
 		exit(ft_putstr_fd("Error in args of file\n", 2));
 	change_file_content(main); //agr meu arquivo esta sem os args hehehehhe ohhhhhhhhhh yessss.
 	validate_map(main);
-	// verificar as paredes com uma especie de flood fill
  	check_map_alg(main, copy_map(main));
 }
