@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:52 by paula             #+#    #+#             */
-/*   Updated: 2024/05/07 12:31:45 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:11:50 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,31 +126,66 @@ bool check_x_right(char**map_copy, int x, int y)
 }
 
 
+bool check_y_up(char**map_copy, int x, int y)
+{
+	
+	while(y >= 0)
+	{
+		y--;
+		if(map_copy[y][x] == '1')
+			return true;
+		if( map_copy[y][x] == '\n' || map_copy[y][x] == ' ' || map_copy[y][x] == '\t')
+			return false;
+		if( map_copy[y][x] == '0')
+			continue ;
+	}
+	return false;
+}
 
-void alg_tata(char **map_copy, int x, int y)
+bool check_y_down(char**map_copy, int x, int y, int height)
+{
+	
+	while( y < height)
+	{
+		y--;
+		if(map_copy[y][x] == '1')
+			return true;
+		if( map_copy[y][x] == '\n' || map_copy[y][x] == ' ' || map_copy[y][x] == '\t')
+			return false;
+		if( map_copy[y][x] == '0')
+			continue ;
+	}
+	return false;
+}
+
+
+bool alg_tata(char **map_copy, int x, int y, int height)
 {
 	int count  = check_zero(map_copy, x, y);
 	while(map_copy[y])
 	{
 		x = 0;
-		while(map_copy[y][x])
+		while(map_copy[y][x] != '\0' || map_copy[y][x] != '\n')
 		{
-			if(map_copy[y][x] == '1' || map_copy[y][x] == '\n' || map_copy[y][x] == ' ' || map_copy[y][x] == '\t')
+			if(map_copy[y][x] == '1' || map_copy[y][x] == ' ' || map_copy[y][x] == '\t')
 				x++;
-
-			if(map_copy[y][x] == '0')	
-				check_walls(map_copy, x, y)
-
-
-
+			if(map_copy[y][x] == '0')
+			{
+				if (!check_y_down(map_copy, x, y, height) || !check_y_up(map_copy, x, y))
+						return false;
+				if(!check_x_left(map_copy, x, y) || !check_x_right(map_copy, x, y))
+					return false;
+				count --;
+			}
+			else 
+				x++;
 		}
 		y++;
 	}
-	
+	if(count == 0)
+		return true;
+	return false;	
 }
-
-
-
 
 void	check_map_alg(t_main *main, char **copy_map_temp)
 {
@@ -159,12 +194,19 @@ void	check_map_alg(t_main *main, char **copy_map_temp)
 		free_map(main->file_content);
 		exit(ft_putstr_fd("Error in copy map\n", 2));
 	}
-	if (algoritmo(copy_map_temp, 0, 0) == 0)
+	if(!alg_tata(copy_map_temp, main->player.x, main->player.y, main->height))
 	{
 		//free_map(main->file_content);
 		//free_map(copy_map_temp);
 		exit(ft_putstr_fd("Error in the walls\n", 2));
 	}
+	// if (algoritmo(copy_map_temp, 0, 0) == 0)
+	// {
+	// 	//free_map(main->file_content);
+	// 	//free_map(copy_map_temp);
+	// 	exit(ft_putstr_fd("Error in the walls\n", 2));
+	// }
+	printf("oh yes mapa certo espero \n");
 	free_map(copy_map_temp);
 }
 
