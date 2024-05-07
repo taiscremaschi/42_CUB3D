@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/07 15:00:14 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:12:23 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void change_file_content(t_main *main)
 
 	while(i > 0)
 	{
-		main->file_content[j] = NULL;;
+		main->file_content[j] = NULL;
 		main->file_content[j] = "\n";
 		i--;
 		j++;
