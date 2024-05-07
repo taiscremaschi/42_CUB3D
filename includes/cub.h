@@ -65,49 +65,52 @@ typedef struct s_main
 	t_textures	textures;
 }				t_main;
 
-///////////// VALIDATION //////////
 
-void			map_paredes(t_main *main);
-void			map_rectangle(t_main *main);
-void			map_caracteres(t_main *main);
-void			check_chars(t_main *main);
-void			validate_map(t_main *main);
+/////////////////////////// ALGORITHM //////////////////
+void	check_map_with_alg(t_main *main, char **copy_map_temp);
+void change_player(char **map_copy, int x, int y);
+bool alg_walls(char **map_copy, int x, int y, int height);
 
 
-////////// MAPS ////////////
+/////////////////////////// CHECK WALLS  //////////////////
 
-int				validate_characteres(char *line_map);
+bool check_x_left(char**map_copy, int x, int y);
+bool check_x_right(char**map_copy, int x, int y);
+bool check_y_up(char**map_copy, int x, int y);
+bool check_y_down(char**map_copy, int x, int y, int height);
 
-///////////// CONTROLS ////////////
-int				read_esc(int keycode, t_main *main);
-void			verification_moves(t_main *m, int x, int y);
-int				ft_strlen_sl(const char *s);
-
-////////////// IMAGENS //////////////
+////////////////////////////// IMAGES //////////////
 void			image_inicialize(t_main *main);
 int				render_image(t_main *main);
 
-///////////  MAIN //////////
+
+//////////////////////////////////  MAIN //////////
 int				end(t_main *main);
 void			free_map(char **m);
+int	read_esc(int keycode, t_main *main);
 
-////////// ALGORITMO  /////////////
-int				algoritmo(char **map_copy, int x, int y);
-char			**copy_map(t_main *main);
-void			check_map_alg(t_main *main, char **copy_map_temp);
 
+/////////////////////////// PARSING UTILS //////////////////
+void inicialize_txt(t_main *main);
+void search_height(t_main *main);
+char	**copy_map(t_main *main);
 
 //////////////////// PARSING ///////////////////
-void	parsing_map(char **av, t_main *main);
+void change_file_content(t_main *main);
 char	**save_file(char **map, int fd);
+void	check_arg_and_fd(char **av, int fd);
+void	parsing_map(char **av, t_main *main);
 
-
-/////////////////////// textures ////////////////
-
-void inicialize_txt(t_main *main);
+/////////////////////////// TEXTURES  //////////////////
+int	save_textures(int *j, char *line, char **filename, int size);
+int	compare_args(char *line, int *j, t_main *main);
 int	search_and_save_args(t_main *main);
 
-////////////////utils que nao sei onde por ainda ///
-void search_height(t_main *main);
+///////////// VALIDATION //////////
+void	check_and_save_player(t_main *main, char *letters);
+int		validate_characteres(char *line_map);
+void	check_chars(t_main *main);
+void	validate_map(t_main *main);
+
 
 #endif

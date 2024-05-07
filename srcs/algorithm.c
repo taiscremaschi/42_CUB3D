@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:52:19 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/07 15:06:26 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:20:50 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	check_map_with_alg(t_main *main, char **copy_map_temp)
 	change_player(copy_map_temp, main->player.x, main->player.y);
 	if(alg_walls(copy_map_temp, 0, 0, main->height) == false)
 	{
-		//free_map(main->file_content);
-		//free_map(copy_map_temp);
+		free_map(main->file_content);
+		free_map(copy_map_temp);
 		exit(ft_putstr_fd("Error in the walls\n", 2));
 	}
 	printf("oh yes mapa certo espero \n");
