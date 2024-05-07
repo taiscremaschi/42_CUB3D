@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:52 by paula             #+#    #+#             */
-/*   Updated: 2024/05/07 15:07:19 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:26:57 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ bool check_x_left(char**map_copy, int x, int y)
 {
 	while(x >= 0)
 	{
-		x--;
 		if(map_copy[y][x] == '1')
 			return true;
 		if( map_copy[y][x] == '\n' || map_copy[y][x] == ' ' || map_copy[y][x] == '\t')
 			return false;
-		if( map_copy[y][x] == '0')
-			continue ;
+		x--;
 	}
 	return false;
 	
@@ -36,8 +34,6 @@ bool check_x_right(char**map_copy, int x, int y)
 			return true;
 		if( map_copy[y][x] == '\n' || map_copy[y][x] == ' ' || map_copy[y][x] == '\t')
 			return false;
-		if( map_copy[y][x] == '0')
-			continue ;
 	}
 	return false;
 }
@@ -51,8 +47,6 @@ bool check_y_up(char**map_copy, int x, int y)
 			return true;
 		if( map_copy[y][x] == '\n' || map_copy[y][x] == ' ' || map_copy[y][x] == '\t')
 			return false;
-		if( map_copy[y][x] == '0')
-			continue ;
 	}
 	return false;
 }
@@ -66,8 +60,6 @@ bool check_y_down(char**map_copy, int x, int y, int height)
 			return true;
 		if( map_copy[y][x] == '\n' || map_copy[y][x] == ' ' || map_copy[y][x] == '\t')
 			return false;
-		if( map_copy[y][x] == '0')
-			continue ;
 	}
 	return false;
 }
