@@ -6,13 +6,11 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:52 by paula             #+#    #+#             */
-/*   Updated: 2024/05/07 13:48:20 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:47:42 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-
 
 void check_player(char **map_copy, int x, int y)
 {
@@ -68,7 +66,6 @@ bool check_x_right(char**map_copy, int x, int y)
 	return false;
 }
 
-
 bool check_y_up(char**map_copy, int x, int y)
 {
 	while(y > 0)
@@ -98,7 +95,6 @@ bool check_y_down(char**map_copy, int x, int y, int height)
 	}
 	return false;
 }
-
 
 bool alg_tata(char **map_copy, int x, int y, int height)
 {
@@ -141,17 +137,9 @@ void	check_map_alg(t_main *main, char **copy_map_temp)
 		//free_map(copy_map_temp);
 		exit(ft_putstr_fd("Error in the walls\n", 2));
 	}
-	// if (algoritmo(copy_map_temp, 0, 0) == 0)
-	// {
-	// 	//free_map(main->file_content);
-	// 	//free_map(copy_map_temp);
-	// 	exit(ft_putstr_fd("Error in the walls\n", 2));
-	// }
 	printf("oh yes mapa certo espero \n");
 	free_map(copy_map_temp);
 }
-
-
 
 char	**copy_map(t_main *main)
 {
