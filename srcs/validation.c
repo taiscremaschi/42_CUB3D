@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/06 16:05:26 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:00:31 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,14 @@ int	validate_characteres(char *line_map)
 			i = 0;
 		}
 		else if (i == 9)
+		{
+			
+			printf("quebrou aqu\n");
 			return (1);
+		}
 		else if (line_map[j] != valid_chars[i])
 			i++;
+		
 	}
 	return (0);
 }
@@ -86,13 +91,12 @@ void	check_chars(t_main *main)
 	i = 0;
 	while (main->file_content[i] != NULL)
 	{
-		if (validate_characteres(main->file_content[i]) == 0)
-			i++;
-		else
+		if (!validate_characteres(main->file_content[i]))
 		{
 			free_map(main->file_content);
 			exit(ft_putstr_fd("Error: charactere invalid\n", 2));
 		}
+		i++;
 	}
 }
 
