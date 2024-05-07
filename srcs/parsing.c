@@ -6,21 +6,11 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/07 13:48:41 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:00:14 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-void search_height(t_main *main)
-{
-    int i = 0;
-    while(main->file_content[i])
-    {
-        i++;
-    }
-    main->height = i;
-}
 
 void change_file_content(t_main *main)
 {
@@ -71,10 +61,10 @@ void	parsing_map(char **av, t_main *main)
 	fd = open(av[1], O_RDONLY);
 	check_arg_and_fd(av, fd);
 	main->file_content = save_file(NULL, fd); // file content salva todo meu arquivo.
-    inicialize_txt(main); //aqui pode ser uma funcao para inicializar all que chama o inicialize txt 
+    inicialize_txt(main);
+	search_height(main); //aqui pode ser uma funcao para inicializar all que chama o inicialize txt 
 	if (search_and_save_args(main) != 6)
 		exit(ft_putstr_fd("Error in args of file\n", 2));
 	change_file_content(main); //agr meu arquivo esta sem os args hehehehhe ohhhhhhhhhh yessss.
 	validate_map(main);
- 	check_map_alg(main, copy_map(main));
 }
