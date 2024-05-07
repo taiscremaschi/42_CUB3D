@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/07 14:00:31 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:44:11 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	validate_characteres(char *line_map)
 	i = 0;
 	j = 0;
 	valid_chars = "NSEW01\t\n ";
-	while (line_map[j] != '\0')
+	while (line_map[j] != '\0' && line_map[j] != '\n')
 	{
 		if (line_map[j] == valid_chars[i])
 		{
@@ -72,11 +72,7 @@ int	validate_characteres(char *line_map)
 			i = 0;
 		}
 		else if (i == 9)
-		{
-			
-			printf("quebrou aqu\n");
 			return (1);
-		}
 		else if (line_map[j] != valid_chars[i])
 			i++;
 		
@@ -91,9 +87,9 @@ void	check_chars(t_main *main)
 	i = 0;
 	while (main->file_content[i] != NULL)
 	{
-		if (!validate_characteres(main->file_content[i]))
+		if (validate_characteres(main->file_content[i]) == 1)
 		{
-			free_map(main->file_content);
+			//free_map(main->file_content); //problemas no free
 			exit(ft_putstr_fd("Error: charactere invalid\n", 2));
 		}
 		i++;
