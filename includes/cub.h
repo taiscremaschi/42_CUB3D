@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 13:13:50 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:06:08 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,11 @@ int				check_and_save_player(t_main *main, char *letters, int player);
 int				validate_characteres(char *line_map);
 void			check_chars(t_main *main);
 void			validate_map(t_main *main);
+
+//////////////////////////////// PARSING COLORS //////////////////
+void 			save_color(t_main *main, int tmp, int i, char type);
+bool 			search_colors(t_main *main, char *color, char type);
+bool 			parsing_colors(t_main *main);
+
 
 #endif

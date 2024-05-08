@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 15:31:39 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:04:35 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	parsing_map(char **av, t_main *main)
 		end_parsing(main, "Error in args of file\n");
 	if (!acess_paths(main))
 		end_parsing(main, "Error: path not found\n");
+	if(!parsing_colors(main))
+		end_parsing(main, "Error: colors error\n");
 	change_file_content(main);
 	validate_map(main);
 }

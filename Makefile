@@ -2,7 +2,7 @@
 
 NAME = cub3D
 
-SRC = check_walls.c image.c validation.c parsing.c textures.c algorithm.c parsing_utils.c end_game_utils.c
+SRC = check_walls.c image.c validation.c parsing.c textures.c algorithm.c parsing_utils.c end_game_utils.c parsing_colors.c
 MAIN = main.c
 SRCS = $(SRC) $(MAIN)
 
