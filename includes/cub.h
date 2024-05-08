@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 10:56:22 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:31:40 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int				render_image(t_main *main);
 int				end(t_main *main);
 void			free_map(char **m);
 int	read_esc(int keycode, t_main *main);
+void end_parsing(t_main *main);
+
 
 
 /////////////////////////// PARSING UTILS //////////////////

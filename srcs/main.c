@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/06 19:47:48 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:31:31 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ void	free_map(char **m)
 	free(m);
 }
 
+void end_parsing(t_main *main)
+{
+	free_map(main->file_content);
+	free(main->textures.ceiling_color);
+	free(main->textures.south);
+	free(main->textures.east);
+	free(main->textures.west);
+	free(main->textures.north);
+	free(main->textures.floor_color);
+}
+
+
 int	end(t_main *main) //funcao para excluir e destroir todas imagens e janela
 {
 	free_map(main->file_content);
@@ -49,6 +61,7 @@ int	end(t_main *main) //funcao para excluir e destroir todas imagens e janela
 	mlx_destroy_display(main->mlx);
 	mlx_loop_end(main->mlx);
 	free(main->mlx);
+
 	exit(0);
 }
 
@@ -60,7 +73,7 @@ int	main(int ac, char **av)
 		exit(write(2, "Error\n", 6));
 	parsing_map(av, &main); //meu parsing 
 	main.mlx = mlx_init();
-	main.win = mlx_new_window(main.mlx, ((main.larg) * 100), main.height
+	main.win = mlx_new_window(main.mlx, ((100) * 100), main.height
 			* 200, "cub3D"); //janela grande 
 	image_inicialize(&main);
 	mlx_loop_hook(main.mlx, render_image, &main);
