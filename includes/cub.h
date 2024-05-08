@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
+/*   Updated: 2024/05/08 09:57:35 by tbolzan-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 # ifndef CUB_H
 # define CUB_H
@@ -45,11 +55,8 @@ typedef struct s_main
 {
 	void		*win;
 	char		**file_content;
-	int			larg; //tbm acho que n usarei
-	int			height; //acho que nao preciso
+	int			height;
 	void		*mlx;
-	int			moves_counter; // n preciso
-	int			col; //n preciso
 	t_player	player;
 	t_picture	picture;
 	t_textures	textures;
