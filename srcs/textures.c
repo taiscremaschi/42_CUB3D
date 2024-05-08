@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:09:59 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 10:55:32 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:35:21 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,11 @@ int	search_and_save_args(t_main *main)
 		j = 0;
 		while (line[j] != '\0' && line[j] != '\n')
 		{
-			while ((line[j] != '\0' && line[j] == ' ') || line[j] == '\t')
+			while (line[j] != '\0' && (line[j] == ' ' || line[j] == '\t'))
 				j++;
 			count += compare_args(line, &j, main);
-			j++;
+			if(line[j])
+				j++;
 		}
 		if (line)
 			free(line);

@@ -3,7 +3,6 @@ SO ./textures/redbrick.xpm
 EA ./textures/wood.xpm
 WE ./textures/wood.xpm
 S ./textures/barrel.xpm
-C 255,200,160
 F 122,122,122
 
 11111111000001111

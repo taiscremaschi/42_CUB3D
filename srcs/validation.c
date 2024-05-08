@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/07 15:33:42 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:30:22 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void	check_and_save_player(t_main *main, char *letters)
 		}
 	}
 	if(flag_player == 0)
+	{
+		end_parsing(main);
 		exit(ft_putstr_fd("Error: no player in game\n", 2));
+	}
 		
 }
 
@@ -81,7 +84,7 @@ void	check_chars(t_main *main)
 	{
 		if (validate_characteres(main->file_content[i]) == 1)
 		{
-			//free_map(main->file_content); //problemas no free
+			end_parsing(main);
 			exit(ft_putstr_fd("Error: charactere invalid\n", 2));
 		}
 		i++;
