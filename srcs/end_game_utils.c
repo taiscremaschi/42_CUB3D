@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:41:20 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 11:42:06 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:49:57 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	free_map(char **m)
 	free(m);
 }
 
-
-int	end(t_main *main) //funcao para excluir e destroir todas imagens e janela
+// funcao para excluir e destroir todas imagens e janela
+int	end(t_main *main)
 {
 	free_map(main->file_content);
 	mlx_destroy_image(main->mlx, main->picture.p_east);
@@ -44,6 +44,5 @@ int	end(t_main *main) //funcao para excluir e destroir todas imagens e janela
 	mlx_destroy_display(main->mlx);
 	mlx_loop_end(main->mlx);
 	free(main->mlx);
-
 	exit(0);
 }

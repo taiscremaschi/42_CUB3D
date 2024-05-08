@@ -6,18 +6,20 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 11:29:12 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:17:26 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void change_file_content(t_main *main)
+void	change_file_content(t_main *main)
 {
-	int i = main->textures.line_help;
-	int j  = 0;
+	int	i;
+	int	j;
 
-	while(i > 0)
+	i = main->textures.line_help;
+	j = 0;
+	while (i > 0)
 	{
 		free(main->file_content[j]);
 		main->file_content[j] = ft_strdup("\n");
@@ -56,23 +58,17 @@ void	check_arg_and_fd(char **av, int fd)
 
 void	parsing_map(char **av, t_main *main)
 {
-	int fd;
+	int	fd;
 
 	fd = open(av[1], O_RDONLY);
-	check_arg_and_fd(av, fd); //checa a extensaoo cub e chega se o fd deu certo.
-	main->file_content = save_file(NULL, fd); // file content salva todo meu arquivo.
-    inicialize_txt(main);
-	search_height(main); //aqui pode ser uma funcao para inicializar all que chama o inicialize txt 
-	if (search_and_save_args(main) != 6)
-	{
-		end_parsing(main);
-		exit(ft_putstr_fd("Error in args of file\n", 2));
-	}
-	if(!acess_paths(main))
-	{
-		end_parsing(main);
-		exit(ft_putstr_fd("Error: path not found\n", 2));
-	}
-	change_file_content(main); //agr meu arquivo esta sem os args hehehehhe ohhhhhhhhhh yessss.
+	check_arg_and_fd(av, fd);
+	main->file_content = save_file(NULL, fd);
+	inicialize_txt(main);
+	search_height(main);
+	if (search_and_save_args(main, NULL) != 6)
+		end_parsing(main, "Error in args of file\n");
+	if (!acess_paths(main))
+		end_parsing(main, "Error: path not found\n");
+	change_file_content(main);
 	validate_map(main);
 }
