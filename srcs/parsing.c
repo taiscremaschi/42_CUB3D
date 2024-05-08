@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 09:59:13 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:56:05 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	parsing_map(char **av, t_main *main)
 	search_height(main); //aqui pode ser uma funcao para inicializar all que chama o inicialize txt 
 	if (search_and_save_args(main) != 6)
 		exit(ft_putstr_fd("Error in args of file\n", 2));
+	if(!acess_paths(main))
+		exit(ft_putstr_fd("Error: path not found\n", 2));
 	change_file_content(main); //agr meu arquivo esta sem os args hehehehhe ohhhhhhhhhh yessss.
 	validate_map(main);
 }

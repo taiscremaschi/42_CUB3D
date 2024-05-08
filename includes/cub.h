@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 12:22:38 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:22:46 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void	parsing_map(char **av, t_main *main);
 int	save_textures(int *j, char *line, char **filename, int size);
 int	compare_args(char *line, int *j, t_main *main);
 int	search_and_save_args(t_main *main);
+bool acess_paths(t_main *main);
+
 
 ///////////// VALIDATION //////////
 void	check_and_save_player(t_main *main, char *letters);

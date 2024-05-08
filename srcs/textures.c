@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:09:59 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 10:32:22 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:55:32 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,18 @@ int	search_and_save_args(t_main *main)
 	}
 	main->textures.line_help = i;
 	return (count);
+}
+
+
+bool acess_paths(t_main *main)
+{
+	if(access(main->textures.north, F_OK) == -1)
+		return false;
+	if(access(main->textures.south, F_OK) == -1)
+		return false;
+	if(access(main->textures.west, F_OK) == -1)
+		return false;
+	if(access(main->textures.east, F_OK) == -1)
+		return false;
+	return true;
 }
