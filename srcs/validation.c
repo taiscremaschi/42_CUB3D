@@ -6,21 +6,19 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/08 11:30:22 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:06:23 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	check_and_save_player(t_main *main, char *letters)
+int	check_and_save_player(t_main *main, char *letters, int player)
 {
 	int	i;
 	int	j;
-	int	flag_player;
 	int	x;
 
 	i = -1;
-	flag_player = 0;
 	while (main->file_content[++i] != NULL)
 	{
 		j = -1;
@@ -29,25 +27,18 @@ void	check_and_save_player(t_main *main, char *letters)
 			x = -1;
 			while (++x < 4)
 			{
-				if (main->file_content[i][j] == letters[x] && flag_player == 0)
+				if (main->file_content[i][j] == letters[x])
 				{
+					if (player)
+						end_parsing(main, "Error: more than one player\n");
 					main->player.x = j;
 					main->player.y = i;
-					flag_player = 1;
-					break ;
+					player = 1;
 				}
-				else if (main->file_content[i][j] == letters[x]
-					&& flag_player == 1)
-					exit(ft_putstr_fd("Error: more than one player\n", 2));
 			}
 		}
 	}
-	if(flag_player == 0)
-	{
-		end_parsing(main);
-		exit(ft_putstr_fd("Error: no player in game\n", 2));
-	}
-		
+	return (player);
 }
 
 int	validate_characteres(char *line_map)
@@ -70,7 +61,6 @@ int	validate_characteres(char *line_map)
 			return (1);
 		else if (line_map[j] != valid_chars[i])
 			i++;
-		
 	}
 	return (0);
 }
@@ -83,10 +73,7 @@ void	check_chars(t_main *main)
 	while (main->file_content[i] != NULL)
 	{
 		if (validate_characteres(main->file_content[i]) == 1)
-		{
-			end_parsing(main);
-			exit(ft_putstr_fd("Error: charactere invalid\n", 2));
-		}
+			end_parsing(main, "Error: charactere invalid\n");
 		i++;
 	}
 }
@@ -94,6 +81,7 @@ void	check_chars(t_main *main)
 void	validate_map(t_main *main)
 {
 	check_chars(main);
-	check_and_save_player(main, "NSEW");
+	if (check_and_save_player(main, "NSEW", 0) == 0)
+		end_parsing(main, "Error: no player in game\n");
 	check_map_with_alg(main, copy_map(main));
 }

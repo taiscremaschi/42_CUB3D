@@ -20,7 +20,6 @@
 # include <unistd.h> /*read*/
 # include "../libft/libft.h"
 
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 8
 # endif

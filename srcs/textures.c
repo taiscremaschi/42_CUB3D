@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:09:59 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 11:35:21 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:14:52 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 int	save_textures(int *j, char *line, char **filename, int size)
 {
 	int	flag;
+
 	flag = 0;
 	*j += size;
 	while (line[*j] == ' ' || line[*j] == '\t')
 		(*j)++;
-    if (line[*j] == '\n')
-    {
-        return (-1);
-    }
+	if (line[*j] == '\n')
+	{
+		return (-1);
+	}
 	flag = *j;
 	while (line[flag] != '\0' && line[flag] != ' ' && line[flag] != '\t'
 		&& line[flag] != '\n')
@@ -35,7 +36,7 @@ int	save_textures(int *j, char *line, char **filename, int size)
 int	compare_args(char *line, int *j, t_main *main)
 {
 	int	count;
-    
+
 	count = 0;
 	if (ft_strncmp(&line[*j], "NO ", 3) == 0)
 		count += save_textures(j, line, &main->textures.north, 3);
@@ -54,18 +55,17 @@ int	compare_args(char *line, int *j, t_main *main)
 	return (count);
 }
 
-int	search_and_save_args(t_main *main)
+int	search_and_save_args(t_main *main, char *line)
 {
 	int		i;
 	int		j;
-	char	*line;
 	int		count;
 
-	i = 0;
+	i = -1;
 	count = 0;
-	while (main->file_content[i] != NULL)
+	while (main->file_content[++i] != NULL)
 	{
-		if(count == 6)
+		if (count == 6)
 			break ;
 		line = ft_strdup(main->file_content[i]);
 		j = 0;
@@ -74,27 +74,25 @@ int	search_and_save_args(t_main *main)
 			while (line[j] != '\0' && (line[j] == ' ' || line[j] == '\t'))
 				j++;
 			count += compare_args(line, &j, main);
-			if(line[j])
+			if (line[j])
 				j++;
 		}
 		if (line)
 			free(line);
-		i++;
 	}
 	main->textures.line_help = i;
 	return (count);
 }
 
-
-bool acess_paths(t_main *main)
+bool	acess_paths(t_main *main)
 {
-	if(access(main->textures.north, F_OK) == -1)
-		return false;
-	if(access(main->textures.south, F_OK) == -1)
-		return false;
-	if(access(main->textures.west, F_OK) == -1)
-		return false;
-	if(access(main->textures.east, F_OK) == -1)
-		return false;
-	return true;
+	if (access(main->textures.north, F_OK) == -1)
+		return (false);
+	if (access(main->textures.south, F_OK) == -1)
+		return (false);
+	if (access(main->textures.west, F_OK) == -1)
+		return (false);
+	if (access(main->textures.east, F_OK) == -1)
+		return (false);
+	return (true);
 }
