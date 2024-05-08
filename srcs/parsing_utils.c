@@ -6,11 +6,22 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:53:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/07 15:19:53 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:39:37 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+void end_parsing(t_main *main)
+{
+	free_map(main->file_content);
+	free(main->textures.ceiling_color);
+	free(main->textures.south);
+	free(main->textures.east);
+	free(main->textures.west);
+	free(main->textures.north);
+	free(main->textures.floor_color);
+}
 
 void inicialize_txt(t_main *main)
 {

@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 11:31:40 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:43:09 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # include <stdlib.h>
 #include <stdbool.h>
 # include <unistd.h>
+
+
+#define UP 119
+#define DOWN 115
+#define RIGHT 100
+#define LEFT 97
 
 //////////// STRUCTS  //////////////
 
@@ -81,24 +87,23 @@ void			image_inicialize(t_main *main);
 int				render_image(t_main *main);
 
 
-//////////////////////////////////  MAIN //////////
+////////////////////////////// END GAME UTILS ///////////////
 int				end(t_main *main);
 void			free_map(char **m);
 int	read_esc(int keycode, t_main *main);
-void end_parsing(t_main *main);
-
-
 
 /////////////////////////// PARSING UTILS //////////////////
 void inicialize_txt(t_main *main);
 void search_height(t_main *main);
 char	**copy_map(t_main *main);
+void end_parsing(t_main *main);
 
 //////////////////// PARSING ///////////////////
 void change_file_content(t_main *main);
 char	**save_file(char **map, int fd);
 void	check_arg_and_fd(char **av, int fd);
 void	parsing_map(char **av, t_main *main);
+
 
 /////////////////////////// TEXTURES  //////////////////
 int	save_textures(int *j, char *line, char **filename, int size);
