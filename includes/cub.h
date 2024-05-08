@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 15:59:07 by paula             #+#    #+#             */
-/*   Updated: 2024/05/02 15:59:09 by paula            ###   ########.fr       */
+/*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
+/*   Updated: 2024/05/08 12:22:38 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,8 @@ typedef struct s_main
 {
 	void		*win;
 	char		**file_content;
-	int			larg; //tbm acho que n usarei
-	int			height; //acho que nao preciso
+	int			height;
 	void		*mlx;
-	int			moves_counter; // n preciso
-	int			col; //n preciso
 	t_player	player;
 	t_picture	picture;
 	t_textures	textures;

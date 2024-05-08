@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:09:59 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/07 15:20:00 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:32:22 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	compare_args(char *line, int *j, t_main *main)
 		count += save_textures(j, line, &main->textures.floor_color, 2);
 	else if (ft_strncmp(&line[*j], "C ", 2) == 0)
 		count += save_textures(j, line, &main->textures.ceiling_color, 2);
+	else
+		count = -1;
 	return (count);
 }
 
