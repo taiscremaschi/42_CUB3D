@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:41:20 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 11:49:57 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:38:47 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ int	end(t_main *main)
 	mlx_destroy_window(main->mlx, main->win);
 	mlx_destroy_display(main->mlx);
 	mlx_loop_end(main->mlx);
+	free(main->textures.ceiling_color);
+	free(main->textures.south);
+	free(main->textures.east);
+	free(main->textures.west);
+	free(main->textures.north);
+	free(main->textures.floor_color);
 	free(main->mlx);
 	exit(0);
 }

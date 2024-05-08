@@ -6,11 +6,17 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 12:17:26 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:31:39 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+void print_double_pointer(char **array) {
+    for (int i = 0; array[i] != NULL; i++) {
+        printf("%s", array[i]);
+    }
+}
 
 void	change_file_content(t_main *main)
 {
@@ -26,6 +32,7 @@ void	change_file_content(t_main *main)
 		i--;
 		j++;
 	}
+	//print_double_pointer(main->file_content);
 }
 
 char	**save_file(char **map, int fd)

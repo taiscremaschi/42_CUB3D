@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:09:59 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 13:22:50 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:22:30 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,54 +98,53 @@ bool	acess_paths(t_main *main)
 }
 
 
-int insert_color(t_main *main, int tmp, int i, char **type)
-{
-	if(i == 0)
-		main->textures.floor_rgb.r = tmp;
-	if(i == 1)
-		main->textures.floor_rgb.g = tmp;
+// int insert_color(t_main *main, int tmp, int i, char **type)
+// {
+// 	if(i == 0)
+// 		main->textures.floor_rgb.r = tmp;
+// 	if(i == 1)
+// 		main->textures.floor_rgb.g = tmp;
 
-	if(i == 2)
-		main->textures.floor_rgb.b = tmp;
+// 	if(i == 2)
+// 		main->textures.floor_rgb.b = tmp;
 		
-}
+// }
 
-void parsing_colors(t_main *main, char *color, char** type)
-{
-	char **color_content = ft_split(color, ',');
-	int i = 0;
-	int j = 0;
-	int tmp = 0;
-	while(color_content[i])
-		i++;
-	if(i != 3)
-		return;
-	i = 0;
+// void parsing_colors(t_main *main, char *color, char** type)
+// {
+// 	char **color_content = ft_split(color, ',');
+// 	int i = 0;
+// 	int j = 0;
+// 	int tmp = 0;
+// 	while(color_content[i])
+// 		i++;
+// 	if(i != 3)
+// 		return;
+// 	i = 0;
 	
-	while(color_content[i])
-	{
-		j = 0;
-		while(color_content[i][j])
-		{
-			if(ft_isdigit(color_content[i][j])  == 0)
-				j++;	
-			else	
-				return;
-		}
-		i++;
-	}
-	i =0 ;
-	while(color_content[i])
-	{
-		tmp = ft_atoi(color_content[i]);
-		if(tmp < 0 || tmp > 255)
-			return;
-		insert_color(main, tmp, i, type);
-		i++;	
-	}
-	
-	
+// 	while(color_content[i])
+// 	{
+// 		j = 0;
+// 		while(color_content[i][j])
+// 		{
+// 			if(ft_isdigit(color_content[i][j])  == 0)
+// 				j++;	
+// 			else	
+// 				return;
+// 		}
+// 		i++;
+// 	}
+// 	i =0 ;
+// 	while(color_content[i])
+// 	{
+// 		tmp = ft_atoi(color_content[i]);
+// 		if(tmp < 0 || tmp > 255)
+// 			return;
+// 		insert_color(main, tmp, i, type);
+// 		i++;	
+// 	}
 	
 	
 	
-}
+	
+	
