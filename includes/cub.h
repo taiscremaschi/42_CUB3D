@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 12:28:42 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:13:50 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@
 
 //////////// STRUCTS  //////////////
 
+typedef struct s_rgb
+{
+	int		r;
+	int		g;
+	int		b;	
+}			t_rgb;
+
 typedef struct s_textures
 {
 	char		*north;
@@ -39,6 +46,8 @@ typedef struct s_textures
 	char		*east;
 	char		*floor_color;
 	char		*ceiling_color;
+	t_rgb		floor_rgb;
+	t_rgb		ceiling_rgb;
 	int			line_help;
 }				t_textures;
 
