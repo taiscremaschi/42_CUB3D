@@ -1,10 +1,12 @@
 
-NO ./images/chao.xpm
-SO ./images/exit.xpm
-EA ./images/wall.xpm
-WE ./images/player.xpm
-C 255,200,160
-F 122,122,122
+
+
+
+
+
+
+
+
 
 11111111111111111
 10000000000000001

@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/08 15:27:03 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:04:17 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	check_and_save_player(t_main *main, char *letters, int player)
 						end_parsing(main, "Error: more than one player\n");
 					main->player.x = j;
 					main->player.y = i;
+					main->player.position = letters[x];
 					player = 1;
 				}
 			}
@@ -58,10 +59,7 @@ int	validate_characteres(char *line_map)
 			i = 0;
 		}
 		else if (i == 9)
-		{
-			printf("%d\n\n", line_map[j]);
 			return (1);
-		}
 		else if (line_map[j] != valid_chars[i])
 			i++;
 	}

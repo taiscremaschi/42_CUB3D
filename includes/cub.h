@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 16:06:08 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:03:56 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@
 
 typedef struct s_rgb
 {
-	int		r;
-	int		g;
-	int		b;	
-}			t_rgb;
+	int			r;
+	int			g;
+	int			b;
+}				t_rgb;
 
 typedef struct s_textures
 {
@@ -55,6 +55,7 @@ typedef struct s_player
 {
 	int			x;
 	int			y;
+	char		position;
 }				t_player;
 
 typedef struct s_picture
@@ -122,9 +123,10 @@ void			check_chars(t_main *main);
 void			validate_map(t_main *main);
 
 //////////////////////////////// PARSING COLORS //////////////////
-void 			save_color(t_main *main, int tmp, int i, char type);
-bool 			search_colors(t_main *main, char *color, char type);
-bool 			parsing_colors(t_main *main);
-
+void			save_color(t_main *main, int tmp, int i, char type);
+bool			search_colors(t_main *main, char *color, char type);
+bool			parsing_colors(t_main *main);
+bool			check_color_digit(char **color_content);
+bool			check_args_colors(char **color_content);
 
 #endif
