@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 11:25:34 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 14:30:17 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,8 @@ int				search_and_save_args(t_main *main, char *line);
 bool			acess_paths(t_main *main);
 
 ///////////// VALIDATION //////////
-int				check_and_save_player(t_main *main, char *letters, int player);
+int				check_and_save_player(t_main *main, char *letters, int player,
+					int i);
 int				validate_characteres(char *line_map);
 void			check_chars(t_main *main);
 void			validate_map(t_main *main);

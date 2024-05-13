@@ -6,19 +6,17 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/13 13:49:29 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 14:29:58 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-int	check_and_save_player(t_main *main, char *letters, int player)
+int	check_and_save_player(t_main *main, char *letters, int player, int i)
 {
-	int	i;
 	int	j;
 	int	x;
 
-	i = -1;
 	while (main->map[++i] != NULL)
 	{
 		j = -1;
@@ -82,7 +80,7 @@ void	check_chars(t_main *main)
 void	validate_map(t_main *main)
 {
 	check_chars(main);
-	if (check_and_save_player(main, "NSEW", 0) == 0)
+	if (check_and_save_player(main, "NSEW", 0, -1) == 0)
 		end_parsing(main, "Error: no player in game\n");
 	check_map_with_alg(main, copy_map(main));
 }
