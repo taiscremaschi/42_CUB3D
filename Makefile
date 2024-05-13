@@ -64,6 +64,10 @@ ${NAME}: ${OBJS}
 	@echo "$(COLOUR_GREEN)cub3D Compiled! ᕦ$(COLOUR_RED)♥$(COLOUR_GREEN)_$(COLOUR_RED)♥$(COLOUR_GREEN)ᕤ\n$(COLOUR_END)"
 	@echo "$(COLOUR_MAG)\nTo start the program type ./cub3D <map.cub> \nENJOY!\n$(COLOUR_END)"
 
+test:
+	cd cub3d-tester ; bash test-map-errors.sh;
+	# cd cub3d-tester ; bash test-map-weird.sh;
+
 clean:
 	@make --no-print-directory clean -C ./libft
 	@rm -f ${OBJS}
