@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 14:30:17 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 15:35:35 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@
 # define DOWN 115
 # define RIGHT 100
 # define LEFT 97
+# define W_UP 119
+# define AA_LEFT 97
+# define D_RIGHT 100
+# define S_DOWN 115
+
+//	Screen Resolution
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 800
 
 //////////// STRUCTS  //////////////
 
@@ -70,16 +78,18 @@ typedef struct s_picture
 	void		*p_east;
 	void		*wall;
 	void		*floor;
+	void		*wall2d;
+	void		*floor2d;
 }				t_picture;
 
 typedef struct s_img
 {
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}			t_img;
+	void		*mlx_img;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+}				t_img;
 
 typedef struct s_main
 {
