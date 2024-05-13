@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/13 18:07:05 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 18:10:53 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	util_image(t_main *main, int x, int y)
 	if (main->map[y][x] == '1')
 		mlx_put_image_to_window(main->mlx, main->win, main->picture.wall, (x
 				* 20), (y * 20));
-	else if (main->map[y][x] == 'P' || main->map[y][x] == '0')
+	else if (main->map[y][x] != '\n' || main->map[y][x] == '0')
 		mlx_put_image_to_window(main->mlx, main->win, main->picture.floor, (x
 				* 20), (y * 20));
 }
