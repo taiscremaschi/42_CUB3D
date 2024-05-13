@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 18:14:28 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:38:53 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	alloc_map(t_main *main)
 
 	i = 0;
 	size = 0;
-	while (main->file_content[i][0] == '\n')
+	while (main->file_content[i] && main->file_content[i][0] == '\n')
 		i++;
 	start = i;
 	while (main->file_content[i] != NULL)
