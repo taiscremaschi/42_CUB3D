@@ -2,7 +2,7 @@
 
 NAME = cub3D
 
-SRC = check_walls.c controls.c image.c maps.c validation.c
+SRC = check_walls.c image.c validation.c parsing.c textures.c algorithm.c parsing_utils.c end_game_utils.c parsing_colors.c
 MAIN = main.c
 SRCS = $(SRC) $(MAIN)
 
@@ -63,6 +63,10 @@ ${NAME}: ${OBJS}
 	@echo "                                                                                         ";
 	@echo "$(COLOUR_GREEN)cub3D Compiled! ᕦ$(COLOUR_RED)♥$(COLOUR_GREEN)_$(COLOUR_RED)♥$(COLOUR_GREEN)ᕤ\n$(COLOUR_END)"
 	@echo "$(COLOUR_MAG)\nTo start the program type ./cub3D <map.cub> \nENJOY!\n$(COLOUR_END)"
+
+test:
+	cd cub3d-tester ; bash test-map-errors.sh;
+	# cd cub3d-tester ; bash test-map-weird.sh;
 
 clean:
 	@make --no-print-directory clean -C ./libft

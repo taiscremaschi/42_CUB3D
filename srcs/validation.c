@@ -3,123 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/02 15:07:12 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 13:55:31 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	map_paredes(t_main *main)
+int	check_and_save_player(t_main *main, char *letters, int player, int i)
 {
-	int	i;
-	int	altura;
-	int	largura;
-
-	i = -1;
-	altura = main->altura - 1;
-	largura = main->larg - 1;
-	while (main->map[0][++i] != '\n')
-	{
-		if ((main->map[0][i] != '1' && main->map[0][i] != '\n')
-			|| (main->map[altura][i] != '1' && main->map[altura][i] != '\n'))
-		{
-			free_map(main->map);
-			exit(ft_putstr_fd("erro na parede de cima ou baixo\n", 1));
-		}
-	}
-	i = -1;
-	while (++i < altura)
-	{
-		if (main->map[i][0] != '1' && main->map[i][largura] != '1')
-		{
-			free_map(main->map);
-			exit(ft_putstr_fd("erro na parede dos lados\n", 1));
-		}
-	}
-}
-
-void	map_rectangle(t_main *main)
-{
-	int	alt;
-	int	i;
-
-	alt = 1;
-	i = 1;
-	main->larg = ft_strlen_sl(main->map[0]);
-	while (main->map[i] != NULL)
-	{
-		if (main->larg == ft_strlen_sl(main->map[alt]))
-		{
-			alt++;
-			i++;
-		}
-		else if (main->map[i][0] == '\n')
-			i++;
-		else
-		{
-			free_map(main->map);
-			exit(ft_putstr_fd("O mapa não é retangulo\n", 1));
-		}
-	}
-	main->altura = alt;
-}
-
-void	check_letters(t_main *main, int i, int j, int *true_p)
-{
-	if (main->map[i][j] == 'P')
-	{
-		(*true_p)++;
-		main->player.x = j;
-		main->player.y = i;
-	}
-	else if (main->map[i][j] == 'C')
-		main->col++;
-}
-
-void	map_caracteres(t_main *main)
-{
-	int	i;
 	int	j;
-	int	true_e;
-	int	true_p;
+	int	x;
 
-	i = -1;
-	true_e = 0;
-	true_p = 0;
-	main->col = 0;
-	while (main->map[++i] != NULL)
+	while (main->file_content[++i] != NULL)
 	{
 		j = -1;
-		while (main->map[i][++j] != '\0')
+		while (main->file_content[i][++j] != '\0')
 		{
-			if (main->map[i][j] == 'E')
-				true_e++;
-			check_letters(main, i, j, &true_p);
+			x = -1;
+			while (++x < 4)
+			{
+				if (main->file_content[i][j] == letters[x])
+				{
+					if (player)
+						end_parsing(main, "Error: more than one player\n");
+					main->player.x = j;
+					main->player.y = i;
+					main->player.position = letters[x];
+					player = 1;
+				}
+			}
 		}
 	}
-	if (true_e != 1 || true_p != 1 || main->col < 1)
-	{
-		free_map(main->map);
-		exit(ft_putstr_fd("Erro no caracter\n", 1));
-	}
+	return (player);
 }
 
-void	map_validate(t_main *main)
+int	validate_characteres(char *line_map)
+{
+	char	*valid_chars;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	valid_chars = "NSEW01\t\n ";
+	while (line_map[j] != '\0' && line_map[j] != '\n')
+	{
+		if (line_map[j] == valid_chars[i])
+		{
+			j++;
+			i = 0;
+		}
+		else if (i == 9)
+			return (1);
+		else if (line_map[j] != valid_chars[i])
+			i++;
+	}
+	return (0);
+}
+
+void	check_chars(t_main *main)
 {
 	int	i;
 
 	i = 0;
-	while (main->map[i] != NULL)
+	while (main->file_content[i] != NULL)
 	{
-		if (map_caracteres_valids(main->map[i]))
-			i++;
-		else
-		{
-			free_map(main->map);
-			exit(ft_putstr_fd("Erro nos caracteres\n", 1));
-		}
+		if (validate_characteres(main->file_content[i]) == 1)
+			end_parsing(main, "Error: charactere invalid\n");
+		i++;
 	}
+}
+
+void	validate_map(t_main *main)
+{
+	check_chars(main);
+	if (check_and_save_player(main, "NSEW", 0, -1) == 0)
+		end_parsing(main, "Error: no player in game\n");
+	check_map_with_alg(main, copy_map(main));
 }

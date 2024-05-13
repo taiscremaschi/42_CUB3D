@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tbolzan- <tbolzan-@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: tbolzan- <tbolzan-@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2023/04/12 13:03:23 by tbolzan-          #+#    #+#             */
 /*   Updated: 2023/04/12 13:03:23 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
@@ -15,12 +18,13 @@
 int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }
 
 /*#include "libft.h"
 #include <stdio.h>
+
 
 
 int	main(void)
