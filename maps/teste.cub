@@ -1,0 +1,13 @@
+NO ./images/wall.xpm
+SO ./images/wall.xpm
+EA ./images/wall.xpm
+WE ./images/wall.xpm
+C 255,200,160
+F 122,122,122
+
+
+111111
+100S01
+100001
+100001
+111111

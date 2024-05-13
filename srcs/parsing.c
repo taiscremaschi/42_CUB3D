@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 11:28:27 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 13:32:34 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ void	parsing_map(char **av, t_main *main)
 		end_parsing(main, "Error: colors error\n");
 	change_map(main);
 	validate_map(main);
+	printf("player x %f player y %f\n", main->player.x, main->player.y);
 }
