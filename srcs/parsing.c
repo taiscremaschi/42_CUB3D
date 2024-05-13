@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 16:40:46 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:28:27 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	change_file_content(t_main *main)
+void	change_map(t_main *main)
 {
 	int	i;
 	int	j;
@@ -21,8 +21,8 @@ void	change_file_content(t_main *main)
 	j = 0;
 	while (i > 0)
 	{
-		free(main->file_content[j]);
-		main->file_content[j] = ft_strdup("\n");
+		free(main->map[j]);
+		main->map[j] = ft_strdup("\n");
 		i--;
 		j++;
 	}
@@ -62,7 +62,7 @@ void	parsing_map(char **av, t_main *main)
 
 	fd = open(av[1], O_RDONLY);
 	check_arg_and_fd(av, fd);
-	main->file_content = save_file(NULL, fd);
+	main->map = save_file(NULL, fd);
 	inicialize_txt(main);
 	search_height(main);
 	if (search_and_save_args(main, NULL) != 6)
@@ -71,6 +71,6 @@ void	parsing_map(char **av, t_main *main)
 		end_parsing(main, "Error: path not found\n");
 	if (!parsing_colors(main))
 		end_parsing(main, "Error: colors error\n");
-	change_file_content(main);
+	change_map(main);
 	validate_map(main);
 }

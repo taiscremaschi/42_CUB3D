@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:07:11 by paula             #+#    #+#             */
-/*   Updated: 2024/05/10 11:04:17 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:28:11 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ int	check_and_save_player(t_main *main, char *letters, int player)
 	int	x;
 
 	i = -1;
-	while (main->file_content[++i] != NULL)
+	while (main->map[++i] != NULL)
 	{
 		j = -1;
-		while (main->file_content[i][++j] != '\0')
+		while (main->map[i][++j] != '\0')
 		{
 			x = -1;
 			while (++x < 4)
 			{
-				if (main->file_content[i][j] == letters[x])
+				if (main->map[i][j] == letters[x])
 				{
 					if (player)
 						end_parsing(main, "Error: more than one player\n");
@@ -71,9 +71,9 @@ void	check_chars(t_main *main)
 	int	i;
 
 	i = 0;
-	while (main->file_content[i] != NULL)
+	while (main->map[i] != NULL)
 	{
-		if (validate_characteres(main->file_content[i]) == 1)
+		if (validate_characteres(main->map[i]) == 1)
 			end_parsing(main, "Error: charactere invalid\n");
 		i++;
 	}

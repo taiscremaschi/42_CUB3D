@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 10:35:11 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 11:25:34 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_picture
 	void		*p_south;
 	void		*p_west;
 	void		*p_east;
+	void		*wall;
+	void		*floor;
 }				t_picture;
 
 typedef struct s_img
@@ -82,7 +84,7 @@ typedef struct s_img
 typedef struct s_main
 {
 	void		*win;
-	char		**file_content;
+	char		**map;
 	int			height;
 	void		*mlx;
 	t_img		*img;
@@ -119,7 +121,7 @@ char			**copy_map(t_main *main);
 void			end_parsing(t_main *main, char *str);
 
 //////////////////// PARSING ///////////////////
-void			change_file_content(t_main *main);
+void			change_map(t_main *main);
 char			**save_file(char **map, int fd);
 void			check_arg_and_fd(char **av, int fd);
 void			parsing_map(char **av, t_main *main);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:53:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 15:41:57 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:29:00 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	end_parsing(t_main *main, char *str)
 {
-	free_map(main->file_content);
+	free_map(main->map);
 	free(main->textures.ceiling_color);
 	free(main->textures.south);
 	free(main->textures.east);
@@ -39,7 +39,7 @@ void	search_height(t_main *main)
 	int	i;
 
 	i = 0;
-	while (main->file_content[i])
+	while (main->map[i])
 	{
 		i++;
 	}
@@ -59,13 +59,13 @@ char	**copy_map(t_main *main)
 	while (i < main->height)
 	{
 		j = 0;
-		map_copy[i] = malloc(sizeof(char) * (ft_strlen(main->file_content[i])
+		map_copy[i] = malloc(sizeof(char) * (ft_strlen(main->map[i])
 					+ 1));
 		if (!map_copy)
 			return (NULL);
-		while (main->file_content[i][j] != '\0')
+		while (main->map[i][j] != '\0')
 		{
-			map_copy[i][j] = main->file_content[i][j];
+			map_copy[i][j] = main->map[i][j];
 			j++;
 		}
 		map_copy[i][j] = '\0';
