@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 14:05:27 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:40:03 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_main
 {
 	void		*win;
 	char		**file_content;
+	char		**map;
 	int			height;
 	void		*mlx;
 	t_player	player;

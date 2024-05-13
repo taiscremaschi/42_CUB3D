@@ -6,11 +6,38 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 16:40:46 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:14:28 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+void	alloc_map(t_main *main)
+{
+	int	i;
+	int	start;
+	int	size;
+
+	i = 0;
+	size = 0;
+	while (main->file_content[i][0] == '\n')
+		i++;
+	start = i;
+	while (main->file_content[i] != NULL)
+	{
+		i++;
+		size++;
+	}
+	main->map = malloc(sizeof(char *) * (size + 1));
+	i = 0;
+	while (main->file_content[start] != NULL)
+	{
+		main->map[i] = ft_strdup(main->file_content[start]);
+		i++;
+		start++;
+	}
+	main->map[i] = NULL;
+}
 
 void	change_file_content(t_main *main)
 {
@@ -26,6 +53,7 @@ void	change_file_content(t_main *main)
 		i--;
 		j++;
 	}
+	alloc_map(main);
 }
 
 char	**save_file(char **map, int fd)
@@ -64,7 +92,6 @@ void	parsing_map(char **av, t_main *main)
 	check_arg_and_fd(av, fd);
 	main->file_content = save_file(NULL, fd);
 	inicialize_txt(main);
-	search_height(main);
 	if (search_and_save_args(main, NULL) != 6)
 		end_parsing(main, "Error in args of file\n");
 	if (!acess_paths(main))
@@ -72,5 +99,6 @@ void	parsing_map(char **av, t_main *main)
 	if (!parsing_colors(main))
 		end_parsing(main, "Error: colors error\n");
 	change_file_content(main);
+	search_height(main);
 	validate_map(main);
 }
