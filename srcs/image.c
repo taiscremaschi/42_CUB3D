@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/13 15:18:50 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 16:15:10 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	render_image(t_main *main)
 		while (main->map[y][++x] != '\0')
 			util_image(main, x, y);
 	}
-	// mlx_put_image_to_window(main->mlx, main->win, main->picture.p_east,
-	// 	(main->player.x * 64), (main->player.y * 64));
+	mlx_put_image_to_window(main->mlx, main->win, main->picture.p_east,
+		(main->player.x * 64), (main->player.y * 64));
 	return (0);
 }
 // podemos utilizar algo disso mas vai ter que adaptar

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/13 15:36:46 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 16:15:42 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 static void	simple_move(int key, t_main *cub)
 {
 	if (key == W_UP)
-		cub->player.dir_y -= 1;
+	{
+		cub->player.y -= 1;
+		printf("player y eh %f\n", cub->player.y);
+	}
 	else if (key == S_DOWN)
-		cub->player.dir_y += 1;
+		cub->player.y += 1;
 	else if (key == D_RIGHT)
-		cub->player.dir_x += 1;
+		cub->player.x += 1;
 	else if (key == AA_LEFT)
-		cub->player.dir_x -= 1;
+		cub->player.x -= 1;
 }
 
 int	deal_key(int key, t_main *cub)
 {
+	printf("chamou\n");
 	//is_3d(key, cub);
 	simple_move(key, cub);
 	ft_bzero(cub->img->addr, (WINDOW_HEIGHT * WINDOW_WIDTH
@@ -36,6 +40,25 @@ int	deal_key(int key, t_main *cub)
 	return (0);
 }
 
+void	init_img(t_main *cub)
+{
+	cub->mlx = mlx_init();
+	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
+			"cub3D");
+	if (!cub->win)
+	{
+		free(cub->win);
+		perror("error");
+		exit(EXIT_FAILURE);
+	}
+	// cub->img->mlx_img = mlx_new_image(cub->mlx, WINDOW_WIDTH,
+	// 		WINDOW_HEIGHT);
+	// cub->img->addr = mlx_get_data_addr(cub->img->mlx_img, &(cub->img->bpp),
+	// 		&(cub->img->line_len), &(cub->img->endian));
+	// ft_bzero(cub->img->addr, (WINDOW_HEIGHT * WINDOW_WIDTH
+	// 		* sizeof(cub->img->bpp)));
+}
+
 int	main(int ac, char **av)
 {
 	t_main	main;
@@ -43,14 +66,12 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit(write(2, "Error\n", 6));
 	parsing_map(av, &main);
-	main.mlx = mlx_init();
-	main.win = mlx_new_window(main.mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
-			"cub3D");
+	init_img(&main);
 	image_inicialize(&main);
-	mlx_loop_hook(main.mlx, render_image, &main);
 	//mlx_key_hook(main.mlx, deal_key, &main);
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);
 	mlx_hook(main.win, 33, 1L << 2, end, &main);
+	mlx_loop_hook(main.mlx, render_image, &main);
 	mlx_loop(main.mlx);
 	return (0);
 }
