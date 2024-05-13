@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/13 16:15:42 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 17:04:13 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,12 @@ void	init_img(t_main *cub)
 	cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
 			"cub3D");
-	if (!cub->win)
+	if (cub->win == NULL)
 	{
 		free(cub->win);
 		perror("error");
 		exit(EXIT_FAILURE);
 	}
-	// cub->img->mlx_img = mlx_new_image(cub->mlx, WINDOW_WIDTH,
-	// 		WINDOW_HEIGHT);
-	// cub->img->addr = mlx_get_data_addr(cub->img->mlx_img, &(cub->img->bpp),
-	// 		&(cub->img->line_len), &(cub->img->endian));
-	// ft_bzero(cub->img->addr, (WINDOW_HEIGHT * WINDOW_WIDTH
-	// 		* sizeof(cub->img->bpp)));
 }
 
 int	main(int ac, char **av)
@@ -71,7 +65,7 @@ int	main(int ac, char **av)
 	//mlx_key_hook(main.mlx, deal_key, &main);
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);
 	mlx_hook(main.win, 33, 1L << 2, end, &main);
-	mlx_loop_hook(main.mlx, render_image, &main);
+	//mlx_loop_hook(main.mlx, render_image, &main);
 	mlx_loop(main.mlx);
 	return (0);
 }
