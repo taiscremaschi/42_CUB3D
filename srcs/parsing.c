@@ -6,21 +6,46 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:45:03 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:14:28 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-	
+
+void	alloc_map(t_main *main)
+{
+	int	i;
+	int	start;
+	int	size;
+
+	i = 0;
+	size = 0;
+	while (main->file_content[i][0] == '\n')
+		i++;
+	start = i;
+	while (main->file_content[i] != NULL)
+	{
+		i++;
+		size++;
+	}
+	main->map = malloc(sizeof(char *) * (size + 1));
+	i = 0;
+	while (main->file_content[start] != NULL)
+	{
+		main->map[i] = ft_strdup(main->file_content[start]);
+		i++;
+		start++;
+	}
+	main->map[i] = NULL;
+}
+
 void	change_file_content(t_main *main)
 {
 	int	i;
 	int	j;
-	int tmp;
+
 	i = main->textures.line_help;
 	j = 0;
-	tmp = 0;
-	int tmp2 = 0;
 	while (i > 0)
 	{
 		free(main->file_content[j]);
@@ -28,24 +53,7 @@ void	change_file_content(t_main *main)
 		i--;
 		j++;
 	}
-	i = 0;
-	j = 0;
-	while(main->file_content[i][0] == '\n')
-		i++;
-	tmp2 = i;
-	while(main->file_content[i] != NULL)
-	{
-		i++;
-		tmp++;
-	}
-	main->map = malloc(sizeof(char *) * (tmp + 1));
-	while(main->file_content[tmp2] != NULL)
-	{
-		main->map[j] = ft_strdup(main->file_content[tmp2]);
-		j++;
-		tmp2++;
-	}
-	main->map[j] = NULL;
+	alloc_map(main);
 }
 
 char	**save_file(char **map, int fd)
