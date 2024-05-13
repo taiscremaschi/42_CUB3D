@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/08 11:50:29 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:58:06 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ void	image_inicialize(t_main *main)
 
 void	util_image(t_main *main, int x, int y)
 {
-	if (main->file_content[y][x] == '1')
+	if (main->map[y][x] == '1')
 		mlx_put_image_to_window(main->mlx, main->win, main->picture.p_east, (x
 				* 64), (y * 64));
-	else if (main->file_content[y][x] == 'P' || main->file_content[y][x] == '0')
+	else if (main->map[y][x] == 'P' || main->map[y][x] == '0')
 		mlx_put_image_to_window(main->mlx, main->win, main->picture.p_east, (x
 				* 64), (y * 64));
-	else if (main->file_content[y][x] == 'E')
+	else if (main->map[y][x] == 'E')
 		mlx_put_image_to_window(main->mlx, main->win, main->picture.p_east, (x
 				* 64), (y * 64));
-	else if (main->file_content[y][x] == 'C')
+	else if (main->map[y][x] == 'C')
 		mlx_put_image_to_window(main->mlx, main->win, main->picture.p_east, (x
 				* 64), (y * 64));
 }
@@ -49,10 +49,10 @@ int	render_image(t_main *main)
 	int	y;
 
 	y = -1;
-	while (main->file_content[++y] != NULL)
+	while (main->map[++y] != NULL)
 	{
 		x = -1;
-		while (main->file_content[y][++x] != '\0')
+		while (main->map[y][++x] != '\0')
 			util_image(main, x, y);
 	}
 	mlx_put_image_to_window(main->mlx, main->win, main->picture.p_east,

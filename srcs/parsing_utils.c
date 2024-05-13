@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:53:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 15:41:57 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:52:48 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	search_height(t_main *main)
 	int	i;
 
 	i = 0;
-	while (main->file_content[i])
+	while (main->map[i])
 	{
 		i++;
 	}
@@ -59,13 +59,13 @@ char	**copy_map(t_main *main)
 	while (i < main->height)
 	{
 		j = 0;
-		map_copy[i] = malloc(sizeof(char) * (ft_strlen(main->file_content[i])
+		map_copy[i] = malloc(sizeof(char) * (ft_strlen(main->map[i])
 					+ 1));
 		if (!map_copy)
 			return (NULL);
-		while (main->file_content[i][j] != '\0')
+		while (main->map[i][j] != '\0')
 		{
-			map_copy[i][j] = main->file_content[i][j];
+			map_copy[i][j] = main->map[i][j];
 			j++;
 		}
 		map_copy[i][j] = '\0';
