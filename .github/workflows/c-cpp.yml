@@ -20,3 +20,5 @@ jobs:
       run: make install
     - name: make check
       run: make check
+    - name: parsing test
+      run: make test
