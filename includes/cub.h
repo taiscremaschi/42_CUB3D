@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 10:02:14 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 10:27:24 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libft/gnl/get_next_line_bonus.h"
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
-# include "../mlx_linux/mlx_int.h"
+// # include "../mlx_linux/mlx_int.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <stdbool.h>
