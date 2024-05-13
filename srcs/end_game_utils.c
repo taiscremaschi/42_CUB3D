@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:41:20 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 11:29:10 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/13 17:45:43 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	end(t_main *main)
 	mlx_destroy_image(main->mlx, main->picture.p_north);
 	mlx_destroy_image(main->mlx, main->picture.p_south);
 	mlx_destroy_window(main->mlx, main->win);
+	free(main->img);
 	mlx_destroy_display(main->mlx);
 	mlx_loop_end(main->mlx);
 	free(main->textures.ceiling_color);
