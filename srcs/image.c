@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/14 11:39:16 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/14 11:48:01 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void draw_player(t_main *cub)
 {
 	static int x=-1;
 	static int y=-1;
-	
-	printf("tem que desenhar\n");
+
 	//ft_mlx_pixel_put(cub->map, cub->player.x, cub->player.y, 0xFFFFFF);
 	if (cub->player.x != x || cub->player.y != y){
 		//mlx_put_image_to_window(cub->mlx, cub->win, cub->picture.p_north, cub->player.x, cub->player.y);
