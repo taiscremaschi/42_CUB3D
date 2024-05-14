@@ -6,37 +6,62 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/14 15:13:20 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/14 19:08:24 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	rotate(t_main *cub)
+void rotate2(double angle, t_coord* delta_coord){
+	delta_coord->x = cos(angle);
+	delta_coord->y = sin(angle);
+}
+
+void	rotate(t_main *cub, double dangle)
 {
-	cub->player.angle -= 0.1;
-		printf("chamou %f\n", cub->player.angle);
+	t_coord delta;
+
+	cub->player.angle += dangle;
 	
-	if(cub->player.angle < 0)
-		cub->player.angle += 2 * PI;
-	if (cub->player.angle > (2 * PI))
-		cub->player.angle -= 2 * PI;
-	cub->player.delta_x = cos(cub->player.angle * 5);
-	cub->player.delta_y = sin(cub->player.angle * 5);
+	rotate2(cub->player.angle, &delta);
+	
+	cub->player.delta_x = delta.x;
+	cub->player.delta_y = delta.y;
+	
+	// if(cub->player.angle < 0)
+	// 	cub->player.angle += 2 * PI;
+	// else if (cub->player.angle > (2 * PI))
+	// 	cub->player.angle -= 2 * PI;
+	// cub->player.delta_x = cos(cub->player.angle * 5);
+	// printf("del x eh %f\n", cub->player.delta_x);
+	// cub->player.delta_y = sin(cub->player.angle * 5);
+	// printf("del y eh %f\n", cub->player.delta_y);
 }
 
 static void	simple_move(int key, t_main *cub)
 {
-	if(key == LEFT || key == RIGHT)
-		rotate(cub);;
+	if(key == LEFT)
+		rotate(cub, -0.1);
+	if(key == RIGHT)
+		rotate(cub, 0.1);
 	if (key == W_UP)
-		cub->player.y -= 1;
+	{
+		cub->player.y += cub->player.delta_y;
+		cub->player.x += cub->player.delta_x;
+	}
 	if (key == S_DOWN)
-		cub->player.y += 1;
+	{
+		cub->player.y -= cub->player.delta_y;
+		cub->player.x -= cub->player.delta_x;
+	}
 	if (key == D_RIGHT)
+	{
 		cub->player.x += 1;
+	}
 	if (key == AA_LEFT)
+	{
 		cub->player.x -= 1;
+	}
 
 }
 

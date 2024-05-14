@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/14 15:53:16 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/14 19:18:53 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,27 @@ void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 	}
 }
 
+void draw_line2(t_main *cub, double x1, double y1, double x2, double y2, int color){
+	double del_x = x2 - x1;
+	double del_y = y2 - y1;
+	
+	int pixels = sqrt((del_x * del_x) + (del_y * del_y));
+	
+	del_x /= pixels;
+	del_y /= pixels;
+
+	while (pixels)
+	{
+		mlx_pixel_put(cub->mlx, cub->win, x1, y1, color);
+		x1 += del_x;
+		y1 += del_y;
+		--pixels;
+	}
+	
+
+	
+	
+}
 void	draw_line(t_main *cub)
 {
 	double del_x = 20 - cub->player.x;
@@ -72,11 +93,28 @@ void draw_player(t_main *cub)
 	// static int y=-1;
 
 	//  if (cub->player.x != x || cub->player.y != y){
-		mlx_put_image_to_window(cub->mlx, cub->win, cub->picture.player2d , cub->player.x, cub->player.y);
-		//mlx_pixel_put(cub->mlx, cub->win, cub->player.x, cub->player.y, 0xFF0000);
-		draw_line(cub);
-		// x = cub->player.x;
-		// y = cub->player.y;
+		//mlx_put_image_to_window(cub->mlx, cub->win, cub->picture.player2d , cub->player.x, cub->player.y);
+		mlx_pixel_put(cub->mlx, cub->win, cub->player.x, cub->player.y, 0xFF0000);
+		//draw_line(cub);
+
+		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x + cub->player.delta_x*10, cub->player.y + cub->player.delta_y*10, 0xFF0000);
+
+
+		t_coord lado_cima, lado_baixo, visao_cima, visao_baixo;
+		rotate2(cub->player.angle+PI/2, &lado_cima);
+		rotate2(cub->player.angle-PI/2, &lado_baixo);
+		rotate2(cub->player.angle+PI/6, &visao_cima);
+		rotate2(cub->player.angle-PI/6, &visao_baixo);
+		
+		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x + lado_cima.x*5, cub->player.y+ lado_cima.y*5, 0x0000FF);
+		
+		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x + lado_baixo.x*5, cub->player.y+ lado_baixo.y*5, 0x0000FF);
+
+		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x + visao_cima.x*20, cub->player.y+ visao_cima.y*20, 0x00FFFF);
+		
+		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x + visao_baixo.x*20, cub->player.y+ visao_baixo.y*20, 0x00FFFF);
+
+		
 	//}
 }
 
@@ -86,6 +124,7 @@ void	util_image(t_main *main, int x, int y)
 		mlx_put_image_to_window(main->mlx, main->win, main->picture.wall, (x
 				* 20), (y * 20));
 	else if (main->map[y][x] != '\n' || main->map[y][x] == '0')
+	
 		mlx_put_image_to_window(main->mlx, main->win, main->picture.floor, (x
 				* 20), (y * 20));
 	

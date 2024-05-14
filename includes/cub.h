@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/14 14:33:17 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/14 19:10:52 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,11 @@ typedef struct s_img
 	int			height;
 }				t_img;
 
+typedef struct s_coord {
+	double x;
+	double y;
+} t_coord;
+
 typedef struct s_main
 {
 	void		*win;
@@ -119,7 +124,7 @@ typedef struct s_main
 void			check_map_with_alg(t_main *main, char **copy_map_temp);
 void			change_player(char **map_copy, int x, int y);
 bool			alg_walls(char **map_copy, int x, int y, int height);
-
+void rotate2(double angle, t_coord* delta_coord);
 /////////////////////////// CHECK WALLS  //////////////////
 
 bool			check_x_left(char **map_copy, int x, int y);
