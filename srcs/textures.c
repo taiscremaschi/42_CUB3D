@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:09:59 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 11:28:40 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/14 08:52:30 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ int	search_and_save_args(t_main *main, char *line)
 
 	i = -1;
 	count = 0;
-	while (main->map[++i] != NULL)
+	while (main->file_content[++i] != NULL)
 	{
 		if (count == 6)
 			break ;
-		line = ft_strdup(main->map[i]);
+		line = ft_strdup(main->file_content[i]);
 		j = 0;
 		while (line[j] != '\0' && line[j] != '\n')
 		{

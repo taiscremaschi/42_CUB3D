@@ -6,13 +6,40 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 13:32:34 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/14 08:54:46 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	change_map(t_main *main)
+void	alloc_map(t_main *main)
+{
+	int	i;
+	int	start;
+	int	size;
+
+	i = 0;
+	size = 0;
+	while (main->file_content[i][0] == '\n')
+		i++;
+	start = i;
+	while (main->file_content[i] != NULL)
+	{
+		i++;
+		size++;
+	}
+	main->map = malloc(sizeof(char *) * (size + 1));
+	i = 0;
+	while (main->file_content[start] != NULL)
+	{
+		main->map[i] = ft_strdup(main->file_content[start]);
+		i++;
+		start++;
+	}
+	main->map[i] = NULL;
+}
+
+void	change_file_content(t_main *main)
 {
 	int	i;
 	int	j;
@@ -21,11 +48,12 @@ void	change_map(t_main *main)
 	j = 0;
 	while (i > 0)
 	{
-		free(main->map[j]);
-		main->map[j] = ft_strdup("\n");
+		free(main->file_content[j]);
+		main->file_content[j] = ft_strdup("\n");
 		i--;
 		j++;
 	}
+	alloc_map(main);
 }
 
 char	**save_file(char **map, int fd)
@@ -62,16 +90,16 @@ void	parsing_map(char **av, t_main *main)
 
 	fd = open(av[1], O_RDONLY);
 	check_arg_and_fd(av, fd);
-	main->map = save_file(NULL, fd);
+	main->file_content = save_file(NULL, fd);
 	inicialize_txt(main);
-	search_height(main);
 	if (search_and_save_args(main, NULL) != 6)
 		end_parsing(main, "Error in args of file\n");
 	if (!acess_paths(main))
 		end_parsing(main, "Error: path not found\n");
 	if (!parsing_colors(main))
 		end_parsing(main, "Error: colors error\n");
-	change_map(main);
+	change_file_content(main);
+	search_height(main);
 	validate_map(main);
 	printf("player x %f player y %f\n", main->player.x, main->player.y);
 }

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:57:02 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/14 08:40:29 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_img
 typedef struct s_main
 {
 	void		*win;
+	char		**file_content;
 	char		**map;
 	int			height;
 	void		*mlx;

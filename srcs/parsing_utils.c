@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:53:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 11:29:00 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/14 08:43:04 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	end_parsing(t_main *main, char *str)
 {
-	free_map(main->map);
+	if (main->map)
+		free_map(main->map);
+	free_map(main->file_content);
 	free(main->textures.ceiling_color);
 	free(main->textures.south);
 	free(main->textures.east);
@@ -32,6 +34,7 @@ void	inicialize_txt(t_main *main)
 	main->textures.north = NULL;
 	main->textures.south = NULL;
 	main->textures.west = NULL;
+	main->map = NULL;
 }
 
 void	search_height(t_main *main)
@@ -59,8 +62,7 @@ char	**copy_map(t_main *main)
 	while (i < main->height)
 	{
 		j = 0;
-		map_copy[i] = malloc(sizeof(char) * (ft_strlen(main->map[i])
-					+ 1));
+		map_copy[i] = malloc(sizeof(char) * (ft_strlen(main->map[i]) + 1));
 		if (!map_copy)
 			return (NULL);
 		while (main->map[i][j] != '\0')
