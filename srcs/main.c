@@ -6,30 +6,42 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/14 11:49:14 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/14 15:13:20 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+void	rotate(t_main *cub)
+{
+	cub->player.angle -= 0.1;
+		printf("chamou %f\n", cub->player.angle);
+	
+	if(cub->player.angle < 0)
+		cub->player.angle += 2 * PI;
+	if (cub->player.angle > (2 * PI))
+		cub->player.angle -= 2 * PI;
+	cub->player.delta_x = cos(cub->player.angle * 5);
+	cub->player.delta_y = sin(cub->player.angle * 5);
+}
+
 static void	simple_move(int key, t_main *cub)
 {
+	if(key == LEFT || key == RIGHT)
+		rotate(cub);;
 	if (key == W_UP)
-	{
 		cub->player.y -= 1;
-		printf("player y eh %f\n", cub->player.y);
-	}
-	else if (key == S_DOWN)
+	if (key == S_DOWN)
 		cub->player.y += 1;
-	else if (key == D_RIGHT)
+	if (key == D_RIGHT)
 		cub->player.x += 1;
-	else if (key == AA_LEFT)
+	if (key == AA_LEFT)
 		cub->player.x -= 1;
+
 }
 
 int	deal_key(int key, t_main *cub)
 {
-	printf("chamou\n");
 	//is_3d(key, cub);
 	simple_move(key, cub);
 	// ft_bzero(cub->img->addr, (WINDOW_HEIGHT * WINDOW_WIDTH
@@ -51,17 +63,6 @@ void	init_img(t_main *cub)
 		perror("error");
 		exit(EXIT_FAILURE);
 	}
-	// size_t	img_size;
-
-	// cub->img->width = WINDOW_WIDTH;
-	// cub->img->height = WINDOW_HEIGHT;
-
-	// cub->img->mlx_img = mlx_new_image(cub->win, cub->img->width, cub->img->height);
-	// cub->img->addr = mlx_get_data_addr(cub->img->mlx_img, &(cub->img->bpp), &(cub->img->line_len),
-	// 		&(cub->img->endian));
-	// img_size = cub->img->width * cub->img->height * sizeof(cub->img->bpp);
-	// ft_bzero(cub->img->addr, img_size);
-	
 }
 
 int	main(int ac, char **av)
@@ -71,6 +72,8 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit(write(2, "Error\n", 6));
 	parsing_map(av, &main);
+	main.player.delta_x = cos(main.player.angle * 5);
+	main.player.delta_y = sin(main.player.angle * 5);
 	init_img(&main);
 	image_inicialize(&main);
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);

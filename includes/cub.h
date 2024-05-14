@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/14 10:13:16 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/14 14:33:17 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 
 # define UP 119
 # define DOWN 115
-# define RIGHT 100
-# define LEFT 97
+# define RIGHT 65363
+# define LEFT 65361
 # define W_UP 119
 # define AA_LEFT 97
 # define D_RIGHT 100
@@ -37,6 +37,7 @@
 //	Screen Resolution
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 800
+# define PI 3.1415926535f
 
 //////////// STRUCTS  //////////////
 
@@ -55,6 +56,7 @@ typedef struct s_textures
 	char		*east;
 	char		*floor_color;
 	char		*ceiling_color;
+	char		*player2d;
 	t_rgb		floor_rgb;
 	t_rgb		ceiling_rgb;
 	int			line_help;
@@ -71,6 +73,9 @@ typedef struct s_player
 	double		vector_x;
 	double		vector_y;
 	char		position;
+	double		delta_x;
+	double		delta_y;
+	double		angle;
 }				t_player;
 
 typedef struct s_picture
@@ -83,6 +88,7 @@ typedef struct s_picture
 	void		*floor;
 	void		*wall2d;
 	void		*floor2d;
+	void		*player2d;
 }				t_picture;
 
 typedef struct s_img
