@@ -4,6 +4,7 @@
         "libft.h": "c",
         "algorithm": "c",
         "cub.h": "c",
-        "mlx_int.h": "c"
+        "mlx_int.h": "c",
+        "iterator": "c"
     }
 }

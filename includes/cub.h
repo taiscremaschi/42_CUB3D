@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/14 08:40:29 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/14 10:13:16 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 # define UP 119
 # define DOWN 115
@@ -67,6 +68,8 @@ typedef struct s_player
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+	double		vector_x;
+	double		vector_y;
 	char		position;
 }				t_player;
 
@@ -89,6 +92,8 @@ typedef struct s_img
 	int			bpp;
 	int			line_len;
 	int			endian;
+	int			width;
+	int			height;
 }				t_img;
 
 typedef struct s_main
