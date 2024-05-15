@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/15 14:32:00 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/15 17:01:39 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,8 @@ void draw_line2(t_main *cub, double x1, double y1, double x2, double y2, int col
 		y1 += del_y;
 		--pixels;
 	}
-	
-
-	
-	
 }
+
 void	draw_line(t_main *cub)
 {
 	double del_x = 20 - cub->player.x;
@@ -84,6 +81,55 @@ void	draw_line(t_main *cub)
 		pixelX += del_x;
 		pixelY += del_y;
 		--pixels;
+	}
+}
+
+void	drawRays(t_player *player, t_main *cub)
+{
+	int	ra = player->angle;
+	int	r, dof, mx, my, mp;
+	float	ry, rx, yo, xo;
+
+	for(r = 0; r < 1; r++)
+	{
+		dof = 0;
+		float aTan = -1 / tan(ra);
+		
+		if(ra > PI) //looking up
+		{
+			ry = (((int)player->y >> 6) << 6) - 0.0001;
+			rx = (player->y - ry) * aTan + player->x;
+			yo = -MINI_WIDTH;
+			xo = -yo * aTan;
+		}
+		if(ra < PI) //looking down
+		{
+			ry = (((int)player->y >> 6) << 6) + MINI_WIDTH;
+			rx = (player->y - ry) * aTan + player->x;
+			yo = MINI_WIDTH;
+			xo = -yo * aTan;
+		}
+		if(ra == 0 || ra == PI) //looking left or rigth
+		{
+			ry = player->y;
+			rx = player->y;
+			dof = 8;
+		}
+		while(dof < 20)
+		{
+			mx = (int)(rx)>>6;
+			my = (int)(ry)>>6;
+			mp = my*MINI_WIDTH + mx;
+			if(mp < (MINI_WIDTH * MINI_WIDTH) && cub->map[mp] == '1')
+				dof = 20;
+			else
+			{
+				rx +=xo;
+				ry +=yo;
+				dof +=1;
+			}
+		}
+		draw_line2(cub, cub->player.x, cub->player.y, rx, ry, 0x00FFFF);
 	}
 }
 
@@ -110,9 +156,13 @@ void draw_player(t_main *cub)
 		
 		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - lado_baixo.dx*5, cub->player.y - lado_baixo.dy*5, 0x0000FF);
 
+//		drawRays(&cub->player, cub);
+
 		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - visao_cima.dx*20, cub->player.y - visao_cima.dy*20, 0x00FFFF);
 		
 		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - visao_baixo.dx*20, cub->player.y - visao_baixo.dy*20, 0x00FFFF);
+
+		printf("map[0] eh %c\n", cub->map[0]);
 
 		
 	//}
@@ -122,11 +172,11 @@ void	util_image(t_main *main, int x, int y)
 {
 	if (main->map[y][x] == '1')
 		mlx_put_image_to_window(main->mlx, main->win, main->picture.wall, (x
-				* 20), (y * 20));
+				* MINI_WIDTH), (y * MINI_WIDTH));
 	else if (main->map[y][x] != '\n' || main->map[y][x] == '0')
 	
 		mlx_put_image_to_window(main->mlx, main->win, main->picture.floor, (x
-				* 20), (y * 20));
+				* MINI_WIDTH), (y * MINI_WIDTH));
 	
 }
 //************nao vamos usar pq é por angulos *************

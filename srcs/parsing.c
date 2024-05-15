@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/14 08:54:46 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/15 17:03:44 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	alloc_map(t_main *main)
 	while (main->file_content[start] != NULL)
 	{
 		main->map[i] = ft_strdup(main->file_content[start]);
+		printf("map[%d] eh %c\n", main->map[i]);
 		i++;
 		start++;
 	}
