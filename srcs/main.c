@@ -6,13 +6,13 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/15 09:13:40 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/15 14:13:58 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void rotate2(double angle, t_vector* vector)
+void	rotate2(double angle, t_vector *vector)
 {
 	vector->dx = cos(angle);
 	vector->dy = sin(angle);
@@ -21,12 +21,10 @@ void rotate2(double angle, t_vector* vector)
 void	rotate_player(t_player *player, double dangle)
 {
 	player->angle += dangle;
-	
 	rotate2(player->angle, &player->vector_front);
-	double perpendicular_angle = player->angle + PI / 2; //significa rotacao 90 graus
+	double perpendicular_angle = player->angle + PI / 2;
+		// significa rotacao 90 graus
 	rotate2(perpendicular_angle, &player->vector_perpendicular);
-
-	
 	// if(cub->player.angle < 0)
 	// 	cub->player.angle += 2 * PI;
 	// else if (cub->player.angle > (2 * PI))
@@ -39,9 +37,9 @@ void	rotate_player(t_player *player, double dangle)
 
 static void	simple_move(int key, t_main *cub)
 {
-	if(key == LEFT)
+	if (key == LEFT)
 		rotate_player(&cub->player, -0.1);
-	if(key == RIGHT)
+	if (key == RIGHT)
 		rotate_player(&cub->player, 0.1);
 	if (key == W_UP)
 	{
@@ -63,12 +61,11 @@ static void	simple_move(int key, t_main *cub)
 		cub->player.y += cub->player.vector_perpendicular.dy;
 		cub->player.x += cub->player.vector_perpendicular.dx;
 	}
-
 }
 
 int	deal_key(int key, t_main *cub)
 {
-	//is_3d(key, cub);
+	// is_3d(key, cub);
 	simple_move(key, cub);
 	// ft_bzero(cub->img->addr, (WINDOW_HEIGHT * WINDOW_WIDTH
 	// 		* sizeof(cub->img->bpp)));
@@ -81,14 +78,36 @@ int	deal_key(int key, t_main *cub)
 void	init_img(t_main *cub)
 {
 	cub->mlx = mlx_init();
-	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
-			"cub3D");
+	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	if (cub->win == NULL)
 	{
 		free(cub->win);
 		perror("error");
 		exit(EXIT_FAILURE);
 	}
+}
+
+double	define_angle(char position, float *angle)
+{
+	if (position == 'N')
+		*angle = PI / 2;
+	else if (position == 'E')
+		*angle = PI;
+	else if (position == 'S')
+		*angle = 3 * PI / 2;
+	else
+		*angle = 0;
+	return (*angle);
+}
+
+void	config_player(t_player *player)
+{
+	float	angle;
+
+	angle = define_angle(player->position, &angle);
+	rotate_player(player, angle);
+	player->x *= WIDTH;
+	player->y *= WIDTH;
 }
 
 int	main(int ac, char **av)
@@ -98,15 +117,13 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit(write(2, "Error\n", 6));
 	parsing_map(av, &main);
-	rotate_player(&main.player, 3*PI/2); //tenho que setar conforme mapa
+	config_player(&main.player);
 	init_img(&main);
 	image_inicialize(&main);
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);
 	mlx_key_hook(main.win, deal_key, &main);
 	mlx_hook(main.win, 33, 1L << 2, end, &main);
 	mlx_loop_hook(main.mlx, render_image, &main);
-	main.player.x *= 20;
-	main.player.y *= 20;
 	mlx_loop(main.mlx);
 	return (0);
 }
