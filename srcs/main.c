@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/15 08:56:20 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/15 09:13:40 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void rotate2(double angle, t_vector* vector)
 	vector->dy = sin(angle);
 }
 
-void	rotate(t_main *cub, double dangle)
+void	rotate_player(t_player *player, double dangle)
 {
-	cub->player.angle += dangle;
+	player->angle += dangle;
 	
-	rotate2(cub->player.angle, &cub->player.vector_front);
-	double perpendicular_angle = cub->player.angle + PI / 2; //significa rotacao 90 graus
-	rotate2(perpendicular_angle, &cub->player.vector_perpendicular);
+	rotate2(player->angle, &player->vector_front);
+	double perpendicular_angle = player->angle + PI / 2; //significa rotacao 90 graus
+	rotate2(perpendicular_angle, &player->vector_perpendicular);
 
 	
 	// if(cub->player.angle < 0)
@@ -40,9 +40,9 @@ void	rotate(t_main *cub, double dangle)
 static void	simple_move(int key, t_main *cub)
 {
 	if(key == LEFT)
-		rotate(cub, -0.1);
+		rotate_player(&cub->player, -0.1);
 	if(key == RIGHT)
-		rotate(cub, 0.1);
+		rotate_player(&cub->player, 0.1);
 	if (key == W_UP)
 	{
 		cub->player.y -= cub->player.vector_front.dy;
@@ -98,7 +98,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit(write(2, "Error\n", 6));
 	parsing_map(av, &main);
-	rotate(&main, 3*PI/2); //tenho que setar conforme mapa
+	rotate_player(&main.player, 3*PI/2); //tenho que setar conforme mapa
 	init_img(&main);
 	image_inicialize(&main);
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);

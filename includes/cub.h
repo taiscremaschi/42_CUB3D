@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/15 08:44:30 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/15 09:11:37 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 // # include "../mlx_linux/mlx_int.h"
 # include <errno.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <math.h>
 
 # define UP 119
 # define DOWN 115
@@ -38,6 +38,8 @@
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 800
 # define PI 3.1415926535f
+# define ANGLE_0 0
+# define ANGLE_180 PI
 
 //////////// STRUCTS  //////////////
 
@@ -48,15 +50,17 @@ typedef struct s_rgb
 	int			b;
 }				t_rgb;
 
-typedef struct s_coord {
-	double x;
-	double y;
-} t_coord;
+typedef struct s_coord
+{
+	double		x;
+	double		y;
+}				t_coord;
 
-typedef struct s_vector {
-	double dx;
-	double dy;
-} t_vector;
+typedef struct s_vector
+{
+	double		dx;
+	double		dy;
+}				t_vector;
 
 typedef struct s_textures
 {
@@ -127,7 +131,8 @@ typedef struct s_main
 void			check_map_with_alg(t_main *main, char **copy_map_temp);
 void			change_player(char **map_copy, int x, int y);
 bool			alg_walls(char **map_copy, int x, int y, int height);
-void rotate2(double angle, t_vector* vector);
+void			rotate2(double angle, t_vector *vector);
+void			rotate_player(t_player *player, double dangle);
 /////////////////////////// CHECK WALLS  //////////////////
 
 bool			check_x_left(char **map_copy, int x, int y);
