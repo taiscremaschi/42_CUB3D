@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/15 14:13:58 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/15 14:15:08 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ void	config_player(t_player *player)
 
 	angle = define_angle(player->position, &angle);
 	rotate_player(player, angle);
-	player->x *= WIDTH;
-	player->y *= WIDTH;
+	player->x *= MINI_WIDTH;
+	player->y *= MINI_WIDTH;
 }
 
 int	main(int ac, char **av)

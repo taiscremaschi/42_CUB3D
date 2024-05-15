@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/15 13:58:51 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/15 14:15:00 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define ANGLE_180 PI
 
 //	Minimap Resolution
-# define WIDTH 20
+# define MINI_WIDTH 20
 # define WINDOW_HEIGHT 800
 
 //////////// STRUCTS  //////////////
