@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/15 14:32:07 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/15 14:33:59 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ double	define_angle(char position, float *angle)
 {
 	if (position == 'N')
 		*angle = PI / 2;
-	else if (position == 'E')
+	else if (position == 'E') //ISSO DEVERIA SER NO W, OQ ACONTECEU????
 		*angle = PI;
 	else if (position == 'S')
 		*angle = 3 * PI / 2;
