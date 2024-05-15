@@ -6,27 +6,26 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/14 19:08:24 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/15 08:56:20 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void rotate2(double angle, t_coord* delta_coord){
-	delta_coord->x = cos(angle);
-	delta_coord->y = sin(angle);
+void rotate2(double angle, t_vector* vector)
+{
+	vector->dx = cos(angle);
+	vector->dy = sin(angle);
 }
 
 void	rotate(t_main *cub, double dangle)
 {
-	t_coord delta;
-
 	cub->player.angle += dangle;
 	
-	rotate2(cub->player.angle, &delta);
-	
-	cub->player.delta_x = delta.x;
-	cub->player.delta_y = delta.y;
+	rotate2(cub->player.angle, &cub->player.vector_front);
+	double perpendicular_angle = cub->player.angle + PI / 2; //significa rotacao 90 graus
+	rotate2(perpendicular_angle, &cub->player.vector_perpendicular);
+
 	
 	// if(cub->player.angle < 0)
 	// 	cub->player.angle += 2 * PI;
@@ -46,21 +45,23 @@ static void	simple_move(int key, t_main *cub)
 		rotate(cub, 0.1);
 	if (key == W_UP)
 	{
-		cub->player.y += cub->player.delta_y;
-		cub->player.x += cub->player.delta_x;
+		cub->player.y -= cub->player.vector_front.dy;
+		cub->player.x -= cub->player.vector_front.dx;
 	}
 	if (key == S_DOWN)
 	{
-		cub->player.y -= cub->player.delta_y;
-		cub->player.x -= cub->player.delta_x;
+		cub->player.y += cub->player.vector_front.dy;
+		cub->player.x += cub->player.vector_front.dx;
 	}
 	if (key == D_RIGHT)
 	{
-		cub->player.x += 1;
+		cub->player.y -= cub->player.vector_perpendicular.dy;
+		cub->player.x -= cub->player.vector_perpendicular.dx;
 	}
 	if (key == AA_LEFT)
 	{
-		cub->player.x -= 1;
+		cub->player.y += cub->player.vector_perpendicular.dy;
+		cub->player.x += cub->player.vector_perpendicular.dx;
 	}
 
 }
@@ -97,8 +98,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit(write(2, "Error\n", 6));
 	parsing_map(av, &main);
-	main.player.delta_x = cos(main.player.angle * 5);
-	main.player.delta_y = sin(main.player.angle * 5);
+	rotate(&main, 3*PI/2); //tenho que setar conforme mapa
 	init_img(&main);
 	image_inicialize(&main);
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);

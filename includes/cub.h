@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/14 19:10:52 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/15 08:44:30 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,16 @@ typedef struct s_rgb
 	int			b;
 }				t_rgb;
 
+typedef struct s_coord {
+	double x;
+	double y;
+} t_coord;
+
+typedef struct s_vector {
+	double dx;
+	double dy;
+} t_vector;
+
 typedef struct s_textures
 {
 	char		*north;
@@ -70,11 +80,9 @@ typedef struct s_player
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
-	double		vector_x;
-	double		vector_y;
+	t_vector	vector_front;
+	t_vector	vector_perpendicular;
 	char		position;
-	double		delta_x;
-	double		delta_y;
 	double		angle;
 }				t_player;
 
@@ -102,11 +110,6 @@ typedef struct s_img
 	int			height;
 }				t_img;
 
-typedef struct s_coord {
-	double x;
-	double y;
-} t_coord;
-
 typedef struct s_main
 {
 	void		*win;
@@ -124,7 +127,7 @@ typedef struct s_main
 void			check_map_with_alg(t_main *main, char **copy_map_temp);
 void			change_player(char **map_copy, int x, int y);
 bool			alg_walls(char **map_copy, int x, int y, int height);
-void rotate2(double angle, t_coord* delta_coord);
+void rotate2(double angle, t_vector* vector);
 /////////////////////////// CHECK WALLS  //////////////////
 
 bool			check_x_left(char **map_copy, int x, int y);

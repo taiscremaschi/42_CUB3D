@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/14 19:18:53 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/15 08:54:33 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,22 +97,22 @@ void draw_player(t_main *cub)
 		mlx_pixel_put(cub->mlx, cub->win, cub->player.x, cub->player.y, 0xFF0000);
 		//draw_line(cub);
 
-		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x + cub->player.delta_x*10, cub->player.y + cub->player.delta_y*10, 0xFF0000);
+		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - cub->player.vector_front.dx*15, cub->player.y - cub->player.vector_front.dy*10, 0xFF0000);
 
 
-		t_coord lado_cima, lado_baixo, visao_cima, visao_baixo;
+		t_vector lado_cima, lado_baixo, visao_cima, visao_baixo;
 		rotate2(cub->player.angle+PI/2, &lado_cima);
 		rotate2(cub->player.angle-PI/2, &lado_baixo);
 		rotate2(cub->player.angle+PI/6, &visao_cima);
 		rotate2(cub->player.angle-PI/6, &visao_baixo);
 		
-		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x + lado_cima.x*5, cub->player.y+ lado_cima.y*5, 0x0000FF);
+		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - lado_cima.dx*5, cub->player.y - lado_cima.dy*5, 0x0000FF);
 		
-		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x + lado_baixo.x*5, cub->player.y+ lado_baixo.y*5, 0x0000FF);
+		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - lado_baixo.dx*5, cub->player.y - lado_baixo.dy*5, 0x0000FF);
 
-		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x + visao_cima.x*20, cub->player.y+ visao_cima.y*20, 0x00FFFF);
+		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - visao_cima.dx*20, cub->player.y - visao_cima.dy*20, 0x00FFFF);
 		
-		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x + visao_baixo.x*20, cub->player.y+ visao_baixo.y*20, 0x00FFFF);
+		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - visao_baixo.dx*20, cub->player.y - visao_baixo.dy*20, 0x00FFFF);
 
 		
 	//}
