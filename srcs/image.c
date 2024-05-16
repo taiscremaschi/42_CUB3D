@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/16 16:08:29 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/16 19:31:21 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,15 +149,9 @@ void	drawRays(t_player *player, t_main *cub)
 
 void draw_player(t_main *cub)
 {
-	// static int x=-1;
-	// static int y=-1;
-
-	//  if (cub->player.x != x || cub->player.y != y){
-		//mlx_put_image_to_window(cub->mlx, cub->win, cub->picture.player2d , cub->player.x, cub->player.y);
 		mlx_pixel_put(cub->mlx, cub->win, cub->player.x, cub->player.y, 0xFF0000);
-		//draw_line(cub);
 
-		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - cub->player.vector_front.dx*15, cub->player.y - cub->player.vector_front.dy*10, 0xFF0000);
+		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - cub->player.vector_front.dx*15, cub->player.y - cub->player.vector_front.dy*15, 0xFF0000);
 
 
 		t_vector lado_cima, lado_baixo, visao_cima, visao_baixo;
@@ -166,11 +160,11 @@ void draw_player(t_main *cub)
 		rotate2(cub->player.angle+PI/6, &visao_cima);
 		rotate2(cub->player.angle-PI/6, &visao_baixo);
 		
-		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - lado_cima.dx*5, cub->player.y - lado_cima.dy*5, 0x0000FF);
+		draw_line2(cub, cub->player.x - cub->player.vector_front.dx*15, cub->player.y - cub->player.vector_front.dy*15, cub->player.x - cub->player.vector_front.dx*15 - lado_cima.dx*5, cub->player.y - cub->player.vector_front.dy*15 - lado_cima.dy*5, 0x0000FF);
 		
-		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - lado_baixo.dx*5, cub->player.y - lado_baixo.dy*5, 0x0000FF);
+		draw_line2(cub, cub->player.x - cub->player.vector_front.dx*15, cub->player.y - cub->player.vector_front.dy*15, cub->player.x - cub->player.vector_front.dx*15 - lado_baixo.dx*5, cub->player.y - cub->player.vector_front.dy*15 - lado_baixo.dy*5, 0x0000FF);
 
-		drawRays(&cub->player, cub);
+		//drawRays(&cub->player, cub);
 
 		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - visao_cima.dx*20, cub->player.y - visao_cima.dy*20, 0xFF00FF);
 		

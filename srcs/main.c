@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/16 16:11:17 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/16 19:16:50 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	simple_move(int key, t_main *cub)
 		rotate_player(&cub->player, 0.1);
 	if (key == W_UP)
 	{
-		cub->player.y -= cub->player.vector_front.dy;
+		cub->player.y -= cub->player.vector_front.dy;// direction
 		cub->player.x -= cub->player.vector_front.dx;
 	}
 	if (key == S_DOWN)
@@ -53,7 +53,7 @@ static void	simple_move(int key, t_main *cub)
 	}
 	if (key == D_RIGHT)
 	{
-		cub->player.y -= cub->player.vector_perpendicular.dy;
+		cub->player.y -= cub->player.vector_perpendicular.dy; //camera
 		cub->player.x -= cub->player.vector_perpendicular.dx;
 	}
 	if (key == AA_LEFT)
