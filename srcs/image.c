@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/15 17:01:39 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/16 11:07:45 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	drawRays(t_player *player, t_main *cub)
 			mx = (int)(rx)>>6;
 			my = (int)(ry)>>6;
 			mp = my*MINI_WIDTH + mx;
-			if(mp < (MINI_WIDTH * MINI_WIDTH) && cub->map[mp] == '1')
+			if(mp < (MINI_WIDTH * MINI_WIDTH) && cub->map[mx][my] == '1')
 				dof = 20;
 			else
 			{
@@ -156,13 +156,11 @@ void draw_player(t_main *cub)
 		
 		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - lado_baixo.dx*5, cub->player.y - lado_baixo.dy*5, 0x0000FF);
 
-//		drawRays(&cub->player, cub);
+		//drawRays(&cub->player, cub);
 
 		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - visao_cima.dx*20, cub->player.y - visao_cima.dy*20, 0x00FFFF);
 		
 		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - visao_baixo.dx*20, cub->player.y - visao_baixo.dy*20, 0x00FFFF);
-
-		printf("map[0] eh %c\n", cub->map[0]);
 
 		
 	//}

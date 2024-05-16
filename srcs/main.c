@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/15 17:02:22 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/16 10:12:49 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	main(int ac, char **av)
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);
 	mlx_key_hook(main.win, deal_key, &main);
 	mlx_hook(main.win, 33, 1L << 2, end, &main);
-	//mlx_loop_hook(main.mlx, render_image, &main);
+	mlx_loop_hook(main.mlx, render_image, &main);
 	mlx_loop(main.mlx);
 	return (0);
 }
