@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/16 21:03:54 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/16 21:19:48 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,19 @@ void	render_3D(t_main *cub)
 
 		int mapx = (int)cub->player.x / MINI_WIDTH; //vou precisar criar a var posicao pq no minimap eu multipliquei
 		int mapy = (int)cub->player.y / MINI_WIDTH;
-		printf("pos x %d pos y %d\n", mapx,mapy);
+		
+		double sideDistX;
+		double sideDistY;
+
+		double deltaDistX = (rayDirx == 0) ? 1e30 : fabs(1 / rayDirx);
+		double deltaDistY = (rayDiry == 0) ? 1e30 : fabs(1 / rayDiry);
+		double perWallDist;
+		
+		int stepX;
+		int stepY;
+
+		int hit = 0;
+		int side //NS or EW
 		
 		
 		x_screen++;
