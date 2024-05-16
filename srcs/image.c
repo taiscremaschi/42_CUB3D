@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/16 15:27:43 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/16 16:08:29 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,30 +94,39 @@ void	drawRays(t_player *player, t_main *cub)
 	{
 		dof = 0;
 		float aTan = -1 / tan(ra);
-		
-		if(ra > PI) //looking down
-		{
-			printf("UP %f\n", ra);
-			ry = (((int)player->y >> 6) << 6) + MINI_WIDTH;
-			rx = (player->y - ry) * aTan + player->x;
-			yo = MINI_WIDTH / 5;
-			xo = -yo * aTan;
-		}
 		if(ra < PI) //looking up
 		{
 			printf("DOWN %f\n", ra);
 			ry = (((int)player->y >> 6) << 6) - 0.0001;
 			rx = (player->y - ry) * aTan + player->x;
-			yo = -MINI_WIDTH;
+			yo = MINI_WIDTH;
 			xo = -yo * aTan;
 		}
-		if(ra == 0 || ra == PI) //looking left or rigth
+		if(ra > PI) //looking down
 		{
-			printf("LEFT OR RIGHT %f\n", ra);
-			ry = player->y;
-			rx = player->y;
-			dof = 8;
+			printf("UP %f\n", ra);
+			ry = (((int)player->y >> 6) << 6) + 64;
+			rx = (player->y - ry) * aTan + player->x;
+			yo = -64;
+			xo = -yo * aTan;
 		}
+		if(ra == 0) //looking left or rigth
+		{
+			printf("RIGHT %f\n", ra);
+			ry = player->y;
+			rx = player->x;
+			yo = 0;
+			xo = 64;
+		}
+		if(ra == PI) //looking left or rigth
+		{
+			printf("LEFT %f\n", ra);
+			ry = player->y;
+			rx = player->x;
+			yo = 0;
+			xo = 64;
+		}
+		
 		int help = 0;
 		mx = (int)(rx)>>6;
 		my = (int)(ry)>>6;
@@ -126,17 +135,12 @@ void	drawRays(t_player *player, t_main *cub)
 			printf("mx %d my %d rx %f ry %f xo %f yo %f\n", mx, my, rx, ry, xo, yo);
 		// while(dof < 20)
 		// {
-			mx = (int)(rx)>>6;
-			my = (int)(ry)>>6;
 
 	//		 mp = my*MINI_WIDTH + mx;
-			if(mx < 0 && my < 0 && cub->map[mx][my] == '1')
-				dof = 20;
-			else
+			if(mx < 0 && my < 0 && mx > 6 && my > 6 && cub->map[mx][my] != '1')
 			{
-			rx +=xo;
-			ry +=yo;
-			dof +=1;
+				rx +=xo;
+				ry +=yo;
 			}
 	//	}
 		draw_line2(cub, cub->player.x, cub->player.y, rx, ry, 0x00FFFF);

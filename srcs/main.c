@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/16 12:45:26 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/16 16:11:17 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	rotate2(double angle, t_vector *vector)
 	vector->dy = sin(angle);
 }
 
-void	rotate_player(t_player *player, double dangle)
+void	rotate_player(t_player *player, double dangle) //proteger o PI, nao pode passar de 360
 {
 	player->angle += dangle;
 	rotate2(player->angle, &player->vector_front);
