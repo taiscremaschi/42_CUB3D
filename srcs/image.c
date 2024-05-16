@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/16 20:39:18 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/16 21:03:54 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,12 +204,36 @@ void	render_mini(t_main *cub)
 	draw_player(cub);
 }
 
+void	render_3D(t_main *cub)
+{
+	int x_screen;
+	double w;
+	t_vector	*dir = &cub->player.vector_front;
+	t_vector	*plan = &cub->player.vector_perpendicular;
+
+	x_screen = 0;
+	w = WINDOW_WIDTH;
+	while(x_screen < w)
+	{
+		double cameraX = 2 * (x_screen / w) - 1;
+		double rayDirx = dir->dx + plan->dx * cameraX;
+		double rayDiry = dir->dy + plan->dy * cameraX;
+
+		int mapx = (int)cub->player.x / MINI_WIDTH; //vou precisar criar a var posicao pq no minimap eu multipliquei
+		int mapy = (int)cub->player.y / MINI_WIDTH;
+		printf("pos x %d pos y %d\n", mapx,mapy);
+		
+		
+		x_screen++;
+	}
+}
+
 int	render_image(t_main *main)
 {
 	if(main->is_mini)
 		render_mini(main);
 	else
-		printf("desenhar 3D\n");//render_3D(main);
+		render_3D(main);
 	return 0;	
 }
 // podemos utilizar algo disso mas vai ter que adaptar
