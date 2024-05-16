@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/15 14:15:00 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/16 20:31:25 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct s_main
 	char		**map;
 	int			height;
 	void		*mlx;
+	int			is_mini;
 	t_img		*img;
 	t_player	player;
 	t_picture	picture;

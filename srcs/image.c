@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/16 19:31:21 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/16 20:39:18 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,68 +84,68 @@ void	draw_line(t_main *cub)
 	}
 }
 
-void	drawRays(t_player *player, t_main *cub)
-{
-	float	ra = player->angle;
-	int	r, dof, mx, my, mp;
-	float	ry, rx, yo, xo;
+// void	drawRays(t_player *player, t_main *cub)
+// {
+// 	float	ra = player->angle;
+// 	int	r, dof, mx, my, mp;
+// 	float	ry, rx, yo, xo;
 
-	for(r = 0; r < 1; r++)
-	{
-		dof = 0;
-		float aTan = -1 / tan(ra);
-		if(ra < PI) //looking up
-		{
-			printf("DOWN %f\n", ra);
-			ry = (((int)player->y >> 6) << 6) - 0.0001;
-			rx = (player->y - ry) * aTan + player->x;
-			yo = MINI_WIDTH;
-			xo = -yo * aTan;
-		}
-		if(ra > PI) //looking down
-		{
-			printf("UP %f\n", ra);
-			ry = (((int)player->y >> 6) << 6) + 64;
-			rx = (player->y - ry) * aTan + player->x;
-			yo = -64;
-			xo = -yo * aTan;
-		}
-		if(ra == 0) //looking left or rigth
-		{
-			printf("RIGHT %f\n", ra);
-			ry = player->y;
-			rx = player->x;
-			yo = 0;
-			xo = 64;
-		}
-		if(ra == PI) //looking left or rigth
-		{
-			printf("LEFT %f\n", ra);
-			ry = player->y;
-			rx = player->x;
-			yo = 0;
-			xo = 64;
-		}
+// 	for(r = 0; r < 1; r++)
+// 	{
+// 		dof = 0;
+// 		float aTan = -1 / tan(ra);
+// 		if(ra < PI) //looking up
+// 		{
+// 			printf("DOWN %f\n", ra);
+// 			ry = (((int)player->y >> 6) << 6) - 0.0001;
+// 			rx = (player->y - ry) * aTan + player->x;
+// 			yo = MINI_WIDTH;
+// 			xo = -yo * aTan;
+// 		}
+// 		if(ra > PI) //looking down
+// 		{
+// 			printf("UP %f\n", ra);
+// 			ry = (((int)player->y >> 6) << 6) + 64;
+// 			rx = (player->y - ry) * aTan + player->x;
+// 			yo = -64;
+// 			xo = -yo * aTan;
+// 		}
+// 		if(ra == 0) //looking left or rigth
+// 		{
+// 			printf("RIGHT %f\n", ra);
+// 			ry = player->y;
+// 			rx = player->x;
+// 			yo = 0;
+// 			xo = 64;
+// 		}
+// 		if(ra == PI) //looking left or rigth
+// 		{
+// 			printf("LEFT %f\n", ra);
+// 			ry = player->y;
+// 			rx = player->x;
+// 			yo = 0;
+// 			xo = 64;
+// 		}
 		
-		int help = 0;
-		mx = (int)(rx)>>6;
-		my = (int)(ry)>>6;
+// 		int help = 0;
+// 		mx = (int)(rx)>>6;
+// 		my = (int)(ry)>>6;
 
-		if (!(help++))
-			printf("mx %d my %d rx %f ry %f xo %f yo %f\n", mx, my, rx, ry, xo, yo);
-		// while(dof < 20)
-		// {
+// 		if (!(help++))
+// 			printf("mx %d my %d rx %f ry %f xo %f yo %f\n", mx, my, rx, ry, xo, yo);
+// 		// while(dof < 20)
+// 		// {
 
-	//		 mp = my*MINI_WIDTH + mx;
-			if(mx < 0 && my < 0 && mx > 6 && my > 6 && cub->map[mx][my] != '1')
-			{
-				rx +=xo;
-				ry +=yo;
-			}
-	//	}
-		draw_line2(cub, cub->player.x, cub->player.y, rx, ry, 0x00FFFF);
-	}
-}
+// 	//		 mp = my*MINI_WIDTH + mx;
+// 			if(mx < 0 && my < 0 && mx > 6 && my > 6 && cub->map[mx][my] != '1')
+// 			{
+// 				rx +=xo;
+// 				ry +=yo;
+// 			}
+// 	//	}
+// 		draw_line2(cub, cub->player.x, cub->player.y, rx, ry, 0x00FFFF);
+// 	}
+// }
 
 void draw_player(t_main *cub)
 {
@@ -187,21 +187,29 @@ void	util_image(t_main *main, int x, int y)
 }
 //************nao vamos usar pq é por angulos *************
 
-int	render_image(t_main *main)
+void	render_mini(t_main *cub)
 {
 	static int d = 0;
 	int	x;
 	int	y;
 
 	y = -1;
-	while (main->map[++y] != NULL && d == 0)
+	while (cub->map[++y] != NULL && d == 0)
 	{
 		x = -1;
-		while (main->map[y][++x] != '\0')
-			util_image(main, x, y);
+		while (cub->map[y][++x] != '\0')
+			util_image(cub, x, y);
 	}
 	d = 0;
-	draw_player(main);
-	return (0);
+	draw_player(cub);
+}
+
+int	render_image(t_main *main)
+{
+	if(main->is_mini)
+		render_mini(main);
+	else
+		printf("desenhar 3D\n");//render_3D(main);
+	return 0;	
 }
 // podemos utilizar algo disso mas vai ter que adaptar

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/16 19:16:50 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/16 20:32:08 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,19 @@ static void	simple_move(int key, t_main *cub)
 	}
 }
 
+static void	is_minimap(int key, t_main *cub)
+{
+	if (key == 112 && cub->is_mini == 0)
+	{
+		cub->is_mini = 1;
+	}
+	else if (key == 112 && cub->is_mini != 0)
+		cub->is_mini = 0;
+}
+
 int	deal_key(int key, t_main *cub)
 {
-	// is_3d(key, cub);
+	is_minimap(key, cub);
 	simple_move(key, cub);
 	// ft_bzero(cub->img->addr, (WINDOW_HEIGHT * WINDOW_WIDTH
 	// 		* sizeof(cub->img->bpp)));
@@ -116,6 +126,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		exit(write(2, "Error\n", 6));
+	main.is_mini = 0;
 	parsing_map(av, &main);
 	config_player(&main.player);
 	init_img(&main);
