@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/16 21:19:48 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/17 09:57:24 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,27 +215,115 @@ void	render_3D(t_main *cub)
 	w = WINDOW_WIDTH;
 	while(x_screen < w)
 	{
+		t_vector	pos; //vou precisar criar a var posicao pq no minimap eu multipliquei
+		pos.dx = cub->player.x / MINI_WIDTH;
+		pos.dy = cub->player.y / MINI_WIDTH;
+
+		printf("pos x eh %f pos y %f\n", pos.dx, pos.dy);
+		
 		double cameraX = 2 * (x_screen / w) - 1;
 		double rayDirx = dir->dx + plan->dx * cameraX;
 		double rayDiry = dir->dy + plan->dy * cameraX;
 
-		int mapx = (int)cub->player.x / MINI_WIDTH; //vou precisar criar a var posicao pq no minimap eu multipliquei
-		int mapy = (int)cub->player.y / MINI_WIDTH;
+		int mapx = (int)pos.dx;
+		int mapy = (int)pos.dy; // mesmo que position
 		
 		double sideDistX;
 		double sideDistY;
 
 		double deltaDistX = (rayDirx == 0) ? 1e30 : fabs(1 / rayDirx);
 		double deltaDistY = (rayDiry == 0) ? 1e30 : fabs(1 / rayDiry);
-		double perWallDist;
+		double perpWallDist;
 		
 		int stepX;
 		int stepY;
 
 		int hit = 0;
-		int side //NS or EW
+		int side;//NS or EW
 		
-		
+		//calculate step and initial sideDist
+		if(rayDirx < 0)
+		{
+			stepX = -1;
+			sideDistX = (pos.dx - mapx) * deltaDistX;
+		}
+		else
+		{
+			stepX = 1;
+			sideDistX = (mapx + 1 + pos.dx) * deltaDistX; // pq +1?
+		}
+		if(rayDiry < 0)
+		{
+			stepY = -1;
+			sideDistY = (pos.dy - mapy) * deltaDistY;
+		}
+		else
+		{
+			stepY = 1;
+			sideDistY = (mapy + 1 + pos.dy) * deltaDistY; // pq +1?
+		}
+
+		//performing DDA
+		while(hit == 0)
+		{
+			if (sideDistX < sideDistY)
+			{
+				sideDistX += deltaDistX;
+				mapx == stepX;
+				side = 0;
+			}
+			else
+			{
+				sideDistY += deltaDistY;
+				mapy == stepY;
+				side = 1; //preciso de 4 diferentes na vdd
+			}
+			//check if ray has hit a wall
+			printf("estamos em %c\n", cub->map[mapx][mapy]);
+			if(cub->map[mapx][mapy] == '1')
+			{
+				printf("achou uma parede, pare\n");
+				hit = 1;
+			}
+		}
+
+		//Calculate distance projected on camera direction
+		if(side == 0)
+			perpWallDist = (sideDistX - deltaDistX);
+		else
+			perpWallDist = (sideDistY - deltaDistY);
+
+		//Calculate height of line to draw on screen
+		int lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
+
+		//Calculate lowest and highest pixel to fill in current strip
+		int drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
+		if(drawStart < 0)
+			drawStart = 0;
+		int drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
+		if(drawEnd >= WINDOW_HEIGHT)
+			drawEnd = WINDOW_HEIGHT - 1;
+
+		//COLOR whithout textures
+		if(cub->map[mapx][mapy] == 0)
+		{
+			cub->rgb->r = 255;
+			cub->rgb->g = 0;
+			cub->rgb->b = 0;
+		}
+		if(cub->map[mapx][mapy] == 1)
+		{
+			cub->rgb->r = 0;
+			cub->rgb->g = 0;
+			cub->rgb->b = 255;
+		}
+		if(side == 1)
+		{
+			cub->rgb->r = 0;
+			cub->rgb->g = 0;
+			cub->rgb->b = 128;
+		}
+		draw_line2(cub, x_screen, drawStart, x_screen, drawEnd, ((cub->rgb->r<<16) + (cub->rgb->g<<8) + (cub->rgb->b)));
 		x_screen++;
 	}
 }
