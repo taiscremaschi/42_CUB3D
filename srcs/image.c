@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/17 10:58:07 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/17 11:11:48 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,8 +295,8 @@ void	render_3D(t_main *cub)
 				side = 1; //preciso de 4 diferentes na vdd
 			}
 			//check if ray has hit a wall
-			printf("estamos em %c\n", cub->map[mapx][mapy]);
-			if(cub->map[mapx][mapy] == '1')
+			printf("estamos em %c\n", cub->map[mapy][mapx]);
+			if(cub->map[mapy][mapx] == '1')
 			{
 				printf("achou uma parede, pare\n");
 				hit = 1;
@@ -328,13 +328,13 @@ void	render_3D(t_main *cub)
 			drawEnd = WINDOW_HEIGHT - 1;
 
 		//COLOR whithout textures
-		if(cub->map[mapx][mapy] == 0)
+		if(cub->map[mapy][mapx] == 0)
 		{
 			cub->rgb.r = 255;
 			cub->rgb.g = 0;
 			cub->rgb.b = 0;
 		}
-		if(cub->map[mapx][mapy] == 1)
+		if(cub->map[mapy][mapx] == 1)
 		{
 			cub->rgb.r = 0;
 			cub->rgb.g = 0;
@@ -343,9 +343,10 @@ void	render_3D(t_main *cub)
 		if(side == 1)
 		{
 			cub->rgb.r = 0;
-			cub->rgb.g = 0;
+			cub->rgb.g = 255;
 			cub->rgb.b = 128;
 		}
+		draw_line2(cub, x_screen, 0, x_screen, WINDOW_HEIGHT, 0xFFFFFF);
 		draw_line2(cub, x_screen, drawStart, x_screen, drawEnd, ((cub->rgb.r<<16) + (cub->rgb.g<<8) + (cub->rgb.b)));
 		x_screen++;
 	}
