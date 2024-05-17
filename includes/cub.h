@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/17 09:43:04 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/17 10:36:27 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ typedef struct s_main
 	int			height;
 	void		*mlx;
 	int			is_mini;
-	t_rgb		*rgb;
+	t_rgb		rgb;
 	t_img		*img;
 	t_player	player;
 	t_picture	picture;

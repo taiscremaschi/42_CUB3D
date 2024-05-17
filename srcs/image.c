@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/17 10:02:03 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/17 10:58:07 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,20 @@ void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 		*(unsigned int *)dest = color;
 	}
 }
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
 
 void draw_line2(t_main *cub, double x1, double y1, double x2, double y2, int color){
 	double del_x = x2 - x1;
 	double del_y = y2 - y1;
 	
-	int pixels = sqrt((del_x * del_x) + (del_y * del_y));
-	
+	int pixels = sqrt((del_x * del_x) + (del_y * del_y)); // ???
+	if (pixels > WINDOW_HEIGHT){
+		pixels = WINDOW_HEIGHT;
+	}
+	if(pixels<0){ //!!!!!
+		pixels = 0;
+	}
 	del_x /= pixels;
 	del_y /= pixels;
 
@@ -65,6 +72,8 @@ void draw_line2(t_main *cub, double x1, double y1, double x2, double y2, int col
 		--pixels;
 	}
 }
+
+
 
 void	draw_line(t_main *cub)
 {
@@ -219,11 +228,14 @@ void	render_3D(t_main *cub)
 		pos.dx = cub->player.x / MINI_WIDTH;
 		pos.dy = cub->player.y / MINI_WIDTH;
 
+		printf("dir x eh %f dir y %f\n", dir->dx, dir->dy);
 		printf("pos x eh %f pos y %f\n", pos.dx, pos.dy);
+		printf("plan x eh %f plan y %f\n", plan->dx, plan->dy);
 		
 		double cameraX = 2 * (x_screen / w) - 1;
 		double rayDirx = dir->dx + plan->dx * cameraX;
 		double rayDiry = dir->dy + plan->dy * cameraX;
+		printf("rayDirx eh %f rayDiry %f\n", rayDirx, rayDiry);
 
 		int mapx = (int)pos.dx;
 		int mapy = (int)pos.dy; // mesmo que position
@@ -244,13 +256,16 @@ void	render_3D(t_main *cub)
 		//calculate step and initial sideDist
 		if(rayDirx < 0)
 		{
+			printf("raydirc eh negativo\n");
 			stepX = -1;
 			sideDistX = (pos.dx - mapx) * deltaDistX;
 		}
 		else
 		{
+			printf("raydirc eh positivo\n");
 			stepX = 1;
 			sideDistX = (mapx + 1 + pos.dx) * deltaDistX; // pq +1?
+			printf("sideDistx eh %f\n", sideDistX);
 		}
 		if(rayDiry < 0)
 		{
@@ -261,6 +276,7 @@ void	render_3D(t_main *cub)
 		{
 			stepY = 1;
 			sideDistY = (mapy + 1 + pos.dy) * deltaDistY; // pq +1?
+			printf("sideDisty eh %f\n", sideDistY);
 		}
 
 		//performing DDA
@@ -269,13 +285,13 @@ void	render_3D(t_main *cub)
 			if (sideDistX < sideDistY)
 			{
 				sideDistX += deltaDistX;
-				mapx == stepX;
+				mapx += stepX;
 				side = 0;
 			}
 			else
 			{
 				sideDistY += deltaDistY;
-				mapy == stepY;
+				mapy += stepY;
 				side = 1; //preciso de 4 diferentes na vdd
 			}
 			//check if ray has hit a wall
@@ -285,13 +301,20 @@ void	render_3D(t_main *cub)
 				printf("achou uma parede, pare\n");
 				hit = 1;
 			}
+			printf("saiu do while do hit\n");
 		}
 
 		//Calculate distance projected on camera direction
 		if(side == 0)
+		{
+			printf("side eh zero\n");
 			perpWallDist = (sideDistX - deltaDistX);
+		}
 		else
+		{
+			printf("side eh 1\n");
 			perpWallDist = (sideDistY - deltaDistY);
+		}
 
 		//Calculate height of line to draw on screen
 		int lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
@@ -307,26 +330,28 @@ void	render_3D(t_main *cub)
 		//COLOR whithout textures
 		if(cub->map[mapx][mapy] == 0)
 		{
-			cub->rgb->r = 255;
-			cub->rgb->g = 0;
-			cub->rgb->b = 0;
+			cub->rgb.r = 255;
+			cub->rgb.g = 0;
+			cub->rgb.b = 0;
 		}
 		if(cub->map[mapx][mapy] == 1)
 		{
-			cub->rgb->r = 0;
-			cub->rgb->g = 0;
-			cub->rgb->b = 255;
+			cub->rgb.r = 0;
+			cub->rgb.g = 0;
+			cub->rgb.b = 255;
 		}
 		if(side == 1)
 		{
-			cub->rgb->r = 0;
-			cub->rgb->g = 0;
-			cub->rgb->b = 128;
+			cub->rgb.r = 0;
+			cub->rgb.g = 0;
+			cub->rgb.b = 128;
 		}
-		draw_line2(cub, x_screen, drawStart, x_screen, drawEnd, ((cub->rgb->r<<16) + (cub->rgb->g<<8) + (cub->rgb->b)));
+		draw_line2(cub, x_screen, drawStart, x_screen, drawEnd, ((cub->rgb.r<<16) + (cub->rgb.g<<8) + (cub->rgb.b)));
 		x_screen++;
 	}
 }
+
+#pragma GCC pop_options
 
 int	render_image(t_main *main)
 {
