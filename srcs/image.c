@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/20 10:47:41 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/20 15:40:55 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,8 +225,11 @@ void	render_3D(t_main *cub)
 	while(x_screen < w)
 	{
 		t_vector	pos; //vou precisar criar a var posicao pq no minimap eu multipliquei
-		pos.dx = cub->player.x / MINI_WIDTH;
-		pos.dy = cub->player.y / MINI_WIDTH;
+		printf("pantes os x eh %f e pos y eh %f\n", cub->player.x  , cub->player.y);
+		pos.dx = cub->player.x / (1.5 * MINI_WIDTH);
+		pos.dy = cub->player.y / (1.5 * MINI_WIDTH);
+
+		printf("pos x eh %f e pos y eh %f\n", pos.dx , pos.dy);
 
 		// printf("dir x eh %f dir y %f\n", dir->dx, dir->dy);
 		// printf("pos x eh %f pos y %f\n", pos.dx, pos.dy);
@@ -389,8 +392,8 @@ int	render_image(t_main *main)
 	if(main->is_mini)
 		render_mini(main);
 	else
-		printf("teste\n");
-		//render_3D(main);
+		//printf("teste\n");
+		render_3D(main);
 	return 0;	
 }
 // podemos utilizar algo disso mas vai ter que adaptar

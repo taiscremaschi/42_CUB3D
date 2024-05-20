@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/20 11:03:06 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/20 15:33:52 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ void	rotate_player(t_player *player, double dangle) //proteger o PI, nao pode pa
 	// printf("del y eh %f\n", cub->player.delta_y);
 }
 
+int	player_hit(t_main *cub)
+{
+	int	y = (int)cub->player.y;
+	int	x = (int)cub->player.x;
+	
+	if(cub->map[y][x] == '1')
+		return 1;
+	return 0;
+}
+
 static void	simple_move(int key, t_main *cub)
 {
 	if (key == LEFT)
@@ -61,6 +71,7 @@ static void	simple_move(int key, t_main *cub)
 		cub->player.y += cub->player.vector_perpendicular.dy;
 		cub->player.x += cub->player.vector_perpendicular.dx;
 	}
+	printf("pos x eh %f e pos y eh %f\n", cub->player.x, cub->player.y);
 }
 
 static void	is_minimap(int key, t_main *cub)
@@ -116,8 +127,8 @@ void	config_player(t_player *player)
 
 	angle = define_angle(player->position, &angle);
 	rotate_player(player, angle);
-	player->x *= MINI_WIDTH + MINI_WIDTH / 2;
-	player->y *= MINI_WIDTH + MINI_WIDTH / 2;
+	player->x *= (1.5 * MINI_WIDTH);
+	player->y *= (1.5 * MINI_WIDTH);
 }
 
 int	main(int ac, char **av)
