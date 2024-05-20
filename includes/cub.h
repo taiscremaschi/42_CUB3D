@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/17 10:36:27 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/20 21:24:35 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,8 @@ bool			check_x_left(char **map_copy, int x, int y);
 bool			check_x_right(char **map_copy, int x, int y);
 bool			check_y_up(char **map_copy, int x, int y);
 bool			check_y_down(char **map_copy, int x, int y, int height);
+
+int				player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y);
 
 ////////////////////////////// IMAGES //////////////
 void			image_inicialize(t_main *main);

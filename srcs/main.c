@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/20 21:05:37 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/20 21:24:03 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	rotate_player(t_player *player, double dangle) //proteger o PI, nao pode pa
 	rotate2(perpendicular_angle, &player->vector_perpendicular);
 }
 
-int	player_hit(t_main *cub, t_vector dir)
+int	player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y)
 {
-	int	y = (int)floor((cub->player.y + dir.dy)/ (MINI_WIDTH));
-	int	x = (int)floor((cub->player.x + dir.dx)/ (MINI_WIDTH));
+	int	y = (int)floor((pos_y + dir.dy)/ (MINI_WIDTH));
+	int	x = (int)floor((pos_x + dir.dx)/ (MINI_WIDTH));
 	printf("no HIT player x %d player y %d\n", x, y);
 
 	if(y < 0 || x < 0 || y > cub->height - 1)
@@ -58,7 +58,7 @@ static void	simple_move(int key, t_main *cub)
 	{
 		dir.dy = cub->player.vector_front.dy * -1;
 		dir.dx = cub->player.vector_front.dx * -1;
-		if(!player_hit(cub,dir))
+		if(!player_hit(cub,dir, cub->player.x, cub->player.y))
 		{
 			cub->player.y -= cub->player.vector_front.dy;// direction
 			cub->player.x -= cub->player.vector_front.dx;
@@ -68,7 +68,7 @@ static void	simple_move(int key, t_main *cub)
 	{
 		dir.dy = cub->player.vector_front.dy * 1;
 		dir.dx = cub->player.vector_front.dx * 1;
-		if(!player_hit(cub,dir))
+		if(!player_hit(cub,dir, cub->player.x, cub->player.y))
 		{
 			cub->player.y += cub->player.vector_front.dy;
 			cub->player.x += cub->player.vector_front.dx;
@@ -78,7 +78,7 @@ static void	simple_move(int key, t_main *cub)
 	{
 		dir.dy = cub->player.vector_perpendicular.dy * -1;
 		dir.dx = cub->player.vector_perpendicular.dx * -1;
-		if(!player_hit(cub,dir))
+		if(!player_hit(cub,dir, cub->player.x, cub->player.y))
 		{		
 			cub->player.y -= cub->player.vector_perpendicular.dy; //camera
 			cub->player.x -= cub->player.vector_perpendicular.dx;
@@ -88,7 +88,7 @@ static void	simple_move(int key, t_main *cub)
 	{
 		dir.dy = cub->player.vector_perpendicular.dy * 1;
 		dir.dx = cub->player.vector_perpendicular.dx * 1;
-		if(!player_hit(cub,dir))
+		if(!player_hit(cub,dir, cub->player.x, cub->player.y))
 		{
 			cub->player.y += cub->player.vector_perpendicular.dy;
 			cub->player.x += cub->player.vector_perpendicular.dx;

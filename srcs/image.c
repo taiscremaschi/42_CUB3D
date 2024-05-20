@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/20 21:13:48 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/20 21:35:47 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void draw_line2(t_main *cub, double x1, double y1, double x2, double y2, int col
 	double del_x = x2 - x1;
 	double del_y = y2 - y1;
 	
-	int pixels = sqrt((del_x * del_x) + (del_y * del_y)); // ???
+	double pixels = sqrt((del_x * del_x) + (del_y * del_y)); // ???
 	if (pixels > WINDOW_HEIGHT){
 		pixels = WINDOW_HEIGHT;
 	}
@@ -64,7 +64,7 @@ void draw_line2(t_main *cub, double x1, double y1, double x2, double y2, int col
 	del_x /= pixels;
 	del_y /= pixels;
 
-	while (pixels)
+	while (pixels > 0)
 	{
 		mlx_pixel_put(cub->mlx, cub->win, x1, y1, color);
 		x1 += del_x;
@@ -174,11 +174,22 @@ void draw_player(t_main *cub)
 		draw_line2(cub, cub->player.x - cub->player.vector_front.dx*15, cub->player.y - cub->player.vector_front.dy*15, cub->player.x - cub->player.vector_front.dx*15 - lado_baixo.dx*5, cub->player.y - cub->player.vector_front.dy*15 - lado_baixo.dy*5, 0x0000FF);
 
 		//drawRays(&cub->player, cub);
-
-		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - visao_cima.dx*20, cub->player.y - visao_cima.dy*20, 0xFF00FF);
-		
-		draw_line2(cub, cub->player.x, cub->player.y, cub->player.x - visao_baixo.dx*20, cub->player.y - visao_baixo.dy*20, 0xFF00FF);
-
+		double temp_x = cub->player.x;
+		double temp_y = cub->player.y;
+		while(!player_hit(cub, visao_cima, temp_x, temp_y))
+		{
+			draw_line2(cub, temp_x, temp_y, temp_x - visao_cima.dx, temp_y - visao_cima.dy, 0xFF00FF);
+			temp_x -= visao_cima.dx;
+			temp_y -= visao_cima.dy;
+		}
+		temp_x = cub->player.x;
+		temp_y = cub->player.y;
+		while(!player_hit(cub, visao_baixo, temp_x, temp_y))
+		{
+			draw_line2(cub, temp_x, temp_y, temp_x - visao_baixo.dx, temp_y - visao_baixo.dy, 0xFF00FF);
+			temp_x -= visao_baixo.dx;
+			temp_y -= visao_baixo.dy;
+		}
 		
 	//}
 }
