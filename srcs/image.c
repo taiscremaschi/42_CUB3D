@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/20 17:58:08 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/20 21:13:48 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,25 +351,25 @@ void	render_3D(t_main *cub)
 		// }
 		if(side == 1)
 		{
-			if(hit_direction = 'S')
+			if(hit_direction == 'S')
 			{
 				cub->rgb.r = 255;
 				cub->rgb.g = 0;
 				cub->rgb.b = 0;
 			}
-			if(hit_direction = 'N')
+			if(hit_direction == 'N')
 			{
 				cub->rgb.r = 0;
 				cub->rgb.g = 255;
 				cub->rgb.b = 0;
 			}
-			if(hit_direction = 'E')
+			if(hit_direction == 'E')
 			{
 				cub->rgb.r = 0;
 				cub->rgb.g = 0;
 				cub->rgb.b = 10;
 			}
-			if(hit_direction = 'W')
+			if(hit_direction == 'W')
 			{
 				cub->rgb.r = 0;
 				cub->rgb.g = 0;

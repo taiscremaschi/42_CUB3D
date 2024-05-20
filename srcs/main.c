@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/20 21:00:06 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/20 21:05:37 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@ void	rotate_player(t_player *player, double dangle) //proteger o PI, nao pode pa
 	double perpendicular_angle = player->angle + PI / 2;
 		// significa rotacao 90 graus
 	rotate2(perpendicular_angle, &player->vector_perpendicular);
-	// if(cub->player.angle < 0)
-	// 	cub->player.angle += 2 * PI;
-	// else if (cub->player.angle > (2 * PI))
-	// 	cub->player.angle -= 2 * PI;
-	// cub->player.delta_x = cos(cub->player.angle * 5);
-	// printf("del x eh %f\n", cub->player.delta_x);
-	// cub->player.delta_y = sin(cub->player.angle * 5);
-	// printf("del y eh %f\n", cub->player.delta_y);
 }
 
 int	player_hit(t_main *cub, t_vector dir)
