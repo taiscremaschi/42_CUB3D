@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/20 15:33:52 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/20 16:02:01 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void	rotate_player(t_player *player, double dangle) //proteger o PI, nao pode pa
 
 int	player_hit(t_main *cub)
 {
-	int	y = (int)cub->player.y;
-	int	x = (int)cub->player.x;
+	int	y = (int)cub->player.y / MINI_WIDTH;
+	int	x = (int)cub->player.x / MINI_WIDTH;
+	printf("no HIT player x %d player y %d\n", x, y);
 	
 	if(cub->map[y][x] == '1')
 		return 1;
@@ -51,25 +52,29 @@ static void	simple_move(int key, t_main *cub)
 		rotate_player(&cub->player, -0.1);
 	if (key == RIGHT)
 		rotate_player(&cub->player, 0.1);
-	if (key == W_UP)
+	if (key == W_UP && !player_hit(cub))
 	{
 		cub->player.y -= cub->player.vector_front.dy;// direction
 		cub->player.x -= cub->player.vector_front.dx;
 	}
-	if (key == S_DOWN)
+	if (key == S_DOWN && !player_hit(cub))
 	{
 		cub->player.y += cub->player.vector_front.dy;
 		cub->player.x += cub->player.vector_front.dx;
 	}
-	if (key == D_RIGHT)
+	if (key == D_RIGHT && !player_hit(cub))
 	{
 		cub->player.y -= cub->player.vector_perpendicular.dy; //camera
 		cub->player.x -= cub->player.vector_perpendicular.dx;
 	}
-	if (key == AA_LEFT)
+	if (key == AA_LEFT && !player_hit(cub))
 	{
 		cub->player.y += cub->player.vector_perpendicular.dy;
 		cub->player.x += cub->player.vector_perpendicular.dx;
+	}
+	if(!player_hit(cub))
+	{
+		return;
 	}
 	printf("pos x eh %f e pos y eh %f\n", cub->player.x, cub->player.y);
 }
