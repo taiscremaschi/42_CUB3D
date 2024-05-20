@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/20 17:53:50 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/20 20:53:13 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,42 @@ void	rotate_player(t_player *player, double dangle) //proteger o PI, nao pode pa
 
 int	player_hit(t_main *cub, t_vector dir)
 {
-	int	y = (int)cub->player.y / (MINI_WIDTH);
-	int	x = (int)cub->player.x / (MINI_WIDTH);
+	int	y = (int)floor((cub->player.y + dir.dy)/ (MINI_WIDTH));
+	int	x = (int)floor((cub->player.x + dir.dx)/ (MINI_WIDTH));
 	printf("no HIT player x %d player y %d\n", x, y);
-	t_vector	colision;
 
-	colision.dx = 0;
-	colision.dy = 0;
-	if (dir.dx > 0)
-		colision.dx = 0.1;
-	else if (dir.dx < 0)
-		colision.dx = -0.1;
-	if (dir.dy > 0)
-		colision.dy = 0.1;
-	else if (dir.dy < 0)
-		colision.dy = -0.1;
-	if (cub->map[y][(int)(x + colision.dx)] == '1')
+	if(y < 0 || x < 0 || y > cub->height - 1)
+		return 1;
+	if (cub->map[y][x] == '1' || cub->map[y][x] == '\0')
 	{
-		printf("retornando 1...\n");
-		printf("cub->map[%d][(int)(%d] eh %c\n", y, (int)(x+colision.dx), cub->map[y][(int)(x + colision.dx)]);
-		return 1;		
+		return 1;
 	}
+	// t_vector	colision;
 
-	if (cub->map[(y + (int)colision.dy)][x] == '1')
-	{
-		printf("retornando 1...\n");
-		printf("no HIT player x %d player y %d\n", x, y);
-		printf("cub->map[%d][(int)(%d] eh %c\n", (y + (int)colision.dy), x, cub->map[(int)(y + colision.dy)][x]);
-		return 1;		
-	}
+	// colision.dx = 0;
+	// colision.dy = 0;
+	// if (dir.dx > 0)
+	// 	colision.dx = 0.1;
+	// else if (dir.dx < 0)
+	// 	colision.dx = -0.1;
+	// if (dir.dy > 0)
+	// 	colision.dy = 0.1;
+	// else if (dir.dy < 0)
+	// 	colision.dy = -0.1;
+	// if (cub->map[y][(int)(x + colision.dx)] == '1')
+	// {
+	// 	printf("retornando 1...\n");
+	// 	printf("cub->map[%d][(int)(%d] eh %c\n", y, (int)(x+colision.dx), cub->map[y][(int)(x + colision.dx)]);
+	// 	return 1;		
+	// }
+
+	// if (cub->map[(y + (int)colision.dy)][x] == '1')
+	// {
+	// 	printf("retornando 1...\n");
+	// 	printf("no HIT player x %d player y %d\n", x, y);
+	// 	printf("cub->map[%d][(int)(%d] eh %c\n", (y + (int)colision.dy), x, cub->map[(int)(y + colision.dy)][x]);
+	// 	return 1;		
+	// }
 
 	printf("no HIT player x %d player y %d\n", x, y);
 	return 0;
@@ -84,33 +91,43 @@ static void	simple_move(int key, t_main *cub)
 		rotate_player(&cub->player, 0.1);
 	if (key == W_UP)
 	{
-		dir.dy = -1;
+		dir.dy = cub->player.vector_front.dy * -1;
+		dir.dx = cub->player.vector_front.dx * -1;
 		if(!player_hit(cub,dir))
 		{
-			printf("vai mover\n");
 			cub->player.y -= cub->player.vector_front.dy;// direction
 			cub->player.x -= cub->player.vector_front.dx;
 		}
 	}
 	if (key == S_DOWN)
 	{
-		dir.dy = 1;
-		cub->player.y += cub->player.vector_front.dy;
-		cub->player.x += cub->player.vector_front.dx;
+		dir.dy = cub->player.vector_front.dy * 1;
+		dir.dx = cub->player.vector_front.dx * 1;
+		if(!player_hit(cub,dir))
+		{
+			cub->player.y += cub->player.vector_front.dy;
+			cub->player.x += cub->player.vector_front.dx;
+		}
 	}
 	if (key == D_RIGHT)
 	{
 		dir.dx = 1;
-		cub->player.y -= cub->player.vector_perpendicular.dy; //camera
-		cub->player.x -= cub->player.vector_perpendicular.dx;
+	//	if(!player_hit(cub,dir))
+	//	{		
+			cub->player.y -= cub->player.vector_perpendicular.dy; //camera
+			cub->player.x -= cub->player.vector_perpendicular.dx;
+	//	}
 	}
 	if (key == AA_LEFT)
 	{
 		dir.dx = -1;
-		cub->player.y += cub->player.vector_perpendicular.dy;
-		cub->player.x += cub->player.vector_perpendicular.dx;
+	//	if(!player_hit(cub,dir))
+	//	{
+			cub->player.y += cub->player.vector_perpendicular.dy;
+			cub->player.x += cub->player.vector_perpendicular.dx;
+	//	}
 	}
-	//player_hit(cub, dir);
+	player_hit(cub, dir);
 }
 
 static void	is_minimap(int key, t_main *cub)
@@ -166,8 +183,8 @@ void	config_player(t_player *player)
 
 	angle = define_angle(player->position, &angle);
 	rotate_player(player, angle);
-	player->x *= (1.5 * MINI_WIDTH);
-	player->y *= (1.5 * MINI_WIDTH);
+	player->x *= MINI_WIDTH + (MINI_WIDTH / 2);
+	player->y *= MINI_WIDTH + (MINI_WIDTH / 2);
 }
 
 int	main(int ac, char **av)
