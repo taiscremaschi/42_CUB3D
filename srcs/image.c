@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/20 21:35:47 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/20 21:50:26 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,19 +178,18 @@ void draw_player(t_main *cub)
 		double temp_y = cub->player.y;
 		while(!player_hit(cub, visao_cima, temp_x, temp_y))
 		{
-			draw_line2(cub, temp_x, temp_y, temp_x - visao_cima.dx, temp_y - visao_cima.dy, 0xFF00FF);
 			temp_x -= visao_cima.dx;
 			temp_y -= visao_cima.dy;
 		}
+		draw_line2(cub, cub->player.x, cub->player.y, temp_x, temp_y, 0xFF00FF);
 		temp_x = cub->player.x;
 		temp_y = cub->player.y;
 		while(!player_hit(cub, visao_baixo, temp_x, temp_y))
 		{
-			draw_line2(cub, temp_x, temp_y, temp_x - visao_baixo.dx, temp_y - visao_baixo.dy, 0xFF00FF);
 			temp_x -= visao_baixo.dx;
 			temp_y -= visao_baixo.dy;
 		}
-		
+		draw_line2(cub, cub->player.x, cub->player.y, temp_x, temp_y, 0xFF00FF);
 	//}
 }
 
@@ -209,18 +208,26 @@ void	util_image(t_main *main, int x, int y)
 
 void	render_mini(t_main *cub)
 {
-	static int d = 0;
+	static double angle = 0;
+	static double px = 0;
+	static double py = 0;
+
+	if (cub->player.angle == angle && cub->player.x == px && cub->player.y == py)
+		return;
 	int	x;
 	int	y;
+	angle = cub->player.angle;
+	px = cub->player.x;
+	py = cub->player.y;
 
 	y = -1;
-	while (cub->map[++y] != NULL && d == 0)
+	while (cub->map[++y] != NULL)
 	{
 		x = -1;
 		while (cub->map[y][++x] != '\0')
 			util_image(cub, x, y);
 	}
-	d = 0;
+
 	draw_player(cub);
 }
 
