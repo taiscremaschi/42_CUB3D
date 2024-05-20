@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/17 11:11:48 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/20 10:47:41 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,14 +228,14 @@ void	render_3D(t_main *cub)
 		pos.dx = cub->player.x / MINI_WIDTH;
 		pos.dy = cub->player.y / MINI_WIDTH;
 
-		printf("dir x eh %f dir y %f\n", dir->dx, dir->dy);
-		printf("pos x eh %f pos y %f\n", pos.dx, pos.dy);
-		printf("plan x eh %f plan y %f\n", plan->dx, plan->dy);
+		// printf("dir x eh %f dir y %f\n", dir->dx, dir->dy);
+		// printf("pos x eh %f pos y %f\n", pos.dx, pos.dy);
+		// printf("plan x eh %f plan y %f\n", plan->dx, plan->dy);
 		
 		double cameraX = 2 * (x_screen / w) - 1;
 		double rayDirx = dir->dx + plan->dx * cameraX;
 		double rayDiry = dir->dy + plan->dy * cameraX;
-		printf("rayDirx eh %f rayDiry %f\n", rayDirx, rayDiry);
+		//printf("rayDirx eh %f rayDiry %f\n", rayDirx, rayDiry);
 
 		int mapx = (int)pos.dx;
 		int mapy = (int)pos.dy; // mesmo que position
@@ -256,16 +256,16 @@ void	render_3D(t_main *cub)
 		//calculate step and initial sideDist
 		if(rayDirx < 0)
 		{
-			printf("raydirc eh negativo\n");
+			//printf("raydirc eh negativo\n");
 			stepX = -1;
 			sideDistX = (pos.dx - mapx) * deltaDistX;
 		}
 		else
 		{
-			printf("raydirc eh positivo\n");
+			//printf("raydirc eh positivo\n");
 			stepX = 1;
 			sideDistX = (mapx + 1 + pos.dx) * deltaDistX; // pq +1?
-			printf("sideDistx eh %f\n", sideDistX);
+			//printf("sideDistx eh %f\n", sideDistX);
 		}
 		if(rayDiry < 0)
 		{
@@ -276,7 +276,7 @@ void	render_3D(t_main *cub)
 		{
 			stepY = 1;
 			sideDistY = (mapy + 1 + pos.dy) * deltaDistY; // pq +1?
-			printf("sideDisty eh %f\n", sideDistY);
+			//printf("sideDisty eh %f\n", sideDistY);
 		}
 
 		//performing DDA
@@ -295,25 +295,34 @@ void	render_3D(t_main *cub)
 				side = 1; //preciso de 4 diferentes na vdd
 			}
 			//check if ray has hit a wall
-			printf("estamos em %c\n", cub->map[mapy][mapx]);
+			//printf("estamos em %c\n", cub->map[mapy][mapx]);
 			if(cub->map[mapy][mapx] == '1')
 			{
-				printf("achou uma parede, pare\n");
+			//	printf("achou uma parede, pare\n");
 				hit = 1;
 			}
-			printf("saiu do while do hit\n");
+		//	printf("saiu do while do hit\n");
 		}
 
 		//Calculate distance projected on camera direction
+		char hit_direction = 0;
 		if(side == 0)
 		{
-			printf("side eh zero\n");
+			//printf("side eh zero\n");
 			perpWallDist = (sideDistX - deltaDistX);
+			if(rayDirx > 0)
+				hit_direction = 'W';
+			else
+				hit_direction = 'E';
 		}
 		else
 		{
-			printf("side eh 1\n");
+			//printf("side eh 1\n");
 			perpWallDist = (sideDistY - deltaDistY);
+			if(rayDirx > 0)
+				hit_direction = 'N';
+			else
+				hit_direction = 'S';
 		}
 
 		//Calculate height of line to draw on screen
@@ -328,23 +337,44 @@ void	render_3D(t_main *cub)
 			drawEnd = WINDOW_HEIGHT - 1;
 
 		//COLOR whithout textures
-		if(cub->map[mapy][mapx] == 0)
-		{
-			cub->rgb.r = 255;
-			cub->rgb.g = 0;
-			cub->rgb.b = 0;
-		}
-		if(cub->map[mapy][mapx] == 1)
-		{
-			cub->rgb.r = 0;
-			cub->rgb.g = 0;
-			cub->rgb.b = 255;
-		}
+		// if(cub->map[mapy][mapx] == 0)
+		// {
+		// 	cub->rgb.r = 255;
+		// 	cub->rgb.g = 0;
+		// 	cub->rgb.b = 0;
+		// }
+		// if(cub->map[mapy][mapx] == 1)
+		// {
+		// 	cub->rgb.r = 0;
+		// 	cub->rgb.g = 0;
+		// 	cub->rgb.b = 255;
+		// }
 		if(side == 1)
 		{
-			cub->rgb.r = 0;
-			cub->rgb.g = 255;
-			cub->rgb.b = 128;
+			if(hit_direction = 'S')
+			{
+				cub->rgb.r = 255;
+				cub->rgb.g = 0;
+				cub->rgb.b = 0;
+			}
+			if(hit_direction = 'N')
+			{
+				cub->rgb.r = 0;
+				cub->rgb.g = 255;
+				cub->rgb.b = 0;
+			}
+			if(hit_direction = 'E')
+			{
+				cub->rgb.r = 0;
+				cub->rgb.g = 0;
+				cub->rgb.b = 10;
+			}
+			if(hit_direction = 'W')
+			{
+				cub->rgb.r = 0;
+				cub->rgb.g = 0;
+				cub->rgb.b = 120;
+			}
 		}
 		draw_line2(cub, x_screen, 0, x_screen, WINDOW_HEIGHT, 0xFFFFFF);
 		draw_line2(cub, x_screen, drawStart, x_screen, drawEnd, ((cub->rgb.r<<16) + (cub->rgb.g<<8) + (cub->rgb.b)));
@@ -359,7 +389,8 @@ int	render_image(t_main *main)
 	if(main->is_mini)
 		render_mini(main);
 	else
-		render_3D(main);
+		printf("teste\n");
+		//render_3D(main);
 	return 0;	
 }
 // podemos utilizar algo disso mas vai ter que adaptar
