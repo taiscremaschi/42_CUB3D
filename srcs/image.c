@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/21 15:33:35 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/21 15:45:52 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -328,19 +328,19 @@ void	render_3D(t_main *cub)
 		{
 			//printf("side eh zero\n");
 			perpWallDist = (sideDistX - deltaDistX);
-			if(rayDirx > 0)
-				hit_direction = 'W';
-			else
-				hit_direction = 'E';
+			// if(rayDirx > 0)
+			// 	hit_direction = 'W';
+			// else
+			// 	hit_direction = 'E';
 		}
 		else
 		{
 			//printf("side eh 1\n");
 			perpWallDist = (sideDistY - deltaDistY);
-			if(rayDirx > 0)
-				hit_direction = 'N';
-			else
-				hit_direction = 'S';
+			// if(rayDirx > 0)
+			// 	hit_direction = 'N';
+			// else
+			// 	hit_direction = 'S';
 		}
 
 		//Calculate height of line to draw on screen
@@ -366,38 +366,41 @@ void	render_3D(t_main *cub)
 		// 	cub->rgb.g = 0;
 		// 	cub->rgb.b = 0;
 		// }
-		// if(cub->map[mapy][mapx] == 1)
-		// {
-		// 	cub->rgb.r = 0;
-		// 	cub->rgb.g = 0;
-		// 	cub->rgb.b = 255;
-		// }
+		if(cub->map[mapy][mapx] == 1)
+		{
+			cub->rgb.r = 0;
+			cub->rgb.g = 0;
+			cub->rgb.b = 255;
+		}
 		if(side == 1)
 		{
-			if(hit_direction == 'S')
-			{
-				cub->rgb.r = 255;
+				cub->rgb.r = 125;
 				cub->rgb.g = 0;
 				cub->rgb.b = 0;
-			}
-			if(hit_direction == 'N')
-			{
-				cub->rgb.r = 0;
-				cub->rgb.g = 255;
-				cub->rgb.b = 0;
-			}
-			if(hit_direction == 'E')
-			{
-				cub->rgb.r = 0;
-				cub->rgb.g = 0;
-				cub->rgb.b = 10;
-			}
-			if(hit_direction == 'W')
-			{
-				cub->rgb.r = 0;
-				cub->rgb.g = 0;
-				cub->rgb.b = 120;
-			}
+			// if(hit_direction == 'S')
+			// {
+			// 	cub->rgb.r = 255;
+			// 	cub->rgb.g = 0;
+			// 	cub->rgb.b = 0;
+			// }
+			// if(hit_direction == 'N')
+			// {
+			// 	cub->rgb.r = 0;
+			// 	cub->rgb.g = 255;
+			// 	cub->rgb.b = 0;
+			// }
+			// if(hit_direction == 'E')
+			// {
+			// 	cub->rgb.r = 0;
+			// 	cub->rgb.g = 0;
+			// 	cub->rgb.b = 10;
+			// }
+			// if(hit_direction == 'W')
+			// {
+			// 	cub->rgb.r = 0;
+			// 	cub->rgb.g = 0;
+			// 	cub->rgb.b = 120;
+			// }
 		}
 		draw_line2(cub, x_screen, 0, x_screen, WINDOW_HEIGHT, 0xFFFFFF);
 		draw_line2(cub, x_screen, drawStart, x_screen, drawEnd, ((cub->rgb.r<<16) + (cub->rgb.g<<8) + (cub->rgb.b)));
