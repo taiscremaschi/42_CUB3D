@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/21 15:45:52 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/21 17:26:30 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ void	render_mini(t_main *cub)
 void	render_3D(t_main *cub)
 {
 	int x_screen;
-	int w;
+	double w;
 	t_vector	*dir = &cub->player.vector_front;
 	t_vector	*plan = &cub->player.vector_perpendicular;
 
