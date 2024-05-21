@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/20 21:50:26 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/21 10:23:55 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,8 +212,8 @@ void	render_mini(t_main *cub)
 	static double px = 0;
 	static double py = 0;
 
-	if (cub->player.angle == angle && cub->player.x == px && cub->player.y == py)
-		return;
+	if (cub->player.angle == angle && cub->player.x == px && cub->player.y == py) // otimizou o minimap porem para mudar do 3D para 2D assim precisa movimentar o player..
+			return;
 	int	x;
 	int	y;
 	angle = cub->player.angle;

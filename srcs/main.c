@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/20 21:24:03 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/21 10:09:35 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ static void	simple_move(int key, t_main *cub)
 
 static void	is_minimap(int key, t_main *cub)
 {
-	if (key == 112 && cub->is_mini == 0)
+	if (key == '2')
 	{
 		cub->is_mini = 1;
 	}
-	else if (key == 112 && cub->is_mini != 0)
+	else if (key == '3')
 		cub->is_mini = 0;
 }
 
