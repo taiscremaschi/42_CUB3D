@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/21 10:09:35 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/21 13:43:12 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y)
 {
 	int	y = (int)floor((pos_y + dir.dy)/ (MINI_WIDTH));
 	int	x = (int)floor((pos_x + dir.dx)/ (MINI_WIDTH));
-	printf("no HIT player x %d player y %d\n", x, y);
+	// printf("no HIT player x %d player y %d\n", x, y);
 
 	if(y < 0 || x < 0 || y > cub->height - 1)
 		return 1;
@@ -39,7 +39,6 @@ int	player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y)
 	{
 		return 1;
 	}
-	printf("no HIT player x %d player y %d\n", x, y);
 	return 0;
 
 }

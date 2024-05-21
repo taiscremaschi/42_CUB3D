@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/21 10:23:55 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/21 15:33:35 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ void	render_mini(t_main *cub)
 void	render_3D(t_main *cub)
 {
 	int x_screen;
-	double w;
+	int w;
 	t_vector	*dir = &cub->player.vector_front;
 	t_vector	*plan = &cub->player.vector_perpendicular;
 
@@ -250,7 +250,7 @@ void	render_3D(t_main *cub)
 		// printf("pos x eh %f pos y %f\n", pos.dx, pos.dy);
 		// printf("plan x eh %f plan y %f\n", plan->dx, plan->dy);
 		
-		double cameraX = 2 * (x_screen / w) - 1;
+		double cameraX = 2 * x_screen / w - 1;
 		double rayDirx = dir->dx + plan->dx * cameraX;
 		double rayDiry = dir->dy + plan->dy * cameraX;
 		//printf("rayDirx eh %f rayDiry %f\n", rayDirx, rayDiry);
@@ -282,7 +282,7 @@ void	render_3D(t_main *cub)
 		{
 			//printf("raydirc eh positivo\n");
 			stepX = 1;
-			sideDistX = (mapx + 1 + pos.dx) * deltaDistX; // pq +1?
+			sideDistX = (mapx + 1 - pos.dx) * deltaDistX; // pq +1?
 			//printf("sideDistx eh %f\n", sideDistX);
 		}
 		if(rayDiry < 0)
@@ -293,7 +293,7 @@ void	render_3D(t_main *cub)
 		else
 		{
 			stepY = 1;
-			sideDistY = (mapy + 1 + pos.dy) * deltaDistY; // pq +1?
+			sideDistY = (mapy + 1 - pos.dy) * deltaDistY; // pq +1?
 			//printf("sideDisty eh %f\n", sideDistY);
 		}
 
@@ -351,9 +351,14 @@ void	render_3D(t_main *cub)
 		if(drawStart < 0)
 			drawStart = 0;
 		int drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
-		if(drawEnd >= WINDOW_HEIGHT)
+		if(drawEnd > WINDOW_HEIGHT)
 			drawEnd = WINDOW_HEIGHT - 1;
-
+		double wall_x = 0;
+		if(side == 0)
+			wall_x = pos.dy + perpWallDist * rayDiry;
+		else
+			wall_x = pos.dx + perpWallDist * rayDirx;
+		wall_x -= floor((wall_x));
 		//COLOR whithout textures
 		// if(cub->map[mapy][mapx] == 0)
 		// {
