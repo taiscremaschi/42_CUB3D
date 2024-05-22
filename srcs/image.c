@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/21 17:26:30 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 09:07:03 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,22 @@ void	render_3D(t_main *cub)
 
 	x_screen = 0;
 	w = WINDOW_WIDTH;
+	//TENHO QUE COLOCAR O CEILING AND FLOOR, ACREDITO QUE POR IMAGEM...
+	// int x = 0;
+	// int y = 0;
+	// while (y < WINDOW_HEIGHT)
+	// {
+	// 	x = 0;
+	// 	if (y > WINDOW_HEIGHT / 2)
+	// 		while (x < WINDOW_WIDTH)
+	// 			mlx_pixel_put(cub->mlx, cub->win, x++, y, 0x550000);
+	// 	else
+	// 	{
+	// 		while (x < WINDOW_WIDTH)
+	// 			mlx_pixel_put(cub->mlx, cub->win, x++, y, 0x555500);
+	// 	}
+	// 	y++;
+	// }
 	while(x_screen < w)
 	{
 		t_vector	pos; //vou precisar criar a var posicao pq no minimap eu multipliquei
@@ -402,6 +418,7 @@ void	render_3D(t_main *cub)
 			// 	cub->rgb.b = 120;
 			// }
 		}
+		//pintar de branco antes eh apenas uma solucao temporaria..preciso trabalhar com imagens
 		draw_line2(cub, x_screen, 0, x_screen, WINDOW_HEIGHT, 0xFFFFFF);
 		draw_line2(cub, x_screen, drawStart, x_screen, drawEnd, ((cub->rgb.r<<16) + (cub->rgb.g<<8) + (cub->rgb.b)));
 		x_screen++;
