@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 14:22:36 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 15:02:36 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	start_ray(t_raycast *ray, double cameraX, t_main *cub, t_vector pos)
 	plan = &cub->player.vector_perpendicular;
 	pos.dx = cub->player.x / MINI_WIDTH;
 	pos.dy = cub->player.y / MINI_WIDTH;
-	ray->rayDir.dx = dir->dx + plan->dx * cameraX;
-	ray->rayDir.dy = dir->dy + plan->dy * cameraX;
+	ray->rayDir.dx = -dir->dx - plan->dx * cameraX;
+	ray->rayDir.dy = -dir->dy - plan->dy * cameraX;
 	ray->map.dx = (int)pos.dx;
 	ray->map.dy = (int)pos.dy;
 	ray->deltaDist.dx = fabs(1 / ray->rayDir.dx);
@@ -93,7 +93,7 @@ void	performing_dda(t_raycast *ray, t_main *cub)
 	}
 	if (ray->side == 0)
 		ray->perpWallDist = (ray->sideDist.dx - ray->deltaDist.dx);
-    else
+	else
 		ray->perpWallDist = (ray->sideDist.dy - ray->deltaDist.dy);
 	if (cub->map[ray->map.dy][ray->map.dx] == '1')
 		save_direction(ray);
