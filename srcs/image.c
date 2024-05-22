@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 10:25:12 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 10:26:34 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,7 +292,7 @@ void	render_3D(t_main *cub)
 
 		//int hit = 0;
 		ray.hit = 0;
-		int side;//NS or EW
+		//int side;//NS or EW
 		
 		//calculate step and initial sideDist
 		if(ray.rayDir.dx < 0)
@@ -327,13 +327,13 @@ void	render_3D(t_main *cub)
 			{
 				ray.sideDist.dx += ray.deltaDist.dx;
 				ray.map.dx += ray.step.dx;
-				side = 0;
+				ray.side = 0;
 			}
 			else
 			{
 				ray.sideDist.dy += ray.deltaDist.dy;
 				ray.map.dy += ray.step.dy;
-				side = 1; //preciso de 4 diferentes na vdd
+				ray.side = 1; //preciso de 4 diferentes na vdd
 			}
 			//check if ray has hit a wall
 			//printf("estamos em %c\n", cub->map[mapy][mapx]);
@@ -347,7 +347,7 @@ void	render_3D(t_main *cub)
 
 		//Calculate distance projected on camera direction
 		char hit_direction = 0;
-		if(side == 0)
+		if(ray.side == 0)
 		{
 			//printf("side eh zero\n");
 			perpWallDist = (ray.sideDist.dx - ray.deltaDist.dx);
@@ -377,7 +377,7 @@ void	render_3D(t_main *cub)
 		if(drawEnd > WINDOW_HEIGHT)
 			drawEnd = WINDOW_HEIGHT - 1;
 		double wall_x = 0;
-		if(side == 0)
+		if(ray.side == 0)
 			wall_x = pos.dy + perpWallDist * ray.rayDir.dy;
 		else
 			wall_x = pos.dx + perpWallDist * ray.rayDir.dx;
@@ -395,7 +395,7 @@ void	render_3D(t_main *cub)
 			cub->rgb.g = 0;
 			cub->rgb.b = 255;
 		}
-		if(side == 1)
+		if(ray.side == 1)
 		{
 				cub->rgb.r = 125;
 				cub->rgb.g = 0;
