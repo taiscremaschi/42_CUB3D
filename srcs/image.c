@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 09:17:05 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 09:25:46 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,12 +234,10 @@ void	render_mini(t_main *cub)
 void	render_3D(t_main *cub)
 {
 	int x_screen;
-	double w;
 	t_vector	*dir = &cub->player.vector_front;
 	t_vector	*plan = &cub->player.vector_perpendicular;
 
 	x_screen = 0;
-	w = WINDOW_WIDTH;
 	//TENHO QUE COLOCAR O CEILING AND FLOOR, ACREDITO QUE POR IMAGEM...
 	// int x = 0;
 	// int y = 0;
@@ -256,7 +254,7 @@ void	render_3D(t_main *cub)
 	// 	}
 	// 	y++;
 	// }
-	while(x_screen < w)
+	while(x_screen < WINDOW_WIDTH)
 	{
 		t_vector	pos; //vou precisar criar a var posicao pq no minimap eu multipliquei
 		pos.dx = cub->player.x /  MINI_WIDTH;
@@ -264,7 +262,7 @@ void	render_3D(t_main *cub)
 		
 		double cameraX;
 		
-		cameraX = 2 * x_screen / w - 1;
+		cameraX = 2 * x_screen / (double)WINDOW_WIDTH - 1;
 		double rayDirx = dir->dx + plan->dx * cameraX;
 		double rayDiry = dir->dy + plan->dy * cameraX;
 		//printf("rayDirx eh %f rayDiry %f\n", rayDirx, rayDiry);
