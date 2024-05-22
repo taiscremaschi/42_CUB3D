@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 11:05:23 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 11:09:11 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,50 @@ void	render_3D(t_main *cub)
 
 		//performing DDA
 		performing_dda(&ray, cub);
+		// while(ray.hit == 0)
+		// {
+		// 	if (ray.sideDist.dx < ray.sideDist.dy)
+		// 	{
+		// 		ray.sideDist.dx += ray.deltaDist.dx;
+		// 		ray.map.dx += ray.step.dx;
+		// 		ray.side = 0;
+		// 	}
+		// 	else
+		// 	{
+		// 		ray.sideDist.dy += ray.deltaDist.dy;
+		// 		ray.map.dy += ray.step.dy;
+		// 		ray.side = 1; //preciso de 4 diferentes na vdd
+		// 	}
+		// 	//check if ray has hit a wall
+		// 	//printf("estamos em %c\n", cub->map[mapy][mapx]);
+		// 	if(cub->map[ray.map.dy][ray.map.dx] == '1')
+		// 	{
+		// 	//	printf("achou uma parede, pare\n");
+		// 		ray.hit = 1;
+		// 	}
+		// //	printf("saiu do while do hit\n");
+		// }
+
+		// //Calculate distance projected on camera direction
+		// char hit_direction = 0;
+		// if(ray.side == 0)
+		// {
+		// 	//printf("side eh zero\n");
+		// 	ray.perpWallDist = (ray.sideDist.dx - ray.deltaDist.dx);
+		// 	// if(rayDirx > 0)
+		// 	// 	hit_direction = 'W';
+		// 	// else
+		// 	// 	hit_direction = 'E';
+		// }
+		// else
+		// {
+		// 	//printf("side eh 1\n");
+		// 	ray.perpWallDist = (ray.sideDist.dy - ray.deltaDist.dy);
+		// 	// if(rayDirx > 0)
+		// 	// 	hit_direction = 'N';
+		// 	// else
+		// 	// 	hit_direction = 'S';
+		// }
 
 		//Calculate height of line to draw on screen
 		//int lineHeight = (int)(WINDOW_HEIGHT / ray.perpWallDist);

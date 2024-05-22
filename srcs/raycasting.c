@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 11:04:42 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 13:40:33 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,27 @@ void	ray_steps(t_raycast *ray, t_vector pos)
 	}
 }
 
+//verificar
+static void	save_direction(t_raycast *ray)
+{
+	char	hit_direction;
+
+	if (ray->side == 0)
+	{
+		if (ray->rayDir.dx > 0)
+			hit_direction = 'W';
+		else
+			hit_direction = 'E';
+	}
+	else
+	{
+		if (ray->rayDir.dx > 0)
+			hit_direction = 'N';
+		else
+			hit_direction = 'S';
+	}
+}
+
 void	performing_dda(t_raycast *ray, t_main *cub)
 {
 	while (ray->hit == 0)
@@ -76,4 +97,6 @@ void	performing_dda(t_raycast *ray, t_main *cub)
 		ray->perpWallDist = (ray->sideDist.dx - ray->deltaDist.dx);
 	else
 		ray->perpWallDist = (ray->sideDist.dy - ray->deltaDist.dy);
+	if (cub->map[ray->map.dy][ray->map.dx] == '1')
+		save_direction(ray);
 }
