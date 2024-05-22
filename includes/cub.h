@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/20 21:24:35 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 09:23:17 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,26 @@ typedef struct s_vector
 	double		dx;
 	double		dy;
 }				t_vector;
+
+typedef struct s_vectorInt
+{
+	int		dx;
+	int		dy;
+}				t_vectorInt;
+
+typedef struct s_raycast
+{
+	t_vector	rayDir;
+	t_vector	sideDist;
+	t_vector	deltaDist;
+	t_vectorInt	step;
+	t_vectorInt	map;
+	double		perpWallDist;
+	int			hit;
+	int			side;
+	int			lineheight;
+	
+}				t_raycast;
 
 typedef struct s_textures
 {

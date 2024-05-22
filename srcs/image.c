@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 09:07:03 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 09:17:05 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,12 +261,10 @@ void	render_3D(t_main *cub)
 		t_vector	pos; //vou precisar criar a var posicao pq no minimap eu multipliquei
 		pos.dx = cub->player.x /  MINI_WIDTH;
 		pos.dy = cub->player.y / MINI_WIDTH;
-
-		// printf("dir x eh %f dir y %f\n", dir->dx, dir->dy);
-		// printf("pos x eh %f pos y %f\n", pos.dx, pos.dy);
-		// printf("plan x eh %f plan y %f\n", plan->dx, plan->dy);
 		
-		double cameraX = 2 * x_screen / w - 1;
+		double cameraX;
+		
+		cameraX = 2 * x_screen / w - 1;
 		double rayDirx = dir->dx + plan->dx * cameraX;
 		double rayDiry = dir->dy + plan->dy * cameraX;
 		//printf("rayDirx eh %f rayDiry %f\n", rayDirx, rayDiry);
