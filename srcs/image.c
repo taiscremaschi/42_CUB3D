@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 10:20:07 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 10:22:14 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,8 +287,8 @@ void	render_3D(t_main *cub)
 		
 		double perpWallDist;
 		
-		int stepX;
-		int stepY;
+		// int stepX;
+		// int stepY;
 
 		int hit = 0;
 		int side;//NS or EW
@@ -297,24 +297,24 @@ void	render_3D(t_main *cub)
 		if(ray.rayDir.dx < 0)
 		{
 			//printf("raydirc eh negativo\n");
-			stepX = -1;
+			ray.step.dx = -1;
 			ray.sideDist.dx = (pos.dx - ray.map.dx) * ray.deltaDist.dx;
 		}
 		else
 		{
 			//printf("raydirc eh positivo\n");
-			stepX = 1;
+			ray.step.dx = 1;
 			ray.sideDist.dx = (ray.map.dx + 1 - pos.dx) * ray.deltaDist.dx; // pq +1?
 			//printf("sideDistx eh %f\n", sideDistX);
 		}
 		if(ray.rayDir.dy < 0)
 		{
-			stepY = -1;
+			ray.step.dy = -1;
 			ray.sideDist.dy = (pos.dy - ray.map.dy) * ray.deltaDist.dy;
 		}
 		else
 		{
-			stepY = 1;
+			ray.step.dy = 1;
 			ray.sideDist.dy = (ray.map.dy + 1 - pos.dy) * ray.deltaDist.dy; // pq +1?
 			//printf("sideDisty eh %f\n", sideDistY);
 		}
@@ -325,13 +325,13 @@ void	render_3D(t_main *cub)
 			if (ray.sideDist.dx < ray.sideDist.dy)
 			{
 				ray.sideDist.dx += ray.deltaDist.dx;
-				ray.map.dx += stepX;
+				ray.map.dx += ray.step.dx;
 				side = 0;
 			}
 			else
 			{
 				ray.sideDist.dy += ray.deltaDist.dy;
-				ray.map.dy += stepY;
+				ray.map.dy += ray.step.dy;
 				side = 1; //preciso de 4 diferentes na vdd
 			}
 			//check if ray has hit a wall
