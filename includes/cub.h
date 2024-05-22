@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/22 10:30:20 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 11:04:47 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ typedef struct s_vector
 
 typedef struct s_vectorInt
 {
-	int		dx;
-	int		dy;
+	int			dx;
+	int			dy;
 }				t_vectorInt;
 
 typedef struct s_raycast
@@ -83,7 +83,7 @@ typedef struct s_raycast
 	int			hit;
 	int			side;
 	int			lineHeight;
-	
+
 }				t_raycast;
 
 typedef struct s_textures
@@ -166,7 +166,8 @@ bool			check_x_right(char **map_copy, int x, int y);
 bool			check_y_up(char **map_copy, int x, int y);
 bool			check_y_down(char **map_copy, int x, int y, int height);
 
-int				player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y);
+int				player_hit(t_main *cub, t_vector dir, double pos_x,
+					double pos_y);
 
 ////////////////////////////// IMAGES //////////////
 void			image_inicialize(t_main *main);
@@ -208,5 +209,11 @@ bool			search_colors(t_main *main, char *color, char type);
 bool			parsing_colors(t_main *main);
 bool			check_color_digit(char **color_content);
 bool			check_args_colors(char **color_content);
+
+//////////////////////////////// RAYCASTING //////////////////
+void			start_ray(t_raycast *ray, double cameraX, t_main *cub,
+					t_vector pos);
+void			ray_steps(t_raycast *ray, t_vector pos);
+void			performing_dda(t_raycast *ray, t_main *cub);
 
 #endif

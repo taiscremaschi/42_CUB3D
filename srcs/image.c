@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 10:30:25 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 11:05:23 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,8 +234,8 @@ void	render_mini(t_main *cub)
 void	render_3D(t_main *cub)
 {
 	int 		x_screen;
-	t_vector	*dir = &cub->player.vector_front;
-	t_vector	*plan = &cub->player.vector_perpendicular;
+	// t_vector	*dir = &cub->player.vector_front;
+	// t_vector	*plan = &cub->player.vector_perpendicular;
 	t_raycast	ray;
 
 	x_screen = 0;
@@ -264,107 +264,14 @@ void	render_3D(t_main *cub)
 		double cameraX;
 		
 		cameraX = 2 * x_screen / (double)WINDOW_WIDTH - 1;
-		// double rayDirx = dir->dx + plan->dx * cameraX;
-		// double rayDiry = dir->dy + plan->dy * cameraX;
-
-		ray.rayDir.dx = dir->dx + plan->dx * cameraX;
-		ray.rayDir.dy = dir->dy + plan->dy * cameraX;
-		//printf("rayDirx eh %f rayDiry %f\n", rayDirx, rayDiry);
-
-		// int mapx = (int)pos.dx;
-		// int mapy = (int)pos.dy; // mesmo que position
-		ray.map.dx = (int)pos.dx;
-		ray.map.dy = (int)pos.dy;
-		
-		// double sideDistX;
-		// double sideDistY;
-
-		// double deltaDistX = (ray.rayDir.dx == 0) ? 1e30 : fabs(1 / ray.rayDir.dx);
-		// double deltaDistY = (ray.rayDir.dy == 0) ? 1e30 : fabs(1 / ray.rayDir.dy);
-		
-		ray.deltaDist.dx = fabs(1 / ray.rayDir.dx);
-		ray.deltaDist.dy = fabs(1 / ray.rayDir.dy);
-		
-		//double perpWallDist;
-		
-		// int stepX;
-		// int stepY;
-
-		//int hit = 0;
+		start_ray(&ray, cameraX, cub, pos);
 		ray.hit = 0;
-		//int side;//NS or EW
 		
 		//calculate step and initial sideDist
-		if(ray.rayDir.dx < 0)
-		{
-			//printf("raydirc eh negativo\n");
-			ray.step.dx = -1;
-			ray.sideDist.dx = (pos.dx - ray.map.dx) * ray.deltaDist.dx;
-		}
-		else
-		{
-			//printf("raydirc eh positivo\n");
-			ray.step.dx = 1;
-			ray.sideDist.dx = (ray.map.dx + 1 - pos.dx) * ray.deltaDist.dx; // pq +1?
-			//printf("sideDistx eh %f\n", sideDistX);
-		}
-		if(ray.rayDir.dy < 0)
-		{
-			ray.step.dy = -1;
-			ray.sideDist.dy = (pos.dy - ray.map.dy) * ray.deltaDist.dy;
-		}
-		else
-		{
-			ray.step.dy = 1;
-			ray.sideDist.dy = (ray.map.dy + 1 - pos.dy) * ray.deltaDist.dy; // pq +1?
-			//printf("sideDisty eh %f\n", sideDistY);
-		}
+		ray_steps(&ray, pos);
 
 		//performing DDA
-		while(ray.hit == 0)
-		{
-			if (ray.sideDist.dx < ray.sideDist.dy)
-			{
-				ray.sideDist.dx += ray.deltaDist.dx;
-				ray.map.dx += ray.step.dx;
-				ray.side = 0;
-			}
-			else
-			{
-				ray.sideDist.dy += ray.deltaDist.dy;
-				ray.map.dy += ray.step.dy;
-				ray.side = 1; //preciso de 4 diferentes na vdd
-			}
-			//check if ray has hit a wall
-			//printf("estamos em %c\n", cub->map[mapy][mapx]);
-			if(cub->map[ray.map.dy][ray.map.dx] == '1')
-			{
-			//	printf("achou uma parede, pare\n");
-				ray.hit = 1;
-			}
-		//	printf("saiu do while do hit\n");
-		}
-
-		//Calculate distance projected on camera direction
-		char hit_direction = 0;
-		if(ray.side == 0)
-		{
-			//printf("side eh zero\n");
-			ray.perpWallDist = (ray.sideDist.dx - ray.deltaDist.dx);
-			// if(rayDirx > 0)
-			// 	hit_direction = 'W';
-			// else
-			// 	hit_direction = 'E';
-		}
-		else
-		{
-			//printf("side eh 1\n");
-			ray.perpWallDist = (ray.sideDist.dy - ray.deltaDist.dy);
-			// if(rayDirx > 0)
-			// 	hit_direction = 'N';
-			// else
-			// 	hit_direction = 'S';
-		}
+		performing_dda(&ray, cub);
 
 		//Calculate height of line to draw on screen
 		//int lineHeight = (int)(WINDOW_HEIGHT / ray.perpWallDist);
