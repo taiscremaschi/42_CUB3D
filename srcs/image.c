@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 10:22:14 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 10:25:12 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,8 @@ void	render_3D(t_main *cub)
 		// int stepX;
 		// int stepY;
 
-		int hit = 0;
+		//int hit = 0;
+		ray.hit = 0;
 		int side;//NS or EW
 		
 		//calculate step and initial sideDist
@@ -320,7 +321,7 @@ void	render_3D(t_main *cub)
 		}
 
 		//performing DDA
-		while(hit == 0)
+		while(ray.hit == 0)
 		{
 			if (ray.sideDist.dx < ray.sideDist.dy)
 			{
@@ -339,7 +340,7 @@ void	render_3D(t_main *cub)
 			if(cub->map[ray.map.dy][ray.map.dx] == '1')
 			{
 			//	printf("achou uma parede, pare\n");
-				hit = 1;
+				ray.hit = 1;
 			}
 		//	printf("saiu do while do hit\n");
 		}
