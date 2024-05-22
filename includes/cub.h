@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/22 11:04:47 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 14:11:06 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_raycast
 	int			hit;
 	int			side;
 	int			lineHeight;
-
+	char		hit_direction;
 }				t_raycast;
 
 typedef struct s_textures
@@ -215,5 +215,9 @@ void			start_ray(t_raycast *ray, double cameraX, t_main *cub,
 					t_vector pos);
 void			ray_steps(t_raycast *ray, t_vector pos);
 void			performing_dda(t_raycast *ray, t_main *cub);
+void			draw_wall(t_raycast *ray, t_main *cub, int x_screen,
+					t_vector pos);
+void			draw_line2(t_main *cub, double x1, double y1, double x2,
+					double y2, int color);
 
 #endif

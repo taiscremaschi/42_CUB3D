@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 13:40:33 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 14:22:36 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ray_steps(t_raycast *ray, t_vector pos)
 	else
 	{
 		ray->step.dx = 1;
-		ray->sideDist.dx = (ray->map.dx + 1 - pos.dx) * ray->deltaDist.dx;
+		ray->sideDist.dx = (ray->map.dx + 1.0 - pos.dx) * ray->deltaDist.dx;
 	}
 	if (ray->rayDir.dy < 0)
 	{
@@ -49,28 +49,26 @@ void	ray_steps(t_raycast *ray, t_vector pos)
 	else
 	{
 		ray->step.dy = 1;
-		ray->sideDist.dy = (ray->map.dy + 1 - pos.dy) * ray->deltaDist.dy;
+		ray->sideDist.dy = (ray->map.dy + 1.0 - pos.dy) * ray->deltaDist.dy;
 	}
 }
 
-//verificar
+// verificar
 static void	save_direction(t_raycast *ray)
 {
-	char	hit_direction;
-
 	if (ray->side == 0)
 	{
 		if (ray->rayDir.dx > 0)
-			hit_direction = 'W';
+			ray->hit_direction = 'W';
 		else
-			hit_direction = 'E';
+			ray->hit_direction = 'E';
 	}
 	else
 	{
 		if (ray->rayDir.dx > 0)
-			hit_direction = 'N';
+			ray->hit_direction = 'N';
 		else
-			hit_direction = 'S';
+			ray->hit_direction = 'S';
 	}
 }
 
@@ -95,8 +93,69 @@ void	performing_dda(t_raycast *ray, t_main *cub)
 	}
 	if (ray->side == 0)
 		ray->perpWallDist = (ray->sideDist.dx - ray->deltaDist.dx);
-	else
+    else
 		ray->perpWallDist = (ray->sideDist.dy - ray->deltaDist.dy);
 	if (cub->map[ray->map.dy][ray->map.dx] == '1')
 		save_direction(ray);
+}
+
+void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
+{
+	int		drawStart;
+	int		drawEnd;
+	double	wall_x;
+
+	ray->lineHeight = (int)(WINDOW_HEIGHT / ray->perpWallDist);
+	drawStart = -ray->lineHeight / 2 + WINDOW_HEIGHT / 2;
+	if (drawStart < 0)
+		drawStart = 0;
+	drawEnd = ray->lineHeight / 2 + WINDOW_HEIGHT / 2;
+	if (drawEnd > WINDOW_HEIGHT)
+		drawEnd = WINDOW_HEIGHT - 1;
+	wall_x = 0;
+	if (ray->side == 0)
+		wall_x = pos.dy + ray->perpWallDist * ray->rayDir.dy;
+	else
+		wall_x = pos.dx + ray->perpWallDist * ray->rayDir.dx;
+	wall_x -= floor((wall_x));
+	if (cub->map[ray->map.dy][ray->map.dx] == 1)
+	{
+		cub->rgb.r = 0;
+		cub->rgb.g = 0;
+		cub->rgb.b = 255;
+	}
+	if (ray->side == 1)
+	{
+		cub->rgb.r = 125;
+		cub->rgb.g = 0;
+		cub->rgb.b = 0;
+		// if(hit_direction == 'S')
+		// {
+		// 	cub->rgb.r = 255;
+		// 	cub->rgb.g = 0;
+		// 	cub->rgb.b = 0;
+		// }
+		// if(hit_direction == 'N')
+		// {
+		// 	cub->rgb.r = 0;
+		// 	cub->rgb.g = 255;
+		// 	cub->rgb.b = 0;
+		// }
+		// if(hit_direction == 'E')
+		// {
+		// 	cub->rgb.r = 0;
+		// 	cub->rgb.g = 0;
+		// 	cub->rgb.b = 10;
+		// }
+		// if(hit_direction == 'W')
+		// {
+		// 	cub->rgb.r = 0;
+		// 	cub->rgb.g = 0;
+		// 	cub->rgb.b = 120;
+		// }
+	}
+	// pintar de branco antes eh apenas uma solucao temporaria..preciso trabalhar com imagens
+	draw_line2(cub, x_screen, 0, x_screen, WINDOW_HEIGHT, 0xFFFFFF);
+	draw_line2(cub, x_screen, drawStart, x_screen, drawEnd, ((cub->rgb.r << 16)
+			+ (cub->rgb.g << 8) + (cub->rgb.b)));
 }

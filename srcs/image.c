@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 11:09:11 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 14:16:22 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,8 +234,6 @@ void	render_mini(t_main *cub)
 void	render_3D(t_main *cub)
 {
 	int 		x_screen;
-	// t_vector	*dir = &cub->player.vector_front;
-	// t_vector	*plan = &cub->player.vector_perpendicular;
 	t_raycast	ray;
 
 	x_screen = 0;
@@ -272,114 +270,7 @@ void	render_3D(t_main *cub)
 
 		//performing DDA
 		performing_dda(&ray, cub);
-		// while(ray.hit == 0)
-		// {
-		// 	if (ray.sideDist.dx < ray.sideDist.dy)
-		// 	{
-		// 		ray.sideDist.dx += ray.deltaDist.dx;
-		// 		ray.map.dx += ray.step.dx;
-		// 		ray.side = 0;
-		// 	}
-		// 	else
-		// 	{
-		// 		ray.sideDist.dy += ray.deltaDist.dy;
-		// 		ray.map.dy += ray.step.dy;
-		// 		ray.side = 1; //preciso de 4 diferentes na vdd
-		// 	}
-		// 	//check if ray has hit a wall
-		// 	//printf("estamos em %c\n", cub->map[mapy][mapx]);
-		// 	if(cub->map[ray.map.dy][ray.map.dx] == '1')
-		// 	{
-		// 	//	printf("achou uma parede, pare\n");
-		// 		ray.hit = 1;
-		// 	}
-		// //	printf("saiu do while do hit\n");
-		// }
-
-		// //Calculate distance projected on camera direction
-		// char hit_direction = 0;
-		// if(ray.side == 0)
-		// {
-		// 	//printf("side eh zero\n");
-		// 	ray.perpWallDist = (ray.sideDist.dx - ray.deltaDist.dx);
-		// 	// if(rayDirx > 0)
-		// 	// 	hit_direction = 'W';
-		// 	// else
-		// 	// 	hit_direction = 'E';
-		// }
-		// else
-		// {
-		// 	//printf("side eh 1\n");
-		// 	ray.perpWallDist = (ray.sideDist.dy - ray.deltaDist.dy);
-		// 	// if(rayDirx > 0)
-		// 	// 	hit_direction = 'N';
-		// 	// else
-		// 	// 	hit_direction = 'S';
-		// }
-
-		//Calculate height of line to draw on screen
-		//int lineHeight = (int)(WINDOW_HEIGHT / ray.perpWallDist);
-		ray.lineHeight = (int)(WINDOW_HEIGHT / ray.perpWallDist);
-
-		//Calculate lowest and highest pixel to fill in current strip
-		int drawStart = -ray.lineHeight / 2 + WINDOW_HEIGHT / 2;
-		if(drawStart < 0)
-			drawStart = 0;
-		int drawEnd = ray.lineHeight / 2 + WINDOW_HEIGHT / 2;
-		if(drawEnd > WINDOW_HEIGHT)
-			drawEnd = WINDOW_HEIGHT - 1;
-		double wall_x = 0;
-		if(ray.side == 0)
-			wall_x = pos.dy + ray.perpWallDist * ray.rayDir.dy;
-		else
-			wall_x = pos.dx + ray.perpWallDist * ray.rayDir.dx;
-		wall_x -= floor((wall_x));
-		//COLOR whithout textures
-		// if(cub->map[mapy][mapx] == 0)
-		// {
-		// 	cub->rgb.r = 255;
-		// 	cub->rgb.g = 0;
-		// 	cub->rgb.b = 0;
-		// }
-		if(cub->map[ray.map.dy][ray.map.dx] == 1)
-		{
-			cub->rgb.r = 0;
-			cub->rgb.g = 0;
-			cub->rgb.b = 255;
-		}
-		if(ray.side == 1)
-		{
-				cub->rgb.r = 125;
-				cub->rgb.g = 0;
-				cub->rgb.b = 0;
-			// if(hit_direction == 'S')
-			// {
-			// 	cub->rgb.r = 255;
-			// 	cub->rgb.g = 0;
-			// 	cub->rgb.b = 0;
-			// }
-			// if(hit_direction == 'N')
-			// {
-			// 	cub->rgb.r = 0;
-			// 	cub->rgb.g = 255;
-			// 	cub->rgb.b = 0;
-			// }
-			// if(hit_direction == 'E')
-			// {
-			// 	cub->rgb.r = 0;
-			// 	cub->rgb.g = 0;
-			// 	cub->rgb.b = 10;
-			// }
-			// if(hit_direction == 'W')
-			// {
-			// 	cub->rgb.r = 0;
-			// 	cub->rgb.g = 0;
-			// 	cub->rgb.b = 120;
-			// }
-		}
-		//pintar de branco antes eh apenas uma solucao temporaria..preciso trabalhar com imagens
-		draw_line2(cub, x_screen, 0, x_screen, WINDOW_HEIGHT, 0xFFFFFF);
-		draw_line2(cub, x_screen, drawStart, x_screen, drawEnd, ((cub->rgb.r<<16) + (cub->rgb.g<<8) + (cub->rgb.b)));
+		draw_wall(&ray, cub, x_screen, pos);
 		x_screen++;
 	}
 }
