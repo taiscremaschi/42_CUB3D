@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 10:28:26 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 10:30:25 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -367,13 +367,14 @@ void	render_3D(t_main *cub)
 		}
 
 		//Calculate height of line to draw on screen
-		int lineHeight = (int)(WINDOW_HEIGHT / ray.perpWallDist);
+		//int lineHeight = (int)(WINDOW_HEIGHT / ray.perpWallDist);
+		ray.lineHeight = (int)(WINDOW_HEIGHT / ray.perpWallDist);
 
 		//Calculate lowest and highest pixel to fill in current strip
-		int drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
+		int drawStart = -ray.lineHeight / 2 + WINDOW_HEIGHT / 2;
 		if(drawStart < 0)
 			drawStart = 0;
-		int drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
+		int drawEnd = ray.lineHeight / 2 + WINDOW_HEIGHT / 2;
 		if(drawEnd > WINDOW_HEIGHT)
 			drawEnd = WINDOW_HEIGHT - 1;
 		double wall_x = 0;

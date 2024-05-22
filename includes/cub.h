@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/22 09:23:17 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 10:30:20 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_raycast
 	double		perpWallDist;
 	int			hit;
 	int			side;
-	int			lineheight;
+	int			lineHeight;
 	
 }				t_raycast;
 
