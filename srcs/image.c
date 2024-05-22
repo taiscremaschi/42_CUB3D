@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 09:25:46 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 10:12:26 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,9 +233,10 @@ void	render_mini(t_main *cub)
 
 void	render_3D(t_main *cub)
 {
-	int x_screen;
+	int 		x_screen;
 	t_vector	*dir = &cub->player.vector_front;
 	t_vector	*plan = &cub->player.vector_perpendicular;
+	t_raycast	ray;
 
 	x_screen = 0;
 	//TENHO QUE COLOCAR O CEILING AND FLOOR, ACREDITO QUE POR IMAGEM...
@@ -263,8 +264,11 @@ void	render_3D(t_main *cub)
 		double cameraX;
 		
 		cameraX = 2 * x_screen / (double)WINDOW_WIDTH - 1;
-		double rayDirx = dir->dx + plan->dx * cameraX;
-		double rayDiry = dir->dy + plan->dy * cameraX;
+		// double rayDirx = dir->dx + plan->dx * cameraX;
+		// double rayDiry = dir->dy + plan->dy * cameraX;
+
+		ray.rayDir.dx = dir->dx + plan->dx * cameraX;
+		ray.rayDir.dy = dir->dy + plan->dy * cameraX;
 		//printf("rayDirx eh %f rayDiry %f\n", rayDirx, rayDiry);
 
 		int mapx = (int)pos.dx;
@@ -273,8 +277,8 @@ void	render_3D(t_main *cub)
 		double sideDistX;
 		double sideDistY;
 
-		double deltaDistX = (rayDirx == 0) ? 1e30 : fabs(1 / rayDirx);
-		double deltaDistY = (rayDiry == 0) ? 1e30 : fabs(1 / rayDiry);
+		double deltaDistX = (ray.rayDir.dx == 0) ? 1e30 : fabs(1 / ray.rayDir.dx);
+		double deltaDistY = (ray.rayDir.dy == 0) ? 1e30 : fabs(1 / ray.rayDir.dy);
 		double perpWallDist;
 		
 		int stepX;
@@ -284,7 +288,7 @@ void	render_3D(t_main *cub)
 		int side;//NS or EW
 		
 		//calculate step and initial sideDist
-		if(rayDirx < 0)
+		if(ray.rayDir.dx < 0)
 		{
 			//printf("raydirc eh negativo\n");
 			stepX = -1;
@@ -297,7 +301,7 @@ void	render_3D(t_main *cub)
 			sideDistX = (mapx + 1 - pos.dx) * deltaDistX; // pq +1?
 			//printf("sideDistx eh %f\n", sideDistX);
 		}
-		if(rayDiry < 0)
+		if(ray.rayDir.dy < 0)
 		{
 			stepY = -1;
 			sideDistY = (pos.dy - mapy) * deltaDistY;
@@ -367,9 +371,9 @@ void	render_3D(t_main *cub)
 			drawEnd = WINDOW_HEIGHT - 1;
 		double wall_x = 0;
 		if(side == 0)
-			wall_x = pos.dy + perpWallDist * rayDiry;
+			wall_x = pos.dy + perpWallDist * ray.rayDir.dy;
 		else
-			wall_x = pos.dx + perpWallDist * rayDirx;
+			wall_x = pos.dx + perpWallDist * ray.rayDir.dx;
 		wall_x -= floor((wall_x));
 		//COLOR whithout textures
 		// if(cub->map[mapy][mapx] == 0)
