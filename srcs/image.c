@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 10:12:26 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 10:15:14 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,8 +271,10 @@ void	render_3D(t_main *cub)
 		ray.rayDir.dy = dir->dy + plan->dy * cameraX;
 		//printf("rayDirx eh %f rayDiry %f\n", rayDirx, rayDiry);
 
-		int mapx = (int)pos.dx;
-		int mapy = (int)pos.dy; // mesmo que position
+		// int mapx = (int)pos.dx;
+		// int mapy = (int)pos.dy; // mesmo que position
+		ray.map.dx = (int)pos.dx;
+		ray.map.dy = (int)pos.dy;
 		
 		double sideDistX;
 		double sideDistY;
@@ -292,24 +294,24 @@ void	render_3D(t_main *cub)
 		{
 			//printf("raydirc eh negativo\n");
 			stepX = -1;
-			sideDistX = (pos.dx - mapx) * deltaDistX;
+			sideDistX = (pos.dx - ray.map.dx) * deltaDistX;
 		}
 		else
 		{
 			//printf("raydirc eh positivo\n");
 			stepX = 1;
-			sideDistX = (mapx + 1 - pos.dx) * deltaDistX; // pq +1?
+			sideDistX = (ray.map.dx + 1 - pos.dx) * deltaDistX; // pq +1?
 			//printf("sideDistx eh %f\n", sideDistX);
 		}
 		if(ray.rayDir.dy < 0)
 		{
 			stepY = -1;
-			sideDistY = (pos.dy - mapy) * deltaDistY;
+			sideDistY = (pos.dy - ray.map.dy) * deltaDistY;
 		}
 		else
 		{
 			stepY = 1;
-			sideDistY = (mapy + 1 - pos.dy) * deltaDistY; // pq +1?
+			sideDistY = (ray.map.dy + 1 - pos.dy) * deltaDistY; // pq +1?
 			//printf("sideDisty eh %f\n", sideDistY);
 		}
 
@@ -319,18 +321,18 @@ void	render_3D(t_main *cub)
 			if (sideDistX < sideDistY)
 			{
 				sideDistX += deltaDistX;
-				mapx += stepX;
+				ray.map.dx += stepX;
 				side = 0;
 			}
 			else
 			{
 				sideDistY += deltaDistY;
-				mapy += stepY;
+				ray.map.dy += stepY;
 				side = 1; //preciso de 4 diferentes na vdd
 			}
 			//check if ray has hit a wall
 			//printf("estamos em %c\n", cub->map[mapy][mapx]);
-			if(cub->map[mapy][mapx] == '1')
+			if(cub->map[ray.map.dy][ray.map.dx] == '1')
 			{
 			//	printf("achou uma parede, pare\n");
 				hit = 1;
@@ -382,7 +384,7 @@ void	render_3D(t_main *cub)
 		// 	cub->rgb.g = 0;
 		// 	cub->rgb.b = 0;
 		// }
-		if(cub->map[mapy][mapx] == 1)
+		if(cub->map[ray.map.dy][ray.map.dx] == 1)
 		{
 			cub->rgb.r = 0;
 			cub->rgb.g = 0;
