@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 10:26:34 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 10:28:26 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,7 +285,7 @@ void	render_3D(t_main *cub)
 		ray.deltaDist.dx = fabs(1 / ray.rayDir.dx);
 		ray.deltaDist.dy = fabs(1 / ray.rayDir.dy);
 		
-		double perpWallDist;
+		//double perpWallDist;
 		
 		// int stepX;
 		// int stepY;
@@ -350,7 +350,7 @@ void	render_3D(t_main *cub)
 		if(ray.side == 0)
 		{
 			//printf("side eh zero\n");
-			perpWallDist = (ray.sideDist.dx - ray.deltaDist.dx);
+			ray.perpWallDist = (ray.sideDist.dx - ray.deltaDist.dx);
 			// if(rayDirx > 0)
 			// 	hit_direction = 'W';
 			// else
@@ -359,7 +359,7 @@ void	render_3D(t_main *cub)
 		else
 		{
 			//printf("side eh 1\n");
-			perpWallDist = (ray.sideDist.dy - ray.deltaDist.dy);
+			ray.perpWallDist = (ray.sideDist.dy - ray.deltaDist.dy);
 			// if(rayDirx > 0)
 			// 	hit_direction = 'N';
 			// else
@@ -367,7 +367,7 @@ void	render_3D(t_main *cub)
 		}
 
 		//Calculate height of line to draw on screen
-		int lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
+		int lineHeight = (int)(WINDOW_HEIGHT / ray.perpWallDist);
 
 		//Calculate lowest and highest pixel to fill in current strip
 		int drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
@@ -378,9 +378,9 @@ void	render_3D(t_main *cub)
 			drawEnd = WINDOW_HEIGHT - 1;
 		double wall_x = 0;
 		if(ray.side == 0)
-			wall_x = pos.dy + perpWallDist * ray.rayDir.dy;
+			wall_x = pos.dy + ray.perpWallDist * ray.rayDir.dy;
 		else
-			wall_x = pos.dx + perpWallDist * ray.rayDir.dx;
+			wall_x = pos.dx + ray.perpWallDist * ray.rayDir.dx;
 		wall_x -= floor((wall_x));
 		//COLOR whithout textures
 		// if(cub->map[mapy][mapx] == 0)
