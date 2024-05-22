@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 10:17:36 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/22 10:20:07 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,8 +279,12 @@ void	render_3D(t_main *cub)
 		// double sideDistX;
 		// double sideDistY;
 
-		double deltaDistX = (ray.rayDir.dx == 0) ? 1e30 : fabs(1 / ray.rayDir.dx);
-		double deltaDistY = (ray.rayDir.dy == 0) ? 1e30 : fabs(1 / ray.rayDir.dy);
+		// double deltaDistX = (ray.rayDir.dx == 0) ? 1e30 : fabs(1 / ray.rayDir.dx);
+		// double deltaDistY = (ray.rayDir.dy == 0) ? 1e30 : fabs(1 / ray.rayDir.dy);
+		
+		ray.deltaDist.dx = fabs(1 / ray.rayDir.dx);
+		ray.deltaDist.dy = fabs(1 / ray.rayDir.dy);
+		
 		double perpWallDist;
 		
 		int stepX;
@@ -294,24 +298,24 @@ void	render_3D(t_main *cub)
 		{
 			//printf("raydirc eh negativo\n");
 			stepX = -1;
-			ray.sideDist.dx = (pos.dx - ray.map.dx) * deltaDistX;
+			ray.sideDist.dx = (pos.dx - ray.map.dx) * ray.deltaDist.dx;
 		}
 		else
 		{
 			//printf("raydirc eh positivo\n");
 			stepX = 1;
-			ray.sideDist.dx = (ray.map.dx + 1 - pos.dx) * deltaDistX; // pq +1?
+			ray.sideDist.dx = (ray.map.dx + 1 - pos.dx) * ray.deltaDist.dx; // pq +1?
 			//printf("sideDistx eh %f\n", sideDistX);
 		}
 		if(ray.rayDir.dy < 0)
 		{
 			stepY = -1;
-			ray.sideDist.dy = (pos.dy - ray.map.dy) * deltaDistY;
+			ray.sideDist.dy = (pos.dy - ray.map.dy) * ray.deltaDist.dy;
 		}
 		else
 		{
 			stepY = 1;
-			ray.sideDist.dy = (ray.map.dy + 1 - pos.dy) * deltaDistY; // pq +1?
+			ray.sideDist.dy = (ray.map.dy + 1 - pos.dy) * ray.deltaDist.dy; // pq +1?
 			//printf("sideDisty eh %f\n", sideDistY);
 		}
 
@@ -320,13 +324,13 @@ void	render_3D(t_main *cub)
 		{
 			if (ray.sideDist.dx < ray.sideDist.dy)
 			{
-				ray.sideDist.dx += deltaDistX;
+				ray.sideDist.dx += ray.deltaDist.dx;
 				ray.map.dx += stepX;
 				side = 0;
 			}
 			else
 			{
-				ray.sideDist.dy += deltaDistY;
+				ray.sideDist.dy += ray.deltaDist.dy;
 				ray.map.dy += stepY;
 				side = 1; //preciso de 4 diferentes na vdd
 			}
@@ -345,7 +349,7 @@ void	render_3D(t_main *cub)
 		if(side == 0)
 		{
 			//printf("side eh zero\n");
-			perpWallDist = (ray.sideDist.dx - deltaDistX);
+			perpWallDist = (ray.sideDist.dx - ray.deltaDist.dx);
 			// if(rayDirx > 0)
 			// 	hit_direction = 'W';
 			// else
@@ -354,7 +358,7 @@ void	render_3D(t_main *cub)
 		else
 		{
 			//printf("side eh 1\n");
-			perpWallDist = (ray.sideDist.dy - deltaDistY);
+			perpWallDist = (ray.sideDist.dy - ray.deltaDist.dy);
 			// if(rayDirx > 0)
 			// 	hit_direction = 'N';
 			// else
