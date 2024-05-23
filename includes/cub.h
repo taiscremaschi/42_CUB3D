@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/23 09:48:35 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/23 10:12:34 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@
 //	Minimap Resolution
 # define MINI_WIDTH 20
 # define WINDOW_HEIGHT 800
+
+// HIT
+# define EXTRA_STEP 2
 
 //////////// STRUCTS  //////////////
 

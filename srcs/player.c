@@ -6,19 +6,20 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/05/23 09:36:52 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/23 10:14:50 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+// EXTRA_STEP to check the hit if the player wants to take another step
 int	player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y)
 {
 	int	x;
 	int	y;
 
-	y = (int)floor((pos_y + dir.dy) / (MINI_WIDTH));
-	x = (int)floor((pos_x + dir.dx) / (MINI_WIDTH));
+	y = (int)floor((pos_y + (dir.dy * EXTRA_STEP)) / (MINI_WIDTH));
+	x = (int)floor((pos_x + (dir.dx * EXTRA_STEP)) / (MINI_WIDTH));
 	if (y < 0 || x < 0 || y > cub->height - 1)
 		return (1);
 	if (cub->map[y][x] == '1' || cub->map[y][x] == '\0')
