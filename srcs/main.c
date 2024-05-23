@@ -6,85 +6,11 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/23 09:35:59 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/23 09:44:17 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-static void	simple_move(int key, t_main *cub)
-{
-	t_vector	dir;
-	dir.dx = 0;
-	dir.dy = 0;
-	
-	if (key == LEFT)
-		rotate_player(&cub->player, -0.1);
-	if (key == RIGHT)
-		rotate_player(&cub->player, 0.1);
-	if (key == W_UP)
-	{
-		dir.dy = cub->player.vector_front.dy * -1;
-		dir.dx = cub->player.vector_front.dx * -1;
-		if(!player_hit(cub,dir, cub->player.x, cub->player.y))
-		{
-			cub->player.y -= cub->player.vector_front.dy;// direction
-			cub->player.x -= cub->player.vector_front.dx;
-		}
-	}
-	if (key == S_DOWN)
-	{
-		dir.dy = cub->player.vector_front.dy * 1;
-		dir.dx = cub->player.vector_front.dx * 1;
-		if(!player_hit(cub,dir, cub->player.x, cub->player.y))
-		{
-			cub->player.y += cub->player.vector_front.dy;
-			cub->player.x += cub->player.vector_front.dx;
-		}
-	}
-	if (key == D_RIGHT)
-	{
-		dir.dy = cub->player.vector_perpendicular.dy * -1;
-		dir.dx = cub->player.vector_perpendicular.dx * -1;
-		if(!player_hit(cub,dir, cub->player.x, cub->player.y))
-		{		
-			cub->player.y -= cub->player.vector_perpendicular.dy; //camera
-			cub->player.x -= cub->player.vector_perpendicular.dx;
-		}
-	}
-	if (key == AA_LEFT)
-	{
-		dir.dy = cub->player.vector_perpendicular.dy * 1;
-		dir.dx = cub->player.vector_perpendicular.dx * 1;
-		if(!player_hit(cub,dir, cub->player.x, cub->player.y))
-		{
-			cub->player.y += cub->player.vector_perpendicular.dy;
-			cub->player.x += cub->player.vector_perpendicular.dx;
-		}
-	}
-}
-
-static void	is_minimap(int key, t_main *cub)
-{
-	if (key == '2')
-	{
-		cub->is_mini = 1;
-	}
-	else if (key == '3')
-		cub->is_mini = 0;
-}
-
-int	deal_key(int key, t_main *cub)
-{
-	is_minimap(key, cub);
-	simple_move(key, cub);
-	// ft_bzero(cub->img->addr, (WINDOW_HEIGHT * WINDOW_WIDTH
-	// 		* sizeof(cub->img->bpp)));
-	// draw_file(cub);
-	// mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->img->mlx_img, 0,
-	// 	0);
-	return (0);
-}
 
 void	init_img(t_main *cub)
 {
@@ -97,9 +23,6 @@ void	init_img(t_main *cub)
 		exit(EXIT_FAILURE);
 	}
 }
-
-
-
 
 int	main(int ac, char **av)
 {

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/23 09:38:38 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/23 09:48:35 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,5 +225,6 @@ void		config_player(t_player *player);
 void		rotate_player(t_player *player, double dangle);
 void		rotate2(double angle, t_vector *vector);
 int			player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y);
+int			deal_key(int key, t_main *cub);
 
 #endif
