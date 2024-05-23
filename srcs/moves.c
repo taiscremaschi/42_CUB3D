@@ -6,12 +6,13 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 09:41:22 by paula             #+#    #+#             */
-/*   Updated: 2024/05/23 09:52:58 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/23 09:58:27 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+// direction
 static void	moves_up_down(int key, t_main *cub, t_vector dir)
 {
 	if (key == W_UP)
@@ -20,7 +21,7 @@ static void	moves_up_down(int key, t_main *cub, t_vector dir)
 		dir.dx = cub->player.vector_front.dx * -1;
 		if (!player_hit(cub, dir, cub->player.x, cub->player.y))
 		{
-			cub->player.y -= cub->player.vector_front.dy; // direction
+			cub->player.y -= cub->player.vector_front.dy;
 			cub->player.x -= cub->player.vector_front.dx;
 		}
 	}
@@ -36,6 +37,7 @@ static void	moves_up_down(int key, t_main *cub, t_vector dir)
 	}
 }
 
+// camera
 static void	moves_rl(int key, t_main *cub, t_vector dir)
 {
 	if (key == D_RIGHT)
@@ -44,7 +46,7 @@ static void	moves_rl(int key, t_main *cub, t_vector dir)
 		dir.dx = cub->player.vector_perpendicular.dx * -1;
 		if (!player_hit(cub, dir, cub->player.x, cub->player.y))
 		{
-			cub->player.y -= cub->player.vector_perpendicular.dy; // camera
+			cub->player.y -= cub->player.vector_perpendicular.dy;
 			cub->player.x -= cub->player.vector_perpendicular.dx;
 		}
 	}
