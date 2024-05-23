@@ -6,28 +6,11 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/23 09:33:12 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/23 09:35:59 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-
-int	player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y)
-{
-	int	y = (int)floor((pos_y + dir.dy)/ (MINI_WIDTH));
-	int	x = (int)floor((pos_x + dir.dx)/ (MINI_WIDTH));
-	// printf("no HIT player x %d player y %d\n", x, y);
-
-	if(y < 0 || x < 0 || y > cub->height - 1)
-		return 1;
-	if (cub->map[y][x] == '1' || cub->map[y][x] == '\0')
-	{
-		return 1;
-	}
-	return 0;
-
-}
 
 static void	simple_move(int key, t_main *cub)
 {
