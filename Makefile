@@ -3,7 +3,7 @@
 NAME = cub3D
 
 SRC = check_walls.c image.c validation.c parsing.c textures.c algorithm.c parsing_utils.c end_game_utils.c \
-		parsing_colors.c raycasting.c player.c moves.c
+		parsing_colors.c raycasting.c player.c moves.c utils_image.c
 MAIN = main.c
 SRCS = $(SRC) $(MAIN)
 

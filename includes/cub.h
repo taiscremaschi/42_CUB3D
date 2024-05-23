@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/23 10:12:34 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/23 10:53:18 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ typedef struct s_coord
 	double		x;
 	double		y;
 }				t_coord;
+
+typedef struct s_coordInt
+{
+	int		x;
+	int		y;
+}				t_coordInt;
 
 typedef struct s_vector
 {
@@ -229,5 +235,9 @@ void		rotate_player(t_player *player, double dangle);
 void		rotate2(double angle, t_vector *vector);
 int			player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y);
 int			deal_key(int key, t_main *cub);
+
+//////////////////////////////// DRAW //////////////////
+void		util_image(t_main *main, int x, int y);
+void		draw_player(t_main *cub);
 
 #endif
