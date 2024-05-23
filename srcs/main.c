@@ -6,26 +6,12 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 14:58:21 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/23 09:33:12 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	rotate2(double angle, t_vector *vector)
-{
-	vector->dx = cos(angle);
-	vector->dy = sin(angle);
-}
-
-void	rotate_player(t_player *player, double dangle) //proteger o PI, nao pode passar de 360
-{
-	player->angle += dangle;
-	rotate2(player->angle, &player->vector_front);
-	double perpendicular_angle = player->angle + PI / 2;
-		// significa rotacao 90 graus
-	rotate2(perpendicular_angle, &player->vector_perpendicular);
-}
 
 int	player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y)
 {
@@ -129,28 +115,8 @@ void	init_img(t_main *cub)
 	}
 }
 
-double	define_angle(char position, float *angle)
-{
-	if (position == 'N')
-		*angle = PI / 2;
-	else if (position == 'E') //ISSO DEVERIA SER NO W, OQ ACONTECEU????
-		*angle = PI;
-	else if (position == 'S')
-		*angle = 3 * PI / 2;
-	else
-		*angle = 0;
-	return (*angle);
-}
 
-void	config_player(t_player *player)
-{
-	float	angle;
 
-	angle = define_angle(player->position, &angle);
-	rotate_player(player, angle);
-	player->x = (player->x * MINI_WIDTH) + (MINI_WIDTH / 2);
-	player->y = (player->y * MINI_WIDTH) + (MINI_WIDTH / 2);
-}
 
 int	main(int ac, char **av)
 {
