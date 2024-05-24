@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/05/22 15:02:36 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/24 09:19:46 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 		// }
 	}
 	// pintar de branco antes eh apenas uma solucao temporaria..preciso trabalhar com imagens
-	draw_line2(cub, x_screen, 0, x_screen, WINDOW_HEIGHT, 0xFFFFFF);
-	draw_line2(cub, x_screen, drawStart, x_screen, drawEnd, ((cub->rgb.r << 16)
-			+ (cub->rgb.g << 8) + (cub->rgb.b)));
+	// draw_line2(cub, x_screen, 0, x_screen, WINDOW_HEIGHT, 0xFFFFFF);
+	// draw_line2(cub, x_screen, drawStart, x_screen, drawEnd, ((cub->rgb.r << 16)
+	// 		+ (cub->rgb.g << 8) + (cub->rgb.b)));
 }
