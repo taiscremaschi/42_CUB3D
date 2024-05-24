@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/24 09:18:13 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/24 10:06:10 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,5 +240,6 @@ int			deal_key(int key, t_main *cub);
 //////////////////////////////// DRAW //////////////////
 void		util_image(t_main *main, int x, int y);
 void		draw_player(t_main *cub);
+void		print_wall(int x_screen, t_main *cub, int draw_start, int draw_end);
 
 #endif

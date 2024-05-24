@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/24 09:18:44 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/24 09:56:10 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	render_image(t_main *main)
 	if (main->is_mini)
 		render_mini(main);
 	else
-		printf("teste\n");
-		//render_3D(main);
+		//printf("teste\n");
+		render_3D(main);
 	return (0);
 }
