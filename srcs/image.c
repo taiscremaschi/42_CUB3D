@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/24 09:56:10 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/24 10:09:11 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	render_mini(t_main *cub)
 // 	}
 // 	y++;
 // }
-void	render_3D(t_main *cub)
+void	render_3d(t_main *cub)
 {
 	int			x_screen;
 	t_raycast	ray;
@@ -127,7 +127,6 @@ int	render_image(t_main *main)
 	if (main->is_mini)
 		render_mini(main);
 	else
-		//printf("teste\n");
-		render_3D(main);
+		render_3d(main);
 	return (0);
 }

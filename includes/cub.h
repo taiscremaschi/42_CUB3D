@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/24 10:06:10 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/24 10:13:04 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ typedef struct s_coord
 
 typedef struct s_coordInt
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
 }				t_coordInt;
 
 typedef struct s_vector
@@ -83,15 +83,15 @@ typedef struct s_vectorInt
 
 typedef struct s_raycast
 {
-	t_vector	rayDir;
-	t_vector	sideDist;
-	t_vector	deltaDist;
+	t_vector	ray_dir;
+	t_vector	side_dist;
+	t_vector	delta_dist;
 	t_vectorInt	step;
 	t_vectorInt	map;
-	double		perpWallDist;
+	double		perp_wall_dist;
 	int			hit;
 	int			side;
-	int			lineHeight;
+	int			line_height;
 	char		hit_direction;
 }				t_raycast;
 
@@ -163,83 +163,86 @@ typedef struct s_main
 }				t_main;
 
 /////////////////////////// ALGORITHM //////////////////
-void		check_map_with_alg(t_main *main, char **copy_map_temp);
-void		change_player(char **map_copy, int x, int y);
-bool		alg_walls(char **map_copy, int x, int y, int height);
-void		rotate2(double angle, t_vector *vector);
-void		rotate_player(t_player *player, double dangle);
+void			check_map_with_alg(t_main *main, char **copy_map_temp);
+void			change_player(char **map_copy, int x, int y);
+bool			alg_walls(char **map_copy, int x, int y, int height);
+void			rotate2(double angle, t_vector *vector);
+void			rotate_player(t_player *player, double dangle);
 /////////////////////////// CHECK WALLS  //////////////////
 
-bool		check_x_left(char **map_copy, int x, int y);
-bool		check_x_right(char **map_copy, int x, int y);
-bool		check_y_up(char **map_copy, int x, int y);
-bool		check_y_down(char **map_copy, int x, int y, int height);
+bool			check_x_left(char **map_copy, int x, int y);
+bool			check_x_right(char **map_copy, int x, int y);
+bool			check_y_up(char **map_copy, int x, int y);
+bool			check_y_down(char **map_copy, int x, int y, int height);
 
-int			player_hit(t_main *cub, t_vector dir, double pos_x,
-				double pos_y);
+int				player_hit(t_main *cub, t_vector dir, double pos_x,
+					double pos_y);
 
 ////////////////////////////// IMAGES //////////////
-void		image_inicialize(t_main *main);
-int			render_image(t_main *main);
+void			image_inicialize(t_main *main);
+int				render_image(t_main *main);
 
 ////////////////////////////// END GAME UTILS ///////////////
-int			end(t_main *main);
-void		free_map(char **m);
-int			read_esc(int keycode, t_main *main);
+int				end(t_main *main);
+void			free_map(char **m);
+int				read_esc(int keycode, t_main *main);
 
 /////////////////////////// PARSING UTILS //////////////////
-void		inicialize_txt(t_main *main);
-void		search_height(t_main *main);
-char		**copy_map(t_main *main);
-void		end_parsing(t_main *main, char *str);
+void			inicialize_txt(t_main *main);
+void			search_height(t_main *main);
+char			**copy_map(t_main *main);
+void			end_parsing(t_main *main, char *str);
 
 //////////////////// PARSING ///////////////////
-void		change_map(t_main *main);
-char		**save_file(char **map, int fd);
-void		check_arg_and_fd(char **av, int fd);
-void		parsing_map(char **av, t_main *main);
+void			change_map(t_main *main);
+char			**save_file(char **map, int fd);
+void			check_arg_and_fd(char **av, int fd);
+void			parsing_map(char **av, t_main *main);
 
 /////////////////////////// TEXTURES  //////////////////
-int			save_textures(int *j, char *line, char **filename, int size);
-int			compare_args(char *line, int *j, t_main *main);
-int			search_and_save_args(t_main *main, char *line);
-bool		acess_paths(t_main *main);
+int				save_textures(int *j, char *line, char **filename, int size);
+int				compare_args(char *line, int *j, t_main *main);
+int				search_and_save_args(t_main *main, char *line);
+bool			acess_paths(t_main *main);
 
 ///////////// VALIDATION //////////
-int			check_and_save_player(t_main *main, char *letters, int player,
-				int i);
-int			validate_characteres(char *line_map);
-void		check_chars(t_main *main);
-void		validate_map(t_main *main);
+int				check_and_save_player(t_main *main, char *letters, int player,
+					int i);
+int				validate_characteres(char *line_map);
+void			check_chars(t_main *main);
+void			validate_map(t_main *main);
 
 //////////////////////////////// PARSING COLORS //////////////////
-void		save_color(t_main *main, int tmp, int i, char type);
-bool		search_colors(t_main *main, char *color, char type);
-bool		parsing_colors(t_main *main);
-bool		check_color_digit(char **color_content);
-bool		check_args_colors(char **color_content);
+void			save_color(t_main *main, int tmp, int i, char type);
+bool			search_colors(t_main *main, char *color, char type);
+bool			parsing_colors(t_main *main);
+bool			check_color_digit(char **color_content);
+bool			check_args_colors(char **color_content);
 
 //////////////////////////////// RAYCASTING //////////////////
-void		start_ray(t_raycast *ray, double cameraX, t_main *cub,
-				t_vector pos);
-void		ray_steps(t_raycast *ray, t_vector pos);
-void		performing_dda(t_raycast *ray, t_main *cub);
-void		draw_wall(t_raycast *ray, t_main *cub, int x_screen,
-				t_vector pos);
+void			start_ray(t_raycast *ray, double cameraX, t_main *cub,
+					t_vector pos);
+void			ray_steps(t_raycast *ray, t_vector pos);
+void			performing_dda(t_raycast *ray, t_main *cub);
+void			draw_wall(t_raycast *ray, t_main *cub, int x_screen,
+					t_vector pos);
 // void		draw_line2(t_main *cub, double x1, double y1, double x2,
 // 				double y2, int color);
-void draw_line2(t_main *cub, t_vector start, t_vector end, int color);
+void			draw_line2(t_main *cub, t_vector start, t_vector end,
+					int color);
 
 //////////////////////////////// PLAYER //////////////////
-void		config_player(t_player *player);
-void		rotate_player(t_player *player, double dangle);
-void		rotate2(double angle, t_vector *vector);
-int			player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y);
-int			deal_key(int key, t_main *cub);
+void			config_player(t_player *player);
+void			rotate_player(t_player *player, double dangle);
+void			rotate2(double angle, t_vector *vector);
+int				player_hit(t_main *cub, t_vector dir, double pos_x,
+					double pos_y);
+int				deal_key(int key, t_main *cub);
 
 //////////////////////////////// DRAW //////////////////
-void		util_image(t_main *main, int x, int y);
-void		draw_player(t_main *cub);
-void		print_wall(int x_screen, t_main *cub, int draw_start, int draw_end);
+void			util_image(t_main *main, int x, int y);
+void			draw_player(t_main *cub);
+void			print_wall(int x_screen, t_main *cub, int draw_start,
+					int draw_end);
 
 #endif
