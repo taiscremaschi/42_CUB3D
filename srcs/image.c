@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/24 10:09:11 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/24 13:07:41 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ void	render_mini(t_main *cub)
 // 	if (y > WINDOW_HEIGHT / 2)
 // 		while (x < WINDOW_WIDTH)
 // 			mlx_pixel_put(cub->mlx, cub->win, x++, y, 0x550000);
+// cores em RGB
+//((cub->textures.ceiling_rgb.r << 16) + (cub->textures.ceiling_rgb.g << 8)
+//			+ (cub->textures.ceiling_rgb.r)));
 // 	else
 // 	{
 // 		while (x < WINDOW_WIDTH)
