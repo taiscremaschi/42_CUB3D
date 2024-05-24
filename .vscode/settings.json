@@ -3,6 +3,8 @@
         "ft_printf.h": "c",
         "libft.h": "c",
         "algorithm": "c",
-        "cub.h": "c"
+        "cub.h": "c",
+        "mlx_int.h": "c",
+        "iterator": "c"
     }
 }

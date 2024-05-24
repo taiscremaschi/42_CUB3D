@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_game_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:41:20 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:59:46 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/14 08:41:16 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	end(t_main *main)
 	mlx_destroy_image(main->mlx, main->picture.p_north);
 	mlx_destroy_image(main->mlx, main->picture.p_south);
 	mlx_destroy_window(main->mlx, main->win);
+	free(main->img);
 	mlx_destroy_display(main->mlx);
 	mlx_loop_end(main->mlx);
 	free(main->textures.ceiling_color);

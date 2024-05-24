@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/13 15:40:03 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/24 10:13:04 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # include "../libft/gnl/get_next_line_bonus.h"
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
-# include "../mlx_linux/mlx_int.h"
+// # include "../mlx_linux/mlx_int.h"
 # include <errno.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -26,8 +27,26 @@
 
 # define UP 119
 # define DOWN 115
-# define RIGHT 100
-# define LEFT 97
+# define RIGHT 65363
+# define LEFT 65361
+# define W_UP 119
+# define AA_LEFT 97
+# define D_RIGHT 100
+# define S_DOWN 115
+
+//	Screen Resolution
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 800
+# define PI 3.1415926535f
+# define ANGLE_0 0
+# define ANGLE_180 PI
+
+//	Minimap Resolution
+# define MINI_WIDTH 20
+# define WINDOW_HEIGHT 800
+
+// HIT
+# define EXTRA_STEP 2
 
 //////////// STRUCTS  //////////////
 
@@ -38,6 +57,44 @@ typedef struct s_rgb
 	int			b;
 }				t_rgb;
 
+typedef struct s_coord
+{
+	double		x;
+	double		y;
+}				t_coord;
+
+typedef struct s_coordInt
+{
+	int			x;
+	int			y;
+}				t_coordInt;
+
+typedef struct s_vector
+{
+	double		dx;
+	double		dy;
+}				t_vector;
+
+typedef struct s_vectorInt
+{
+	int			dx;
+	int			dy;
+}				t_vectorInt;
+
+typedef struct s_raycast
+{
+	t_vector	ray_dir;
+	t_vector	side_dist;
+	t_vector	delta_dist;
+	t_vectorInt	step;
+	t_vectorInt	map;
+	double		perp_wall_dist;
+	int			hit;
+	int			side;
+	int			line_height;
+	char		hit_direction;
+}				t_raycast;
+
 typedef struct s_textures
 {
 	char		*north;
@@ -46,6 +103,7 @@ typedef struct s_textures
 	char		*east;
 	char		*floor_color;
 	char		*ceiling_color;
+	char		*player2d;
 	t_rgb		floor_rgb;
 	t_rgb		ceiling_rgb;
 	int			line_help;
@@ -53,9 +111,16 @@ typedef struct s_textures
 
 typedef struct s_player
 {
-	int			x;
-	int			y;
+	double		x;
+	double		y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	t_vector	vector_front;
+	t_vector	vector_perpendicular;
 	char		position;
+	double		angle;
 }				t_player;
 
 typedef struct s_picture
@@ -64,7 +129,23 @@ typedef struct s_picture
 	void		*p_south;
 	void		*p_west;
 	void		*p_east;
+	void		*wall;
+	void		*floor;
+	void		*wall2d;
+	void		*floor2d;
+	void		*player2d;
 }				t_picture;
+
+typedef struct s_img
+{
+	void		*mlx_img;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+	int			width;
+	int			height;
+}				t_img;
 
 typedef struct s_main
 {
@@ -73,6 +154,9 @@ typedef struct s_main
 	char		**map;
 	int			height;
 	void		*mlx;
+	int			is_mini;
+	t_rgb		rgb;
+	t_img		*img;
 	t_player	player;
 	t_picture	picture;
 	t_textures	textures;
@@ -82,13 +166,17 @@ typedef struct s_main
 void			check_map_with_alg(t_main *main, char **copy_map_temp);
 void			change_player(char **map_copy, int x, int y);
 bool			alg_walls(char **map_copy, int x, int y, int height);
-
+void			rotate2(double angle, t_vector *vector);
+void			rotate_player(t_player *player, double dangle);
 /////////////////////////// CHECK WALLS  //////////////////
 
 bool			check_x_left(char **map_copy, int x, int y);
 bool			check_x_right(char **map_copy, int x, int y);
 bool			check_y_up(char **map_copy, int x, int y);
 bool			check_y_down(char **map_copy, int x, int y, int height);
+
+int				player_hit(t_main *cub, t_vector dir, double pos_x,
+					double pos_y);
 
 ////////////////////////////// IMAGES //////////////
 void			image_inicialize(t_main *main);
@@ -106,7 +194,7 @@ char			**copy_map(t_main *main);
 void			end_parsing(t_main *main, char *str);
 
 //////////////////// PARSING ///////////////////
-void			change_file_content(t_main *main);
+void			change_map(t_main *main);
 char			**save_file(char **map, int fd);
 void			check_arg_and_fd(char **av, int fd);
 void			parsing_map(char **av, t_main *main);
@@ -130,5 +218,31 @@ bool			search_colors(t_main *main, char *color, char type);
 bool			parsing_colors(t_main *main);
 bool			check_color_digit(char **color_content);
 bool			check_args_colors(char **color_content);
+
+//////////////////////////////// RAYCASTING //////////////////
+void			start_ray(t_raycast *ray, double cameraX, t_main *cub,
+					t_vector pos);
+void			ray_steps(t_raycast *ray, t_vector pos);
+void			performing_dda(t_raycast *ray, t_main *cub);
+void			draw_wall(t_raycast *ray, t_main *cub, int x_screen,
+					t_vector pos);
+// void		draw_line2(t_main *cub, double x1, double y1, double x2,
+// 				double y2, int color);
+void			draw_line2(t_main *cub, t_vector start, t_vector end,
+					int color);
+
+//////////////////////////////// PLAYER //////////////////
+void			config_player(t_player *player);
+void			rotate_player(t_player *player, double dangle);
+void			rotate2(double angle, t_vector *vector);
+int				player_hit(t_main *cub, t_vector dir, double pos_x,
+					double pos_y);
+int				deal_key(int key, t_main *cub);
+
+//////////////////////////////// DRAW //////////////////
+void			util_image(t_main *main, int x, int y);
+void			draw_player(t_main *cub);
+void			print_wall(int x_screen, t_main *cub, int draw_start,
+					int draw_end);
 
 #endif
