@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/24 13:07:41 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/27 22:53:40 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ void	image_inicialize(t_main *main)
 	main->picture.p_east = mlx_xpm_file_to_image(main->mlx, main->textures.east,
 			&i, &i);
 	main->picture.floor = mlx_xpm_file_to_image(main->mlx,
-			"./texture/map2d/floor.xpm", &i, &i);
+			"/home/paula/42lisboa/cub_teste/texture/map2d/floor.xpm", &i, &i);
 	main->picture.wall = mlx_xpm_file_to_image(main->mlx,
-			"./texture/map2d/test.xpm", &i, &i);
+			"/home/paula/42lisboa/cub_teste/texture/map2d/test.xpm", &i, &i);
 	main->picture.player2d = mlx_xpm_file_to_image(main->mlx,
-			"./images/player2d_2.xpm", &i, &i);
+			"/home/paula/42lisboa/cub_teste/images/player2d_2.xpm", &i, &i);
 }
+#pragma GCC push_options
+#pragma GCC optimize("O0")
 
 void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
@@ -51,8 +53,6 @@ void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 		*(unsigned int *)dest = color;
 	}
 }
-#pragma GCC push_options
-#pragma GCC optimize("O0")
 
 // otimizou o minimap porem para mudar do 3D para 2D assim 
 //precisa movimentar o player..
@@ -121,6 +121,7 @@ void	render_3d(t_main *cub)
 		draw_wall(&ray, cub, x_screen, pos);
 		x_screen++;
 	}
+	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.mlx_img, 0, 0);
 }
 
 #pragma GCC pop_options

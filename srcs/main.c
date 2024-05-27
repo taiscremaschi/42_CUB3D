@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/23 09:44:17 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/27 22:08:10 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	init_img(t_main *cub)
 		perror("error");
 		exit(EXIT_FAILURE);
 	}
+	cub->img.mlx_img = mlx_new_image(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	cub->img.addr = mlx_get_data_addr(cub->img.mlx_img, &cub->img.bpp,
+			&cub->img.line_len, &cub->img.endian);
 }
 
 int	main(int ac, char **av)

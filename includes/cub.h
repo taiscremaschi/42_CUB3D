@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/24 10:13:04 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/27 22:16:50 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ typedef struct s_main
 	void		*mlx;
 	int			is_mini;
 	t_rgb		rgb;
-	t_img		*img;
+	t_img		img;
 	t_player	player;
 	t_picture	picture;
 	t_textures	textures;
@@ -244,5 +244,7 @@ void			util_image(t_main *main, int x, int y);
 void			draw_player(t_main *cub);
 void			print_wall(int x_screen, t_main *cub, int draw_start,
 					int draw_end);
+void	ft_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	draw_line_to_frame(t_main *cub, t_vector start, t_vector end, int color);
 
 #endif
