@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/27 23:44:55 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/27 23:57:02 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dest;
 
-	if (y >= 0 && x >= 0 && y < WINDOW_HEIGHT && x < WINDOW_WIDTH)
+	if (y >= 0 && x >= 0 && y < img->height && x < img->width)
 	{
 		dest = img->addr + (y * img->line_len + x * (img->bpp / 8));
 		*(unsigned int *)dest = color;
@@ -68,7 +68,7 @@ void	ft_mlx_put_image_frame(t_img *frame, int x, int y, t_img *image)
 	{
 		while (++i < image->width)
 		{
-			if ((y + j) > WINDOW_HEIGHT || (x + i) > WINDOW_WIDTH)
+			if ((y + j) > frame->height || (x + i) > frame->width)
 				continue;
 			dest = frame->addr + ((y + j) * frame->line_len + (x + i) * (frame->bpp / 8));
 			src = image->addr + (j  * image->line_len + i * (image->bpp / 8));
