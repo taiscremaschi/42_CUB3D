@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/27 22:16:50 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/27 23:34:04 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,19 +123,6 @@ typedef struct s_player
 	double		angle;
 }				t_player;
 
-typedef struct s_picture
-{
-	void		*p_north;
-	void		*p_south;
-	void		*p_west;
-	void		*p_east;
-	void		*wall;
-	void		*floor;
-	void		*wall2d;
-	void		*floor2d;
-	void		*player2d;
-}				t_picture;
-
 typedef struct s_img
 {
 	void		*mlx_img;
@@ -146,6 +133,18 @@ typedef struct s_img
 	int			width;
 	int			height;
 }				t_img;
+
+typedef struct s_picture
+{
+	t_img		p_north;
+	t_img		p_south;
+	t_img		p_west;
+	t_img		p_east;
+	t_img		wall;
+	t_img		floor;
+	t_img		wall2d;
+	t_img		floor2d;
+}				t_picture;
 
 typedef struct s_main
 {
@@ -244,7 +243,9 @@ void			util_image(t_main *main, int x, int y);
 void			draw_player(t_main *cub);
 void			print_wall(int x_screen, t_main *cub, int draw_start,
 					int draw_end);
-void	ft_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	draw_line_to_frame(t_main *cub, t_vector start, t_vector end, int color);
+void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
+void			draw_line_to_frame(t_main *cub, t_vector start, t_vector end,
+					int color);
+void			ft_mlx_put_image_frame(t_img *frame, int x, int y, t_img *image);
 
 #endif

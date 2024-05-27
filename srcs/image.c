@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/27 22:53:40 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/27 23:41:41 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,25 @@
 // main->picture.wall = mlx_xpm_file_to_image(main->mlx,
 //	"./texture/map2d/test.xpm",
 // 		&i, &i);
+
+static void	load_texture(t_img *img, t_main *cub, char *texture_path)
+{
+	img->mlx_img = mlx_xpm_file_to_image(cub->mlx, texture_path, &img->width,
+			&img->height);
+	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len,
+			&img->endian);
+}
+
 void	image_inicialize(t_main *main)
 {
-	int	i;
-
-	main->picture.p_north = mlx_xpm_file_to_image(main->mlx,
-			main->textures.north, &i, &i);
-	main->picture.p_south = mlx_xpm_file_to_image(main->mlx,
-			main->textures.south, &i, &i);
-	main->picture.p_west = mlx_xpm_file_to_image(main->mlx, main->textures.west,
-			&i, &i);
-	main->picture.p_east = mlx_xpm_file_to_image(main->mlx, main->textures.east,
-			&i, &i);
-	main->picture.floor = mlx_xpm_file_to_image(main->mlx,
-			"/home/paula/42lisboa/cub_teste/texture/map2d/floor.xpm", &i, &i);
-	main->picture.wall = mlx_xpm_file_to_image(main->mlx,
-			"/home/paula/42lisboa/cub_teste/texture/map2d/test.xpm", &i, &i);
-	main->picture.player2d = mlx_xpm_file_to_image(main->mlx,
-			"/home/paula/42lisboa/cub_teste/images/player2d_2.xpm", &i, &i);
+	load_texture(&main->picture.p_north, main, main->textures.north);
+	load_texture(&main->picture.p_west, main, main->textures.west);
+	load_texture(&main->picture.p_east, main, main->textures.east);
+	load_texture(&main->picture.p_south, main, main->textures.south);
+	load_texture(&main->picture.floor, main,
+		"/home/paula/42lisboa/cub_teste/texture/map2d/floor.xpm");
+	load_texture(&main->picture.wall, main,
+		"/home/paula/42lisboa/cub_teste/texture/map2d/test.xpm");
 }
 #pragma GCC push_options
 #pragma GCC optimize("O0")
@@ -54,8 +55,31 @@ void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 	}
 }
 
-// otimizou o minimap porem para mudar do 3D para 2D assim 
-//precisa movimentar o player..
+void	ft_mlx_put_image_frame(t_img *frame, int x, int y, t_img *image)
+{
+	char	*dest;
+	char	*src;
+	int		i;
+	int		j;
+
+	i = -1;
+	j = -1;
+	while (++j < image->height)
+	{
+		while (++i < image->width)
+		{
+			if ((y + j) > WINDOW_HEIGHT || (x + i) > WINDOW_WIDTH)
+				continue;
+			dest = frame->addr + ((y + j) * frame->line_len + (x + i) * (frame->bpp / 8));
+			src = image->addr + (j  * image->line_len + i * (image->bpp / 8));
+			*(unsigned int *)dest = *(unsigned int *)src;
+		}
+		i = -1;
+	}
+}
+
+// otimizou o minimap porem para mudar do 3D para 2D assim
+// precisa movimentar o player..
 void	render_mini(t_main *cub)
 {
 	static double	angle;

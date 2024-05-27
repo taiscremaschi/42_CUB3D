@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:48:15 by paula             #+#    #+#             */
-/*   Updated: 2024/05/27 22:56:29 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/27 23:33:34 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,9 @@ void	draw_player(t_main *cub)
 void	util_image(t_main *main, int x, int y)
 {
 	if (main->map[y][x] == '1')
-		mlx_put_image_to_window(main->mlx, main->win, main->picture.wall, (x
-				* MINI_WIDTH), (y * MINI_WIDTH));
+		ft_mlx_put_image_frame(&main->img, (x * MINI_WIDTH), (y * MINI_WIDTH),
+			&main->picture.wall);
 	else if (main->map[y][x] != '\n' || main->map[y][x] == '0')
-		mlx_put_image_to_window(main->mlx, main->win, main->picture.floor, (x
-				* MINI_WIDTH), (y * MINI_WIDTH));
+		ft_mlx_put_image_frame(&main->img, (x * MINI_WIDTH), (y * MINI_WIDTH),
+			&main->picture.floor);
 }
