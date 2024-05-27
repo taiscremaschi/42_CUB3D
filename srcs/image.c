@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/27 23:41:41 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/27 23:44:55 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,9 +152,10 @@ void	render_3d(t_main *cub)
 
 int	render_image(t_main *main)
 {
-	if (main->is_mini)
-		render_mini(main);
-	else
+	// if (main->is_mini)
 		render_3d(main);
+		render_mini(main);
+	//else
+		// render_3d(main);
 	return (0);
 }
