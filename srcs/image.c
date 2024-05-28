@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/27 23:57:02 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 09:15:21 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,17 +145,19 @@ void	render_3d(t_main *cub)
 		draw_wall(&ray, cub, x_screen, pos);
 		x_screen++;
 	}
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.mlx_img, 0, 0);
 }
 
 #pragma GCC pop_options
 
 int	render_image(t_main *main)
 {
-	// if (main->is_mini)
-		render_3d(main);
+	if (main->is_mini)
+	{
+		ft_mlx_put_image_frame(&main->img, 0, 0, &main->picture.clean);
 		render_mini(main);
-	//else
-		// render_3d(main);
+	}
+	else
+		render_3d(main);
+	mlx_put_image_to_window(main->mlx, main->win, main->img.mlx_img, 0, 0);
 	return (0);
 }

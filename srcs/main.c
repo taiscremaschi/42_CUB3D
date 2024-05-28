@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/27 23:56:11 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 09:16:33 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ void	init_img(t_main *cub)
 			&cub->img.line_len, &cub->img.endian);
 	cub->img.width = WINDOW_WIDTH;
 	cub->img.height = WINDOW_HEIGHT;
+	//tela clear para a imagem do minimap ter fundo preto
+	cub->picture.clean.mlx_img = mlx_new_image(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	cub->picture.clean.addr = mlx_get_data_addr(cub->picture.clean.mlx_img, &cub->picture.clean.bpp,
+			&cub->picture.clean.line_len, &cub->picture.clean.endian);
+	cub->picture.clean.width = WINDOW_WIDTH;
+	cub->picture.clean.height = WINDOW_HEIGHT;
 }
 
 int	main(int ac, char **av)

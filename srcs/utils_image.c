@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:48:15 by paula             #+#    #+#             */
-/*   Updated: 2024/05/27 23:33:34 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 08:59:03 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ void	draw_player(t_main *cub)
 	draw_line_to_frame(cub, end, rigth, 0x0000FF);
 	draw_line_to_frame(cub, end, left, 0x0000FF);
 	draw_pov(cub);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.mlx_img, 0, 0);
 }
 
 void	util_image(t_main *main, int x, int y)

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/27 23:34:04 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 09:08:41 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ typedef struct s_picture
 	t_img		floor;
 	t_img		wall2d;
 	t_img		floor2d;
+	t_img		clean;
 }				t_picture;
 
 typedef struct s_main
