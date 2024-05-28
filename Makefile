@@ -3,13 +3,13 @@
 NAME = cub3D
 
 SRC = check_walls.c image.c validation.c parsing.c textures.c algorithm.c parsing_utils.c end_game_utils.c \
-		parsing_colors.c raycasting.c player.c moves.c utils_image.c
+		parsing_colors.c raycasting.c player.c moves.c utils_image.c render.c
 MAIN = main.c
 SRCS = $(SRC) $(MAIN)
 
 OBJS = $(addprefix objs/, $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra -g #-Werror -g #-fsanitize=address
+FLAGS = -Wall -Wextra -g -Werror #-fsanitize=address
 
 COLOUR_GREEN=\033[32m
 COLOUR_RED=\033[31m

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:41:20 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/14 08:41:16 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/27 23:34:42 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ void	free_map(char **m)
 int	end(t_main *main)
 {
 	free_map(main->map);
-	mlx_destroy_image(main->mlx, main->picture.p_east);
-	mlx_destroy_image(main->mlx, main->picture.p_west);
-	mlx_destroy_image(main->mlx, main->picture.p_north);
-	mlx_destroy_image(main->mlx, main->picture.p_south);
+	mlx_destroy_image(main->mlx, main->picture.p_east.mlx_img);
+	mlx_destroy_image(main->mlx, main->picture.p_west.mlx_img);
+	mlx_destroy_image(main->mlx, main->picture.p_north.mlx_img);
+	mlx_destroy_image(main->mlx, main->picture.p_south.mlx_img);
 	mlx_destroy_window(main->mlx, main->win);
-	free(main->img);
 	mlx_destroy_display(main->mlx);
 	mlx_loop_end(main->mlx);
 	free(main->textures.ceiling_color);

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/24 10:13:04 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 11:15:26 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,21 @@
 // HIT
 # define EXTRA_STEP 2
 
+// COLOR
+# define CLR_N 0xFF5500
+# define CLR_S 0x20B2AA
+# define CLR_E 0xFF63A7
+# define CLR_W 0xFFD7A0
+
 //////////// STRUCTS  //////////////
+
+typedef struct s_draw_wall
+{
+	int			draw_start;
+	int			draw_end;
+	int			color;
+	double		wall_x;
+}				t_draw_wall;
 
 typedef struct s_rgb
 {
@@ -123,19 +137,6 @@ typedef struct s_player
 	double		angle;
 }				t_player;
 
-typedef struct s_picture
-{
-	void		*p_north;
-	void		*p_south;
-	void		*p_west;
-	void		*p_east;
-	void		*wall;
-	void		*floor;
-	void		*wall2d;
-	void		*floor2d;
-	void		*player2d;
-}				t_picture;
-
 typedef struct s_img
 {
 	void		*mlx_img;
@@ -147,6 +148,19 @@ typedef struct s_img
 	int			height;
 }				t_img;
 
+typedef struct s_picture
+{
+	t_img		p_north;
+	t_img		p_south;
+	t_img		p_west;
+	t_img		p_east;
+	t_img		wall;
+	t_img		floor;
+	t_img		wall2d;
+	t_img		floor2d;
+	t_img		clean;
+}				t_picture;
+
 typedef struct s_main
 {
 	void		*win;
@@ -156,7 +170,7 @@ typedef struct s_main
 	void		*mlx;
 	int			is_mini;
 	t_rgb		rgb;
-	t_img		*img;
+	t_img		img;
 	t_player	player;
 	t_picture	picture;
 	t_textures	textures;
@@ -240,9 +254,13 @@ int				player_hit(t_main *cub, t_vector dir, double pos_x,
 int				deal_key(int key, t_main *cub);
 
 //////////////////////////////// DRAW //////////////////
-void			util_image(t_main *main, int x, int y);
+void			put_2d_image(t_main *main, int x, int y);
 void			draw_player(t_main *cub);
-void			print_wall(int x_screen, t_main *cub, int draw_start,
-					int draw_end);
+void			print_wall(int x_screen, t_main *cub, t_draw_wall wall);
+void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
+void			draw_line_to_frame(t_main *cub, t_vector start, t_vector end,
+					int color);
+void			ft_mlx_put_image_frame(t_img *frame, int x, int y,
+					t_img *image);
 
 #endif
