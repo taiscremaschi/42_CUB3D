@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/05/28 09:35:58 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 10:29:41 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,34 @@ void	render_mini(t_main *cub)
 	draw_player(cub);
 }
 
-// TENHO QUE COLOCAR O CEILING AND FLOOR, ACREDITO QUE POR IMAGEM...
-// int x = 0;
-// int y = 0;
-// while (y < WINDOW_HEIGHT)
-// {
-// 	x = 0;
-// 	if (y > WINDOW_HEIGHT / 2)
-// 		while (x < WINDOW_WIDTH)
-// 			mlx_pixel_put(cub->mlx, cub->win, x++, y, 0x550000);
-// cores em RGB
-//((cub->textures.ceiling_rgb.r << 16) + (cub->textures.ceiling_rgb.g << 8)
-//			+ (cub->textures.ceiling_rgb.r)));
-// 	else
-// 	{
-// 		while (x < WINDOW_WIDTH)
-// 			mlx_pixel_put(cub->mlx, cub->win, x++, y, 0x555500);
-// 	}
-// 	y++;
-// }
+void	put_ceiling_floor(t_main *cub)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < WINDOW_HEIGHT)
+	{
+		x = 0;
+		if (y < (WINDOW_HEIGHT / 2))
+			while (x < WINDOW_WIDTH)
+				ft_mlx_pixel_put(&cub->img, x++, y,
+					((cub->textures.ceiling_rgb.r << 16)
+						+ (cub->textures.ceiling_rgb.g << 8)
+						+ (cub->textures.ceiling_rgb.b)));
+		else
+		{
+			while (x < WINDOW_WIDTH)
+				ft_mlx_pixel_put(&cub->img, x++, y,
+					((cub->textures.floor_rgb.r << 16)
+						+ (cub->textures.floor_rgb.g << 8)
+						+ (cub->textures.floor_rgb.b)));
+		}
+		y++;
+	}
+}
+
 void	render_3d(t_main *cub)
 {
 	int			x_screen;
@@ -68,6 +77,7 @@ void	render_3d(t_main *cub)
 	double		camera_x;
 
 	x_screen = 0;
+	put_ceiling_floor(cub);
 	while (x_screen < WINDOW_WIDTH)
 	{
 		pos.dx = cub->player.x / MINI_WIDTH;

@@ -9,7 +9,7 @@ SRCS = $(SRC) $(MAIN)
 
 OBJS = $(addprefix objs/, $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra -g -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -g -Werror #-fsanitize=address
 
 COLOUR_GREEN=\033[32m
 COLOUR_RED=\033[31m
