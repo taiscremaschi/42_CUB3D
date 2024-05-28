@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/05/28 09:32:43 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 09:35:58 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	render_mini(t_main *cub)
 	{
 		i.x = -1;
 		while (cub->map[i.y][++i.x] != '\0')
-			util_image(cub, i.x, i.y);
+			put_2d_image(cub, i.x, i.y);
 	}
 	draw_player(cub);
 }

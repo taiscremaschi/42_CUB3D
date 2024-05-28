@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/28 09:33:58 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 09:35:44 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,14 @@ void	ft_mlx_put_image_frame(t_img *frame, int x, int y, t_img *image)
 		}
 		i = -1;
 	}
+}
+
+void	put_2d_image(t_main *main, int x, int y)
+{
+	if (main->map[y][x] == '1')
+		ft_mlx_put_image_frame(&main->img, (x * MINI_WIDTH), (y * MINI_WIDTH),
+			&main->picture.wall);
+	else if (main->map[y][x] != '\n' || main->map[y][x] == '0')
+		ft_mlx_put_image_frame(&main->img, (x * MINI_WIDTH), (y * MINI_WIDTH),
+			&main->picture.floor);
 }
