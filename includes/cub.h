@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/28 11:15:26 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 16:07:03 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define CLR_W 0xFFD7A0
 
 //////////// STRUCTS  //////////////
-
+//refatorar as structs
 typedef struct s_draw_wall
 {
 	int			draw_start;
