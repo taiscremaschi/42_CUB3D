@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/28 09:35:44 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 15:15:58 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	image_inicialize(t_main *main)
 	load_texture(&main->picture.p_east, main, main->textures.east);
 	load_texture(&main->picture.p_south, main, main->textures.south);
 	load_texture(&main->picture.floor, main,
-		"/home/paula/42lisboa/cub_teste/texture/map2d/floor.xpm");
+		"./texture/map2d/floor.xpm");
 	load_texture(&main->picture.wall, main,
-		"/home/paula/42lisboa/cub_teste/texture/map2d/test.xpm");
+		"./texture/map2d/test.xpm");
 }
 
 void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)

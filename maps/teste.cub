@@ -1,7 +1,7 @@
-NO /home/paula/42lisboa/cub_teste/images/wall.xpm
-SO /home/paula/42lisboa/cub_teste/images/wall.xpm
-EA /home/paula/42lisboa/cub_teste/images/wall.xpm
-WE /home/paula/42lisboa/cub_teste/images/wall.xpm
+NO images/wall.xpm
+SO images/wall.xpm
+EA images/wall.xpm
+WE images/wall.xpm
 F 0,255,160
 C 0,125,125
 
