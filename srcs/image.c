@@ -6,21 +6,11 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/28 09:15:21 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 09:33:58 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-// main->img->mlx_img = mlx_xpm_file_to_image(main->mlx,
-//	"./texture/map2d/floor.xpm",
-// 		main->img->width, main->img->height);
-// main->img->addr = mlx_get_data_addr(main->img->mlx_img, &(main->img->bpp),
-//	&(main->img->line_len),
-// 		&(main->img->endian));
-// main->picture.wall = mlx_xpm_file_to_image(main->mlx,
-//	"./texture/map2d/test.xpm",
-// 		&i, &i);
 
 static void	load_texture(t_img *img, t_main *cub, char *texture_path)
 {
@@ -41,8 +31,6 @@ void	image_inicialize(t_main *main)
 	load_texture(&main->picture.wall, main,
 		"/home/paula/42lisboa/cub_teste/texture/map2d/test.xpm");
 }
-#pragma GCC push_options
-#pragma GCC optimize("O0")
 
 void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
@@ -69,95 +57,12 @@ void	ft_mlx_put_image_frame(t_img *frame, int x, int y, t_img *image)
 		while (++i < image->width)
 		{
 			if ((y + j) > frame->height || (x + i) > frame->width)
-				continue;
-			dest = frame->addr + ((y + j) * frame->line_len + (x + i) * (frame->bpp / 8));
-			src = image->addr + (j  * image->line_len + i * (image->bpp / 8));
+				continue ;
+			dest = frame->addr + ((y + j) * frame->line_len + (x + i)
+					* (frame->bpp / 8));
+			src = image->addr + (j * image->line_len + i * (image->bpp / 8));
 			*(unsigned int *)dest = *(unsigned int *)src;
 		}
 		i = -1;
 	}
-}
-
-// otimizou o minimap porem para mudar do 3D para 2D assim
-// precisa movimentar o player..
-void	render_mini(t_main *cub)
-{
-	static double	angle;
-	static double	px;
-	static double	py;
-	t_coordInt		i;
-
-	angle = 0;
-	px = 0;
-	py = 0;
-	if (cub->player.angle == angle && cub->player.x == px
-		&& cub->player.y == py)
-		return ;
-	angle = cub->player.angle;
-	px = cub->player.x;
-	py = cub->player.y;
-	i.y = -1;
-	while (cub->map[++i.y] != NULL)
-	{
-		i.x = -1;
-		while (cub->map[i.y][++i.x] != '\0')
-			util_image(cub, i.x, i.y);
-	}
-	draw_player(cub);
-}
-
-// TENHO QUE COLOCAR O CEILING AND FLOOR, ACREDITO QUE POR IMAGEM...
-// int x = 0;
-// int y = 0;
-// while (y < WINDOW_HEIGHT)
-// {
-// 	x = 0;
-// 	if (y > WINDOW_HEIGHT / 2)
-// 		while (x < WINDOW_WIDTH)
-// 			mlx_pixel_put(cub->mlx, cub->win, x++, y, 0x550000);
-// cores em RGB
-//((cub->textures.ceiling_rgb.r << 16) + (cub->textures.ceiling_rgb.g << 8)
-//			+ (cub->textures.ceiling_rgb.r)));
-// 	else
-// 	{
-// 		while (x < WINDOW_WIDTH)
-// 			mlx_pixel_put(cub->mlx, cub->win, x++, y, 0x555500);
-// 	}
-// 	y++;
-// }
-void	render_3d(t_main *cub)
-{
-	int			x_screen;
-	t_raycast	ray;
-	t_vector	pos;
-	double		camera_x;
-
-	x_screen = 0;
-	while (x_screen < WINDOW_WIDTH)
-	{
-		pos.dx = cub->player.x / MINI_WIDTH;
-		pos.dy = cub->player.y / MINI_WIDTH;
-		camera_x = 2 * x_screen / (double)WINDOW_WIDTH - 1;
-		start_ray(&ray, camera_x, cub, pos);
-		ray.hit = 0;
-		ray_steps(&ray, pos);
-		performing_dda(&ray, cub);
-		draw_wall(&ray, cub, x_screen, pos);
-		x_screen++;
-	}
-}
-
-#pragma GCC pop_options
-
-int	render_image(t_main *main)
-{
-	if (main->is_mini)
-	{
-		ft_mlx_put_image_frame(&main->img, 0, 0, &main->picture.clean);
-		render_mini(main);
-	}
-	else
-		render_3d(main);
-	mlx_put_image_to_window(main->mlx, main->win, main->img.mlx_img, 0, 0);
-	return (0);
 }
