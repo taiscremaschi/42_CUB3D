@@ -6,13 +6,13 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:48:15 by paula             #+#    #+#             */
-/*   Updated: 2024/05/28 10:32:07 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 11:13:04 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	print_wall(int x_screen, t_main *cub, int draw_start, int draw_end)
+void	print_wall(int x_screen, t_main *cub, t_draw_wall wall)
 {
 	t_vector	start;
 	t_vector	end;
@@ -21,10 +21,9 @@ void	print_wall(int x_screen, t_main *cub, int draw_start, int draw_end)
 	start.dy = 0;
 	end.dx = x_screen;
 	end.dy = WINDOW_HEIGHT;
-	start.dy = draw_start;
-	end.dy = draw_end;
-	draw_line_to_frame(cub, start, end, ((cub->rgb.r << 16) + (cub->rgb.g << 8)
-			+ (cub->rgb.b)));
+	start.dy = wall.draw_start;
+	end.dy = wall.draw_end;
+	draw_line_to_frame(cub, start, end, wall.color);
 }
 
 void	draw_line_to_frame(t_main *cub, t_vector start, t_vector end, int color)

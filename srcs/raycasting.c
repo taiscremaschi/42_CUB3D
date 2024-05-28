@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/05/24 10:13:16 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/28 11:15:48 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ static void	save_direction(t_raycast *ray)
 		else
 			ray->hit_direction = 'E';
 	}
-	else
+	if (ray->side == 1)
 	{
-		if (ray->ray_dir.dx > 0)
+		if (ray->ray_dir.dy > 0)
 			ray->hit_direction = 'N';
 		else
 			ray->hit_direction = 'S';
@@ -99,36 +99,30 @@ void	performing_dda(t_raycast *ray, t_main *cub)
 		save_direction(ray);
 }
 
-// if (cub->map[ray->map.dy][ray->map.dx] == 1)
-// {
-// 	cub->rgb.r = 0;
-// 	cub->rgb.g = 0;
-// 	cub->rgb.b = 255;
-// }
 void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 {
-	int		draw_start;
-	int		draw_end;
-	double	wall_x;
+	t_draw_wall	wall;
 
 	ray->line_height = (int)(WINDOW_HEIGHT / ray->perp_wall_dist);
-	draw_start = -ray->line_height / 2 + WINDOW_HEIGHT / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	draw_end = ray->line_height / 2 + WINDOW_HEIGHT / 2;
-	if (draw_end > WINDOW_HEIGHT)
-		draw_end = WINDOW_HEIGHT - 1;
-	wall_x = 0;
+	wall.draw_start = -ray->line_height / 2 + WINDOW_HEIGHT / 2;
+	if (wall.draw_start < 0)
+		wall.draw_start = 0;
+	wall.draw_end = ray->line_height / 2 + WINDOW_HEIGHT / 2;
+	if (wall.draw_end > WINDOW_HEIGHT)
+		wall.draw_end = WINDOW_HEIGHT - 1;
+	wall.wall_x = 0;
 	if (ray->side == 0)
-		wall_x = pos.dy + ray->perp_wall_dist * ray->ray_dir.dy;
+		wall.wall_x = pos.dy + ray->perp_wall_dist * ray->ray_dir.dy;
 	else
-		wall_x = pos.dx + ray->perp_wall_dist * ray->ray_dir.dx;
-	wall_x -= floor((wall_x));
-	if (ray->side == 1)
-	{
-		cub->rgb.r = 125;
-		cub->rgb.g = 0;
-		cub->rgb.b = 0;
-	}
-	print_wall(x_screen, cub, draw_start, draw_end);
+		wall.wall_x = pos.dx + ray->perp_wall_dist * ray->ray_dir.dx;
+	wall.wall_x -= floor((wall.wall_x));
+	if (ray->hit_direction == 'S')
+		wall.color = CLR_S;
+	if (ray->hit_direction == 'N')
+		wall.color = CLR_N;
+	if (ray->hit_direction == 'W')
+		wall.color = CLR_W;
+	if (ray->hit_direction == 'E')
+		wall.color = CLR_E;
+	print_wall(x_screen, cub, wall);
 }
