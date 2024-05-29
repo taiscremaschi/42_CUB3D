@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/28 15:15:58 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:15:28 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static void	load_texture(t_img *img, t_main *cub, char *texture_path)
 
 void	image_inicialize(t_main *main)
 {
-	load_texture(&main->picture.p_north, main, main->textures.north);
-	load_texture(&main->picture.p_west, main, main->textures.west);
-	load_texture(&main->picture.p_east, main, main->textures.east);
-	load_texture(&main->picture.p_south, main, main->textures.south);
+	load_texture(&main->picture.p_north, main, main->path.north);
+	load_texture(&main->picture.p_west, main, main->path.west);
+	load_texture(&main->picture.p_east, main, main->path.east);
+	load_texture(&main->picture.p_south, main, main->path.south);
 	load_texture(&main->picture.floor, main,
 		"./texture/map2d/floor.xpm");
 	load_texture(&main->picture.wall, main,

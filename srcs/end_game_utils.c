@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:41:20 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/27 23:34:42 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:17:06 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ int	end(t_main *main)
 	mlx_destroy_window(main->mlx, main->win);
 	mlx_destroy_display(main->mlx);
 	mlx_loop_end(main->mlx);
-	free(main->textures.ceiling_color);
-	free(main->textures.south);
-	free(main->textures.east);
-	free(main->textures.west);
-	free(main->textures.north);
-	free(main->textures.floor_color);
+	free(main->path.ceiling_color);
+	free(main->path.south);
+	free(main->path.east);
+	free(main->path.west);
+	free(main->path.north);
+	free(main->path.floor_color);
 	free(main->mlx);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/29 09:08:17 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:14:55 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct s_raycast
 	char		hit_direction;
 }				t_raycast;
 
-typedef struct s_textures
+typedef struct s_path
 {
 	char		*north;
 	char		*south;
@@ -128,7 +128,7 @@ typedef struct s_textures
 	t_rgb		floor_rgb;
 	t_rgb		ceiling_rgb;
 	int			line_help;
-}				t_textures;
+}				t_path;
 
 typedef struct s_player
 {
@@ -180,7 +180,7 @@ typedef struct s_main
 	t_img		img;
 	t_player	player;
 	t_picture	picture;
-	t_textures	textures;
+	t_path		path;
 }				t_main;
 
 /////////////////////////// ALGORITHM //////////////////
@@ -221,7 +221,7 @@ void			check_arg_and_fd(char **av, int fd);
 void			parsing_map(char **av, t_main *main);
 
 /////////////////////////// TEXTURES  //////////////////
-int				save_textures(int *j, char *line, char **filename, int size);
+int				save_path(int *j, char *line, char **filename, int size);
 int				compare_args(char *line, int *j, t_main *main);
 int				search_and_save_args(t_main *main, char *line);
 bool			acess_paths(t_main *main);

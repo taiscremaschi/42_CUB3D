@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/16 11:11:59 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:15:51 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	change_file_content(t_main *main)
 	int	i;
 	int	j;
 
-	i = main->textures.line_help;
+	i = main->path.line_help;
 	j = 0;
 	while (i > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/05/28 10:29:41 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:17:36 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,16 @@ void	put_ceiling_floor(t_main *cub)
 		if (y < (WINDOW_HEIGHT / 2))
 			while (x < WINDOW_WIDTH)
 				ft_mlx_pixel_put(&cub->img, x++, y,
-					((cub->textures.ceiling_rgb.r << 16)
-						+ (cub->textures.ceiling_rgb.g << 8)
-						+ (cub->textures.ceiling_rgb.b)));
+					((cub->path.ceiling_rgb.r << 16)
+						+ (cub->path.ceiling_rgb.g << 8)
+						+ (cub->path.ceiling_rgb.b)));
 		else
 		{
 			while (x < WINDOW_WIDTH)
 				ft_mlx_pixel_put(&cub->img, x++, y,
-					((cub->textures.floor_rgb.r << 16)
-						+ (cub->textures.floor_rgb.g << 8)
-						+ (cub->textures.floor_rgb.b)));
+					((cub->path.floor_rgb.r << 16)
+						+ (cub->path.floor_rgb.g << 8)
+						+ (cub->path.floor_rgb.b)));
 		}
 		y++;
 	}
