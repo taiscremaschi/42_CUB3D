@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/05/29 10:15:28 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:22:27 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	image_inicialize(t_main *main)
 	load_texture(&main->picture.p_west, main, main->path.west);
 	load_texture(&main->picture.p_east, main, main->path.east);
 	load_texture(&main->picture.p_south, main, main->path.south);
-	load_texture(&main->picture.floor, main,
+	load_texture(&main->picture.floor2d, main,
 		"./texture/map2d/floor.xpm");
-	load_texture(&main->picture.wall, main,
-		"./texture/map2d/test.xpm");
+	load_texture(&main->picture.wall2d, main,
+		"./texture/map2d/wall.xpm");
 }
 
 void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
@@ -71,8 +71,8 @@ void	put_2d_image(t_main *main, int x, int y)
 {
 	if (main->map[y][x] == '1')
 		ft_mlx_put_image_frame(&main->img, (x * MINI_WIDTH), (y * MINI_WIDTH),
-			&main->picture.wall);
+			&main->picture.wall2d);
 	else if (main->map[y][x] != '\n' || main->map[y][x] == '0')
 		ft_mlx_put_image_frame(&main->img, (x * MINI_WIDTH), (y * MINI_WIDTH),
-			&main->picture.floor);
+			&main->picture.floor2d);
 }
