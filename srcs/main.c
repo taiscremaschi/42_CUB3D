@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/29 09:41:34 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:09:55 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	init_img(t_main *cub)
 	cub->img.width = WINDOW_WIDTH;
 	cub->img.height = WINDOW_HEIGHT;
 	init_img_clean(cub);
+	cub->is_mini = 0;
 }
 
 int	main(int ac, char **av)
@@ -72,7 +73,6 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		exit(write(2, "Error\n", 6));
-	main.is_mini = 0;
 	parsing_map(av, &main);
 	config_player(&main.player);
 	init_img(&main);
