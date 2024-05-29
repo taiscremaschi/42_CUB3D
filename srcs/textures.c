@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:09:59 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/14 08:52:30 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 09:18:05 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,18 @@ int	compare_args(char *line, int *j, t_main *main)
 	int	count;
 
 	count = 0;
-	if (ft_strncmp(&line[*j], "NO ", 3) == 0)
+	if (ft_strncmp(&line[*j], "NO ", 3) == 0 && !main->textures.north)
 		count += save_textures(j, line, &main->textures.north, 3);
-	else if (ft_strncmp(&line[*j], "SO ", 3) == 0)
+	else if (ft_strncmp(&line[*j], "SO ", 3) == 0 && !main->textures.south)
 		count += save_textures(j, line, &main->textures.south, 3);
-	else if (ft_strncmp(&line[*j], "WE ", 3) == 0)
+	else if (ft_strncmp(&line[*j], "WE ", 3) == 0 && !main->textures.west)
 		count += save_textures(j, line, &main->textures.west, 3);
-	else if (ft_strncmp(&line[*j], "EA ", 3) == 0)
+	else if (ft_strncmp(&line[*j], "EA ", 3) == 0 && !main->textures.east)
 		count += save_textures(j, line, &main->textures.east, 3);
-	else if (ft_strncmp(&line[*j], "F ", 2) == 0)
+	else if (ft_strncmp(&line[*j], "F ", 2) == 0 && !main->textures.floor_color)
 		count += save_textures(j, line, &main->textures.floor_color, 2);
-	else if (ft_strncmp(&line[*j], "C ", 2) == 0)
+	else if (ft_strncmp(&line[*j], "C ", 2) == 0
+		&& !main->textures.ceiling_color)
 		count += save_textures(j, line, &main->textures.ceiling_color, 2);
 	else
 		count = -1;
@@ -57,9 +58,9 @@ int	compare_args(char *line, int *j, t_main *main)
 
 int	search_and_save_args(t_main *main, char *line)
 {
-	int		i;
-	int		j;
-	int		count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = -1;
 	count = 0;
