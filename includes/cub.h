@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/28 16:07:03 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 09:08:17 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@
 # define CLR_S 0x20B2AA
 # define CLR_E 0xFF63A7
 # define CLR_W 0xFFD7A0
+
+# define GREEN 			"\033[0;32m"
+# define RED 			"\033[0;31m"
+# define YELLOW 		"\x1b[33m"
+# define BLUE 			"\x1b[34m"
+# define MARGENTA 		"\x1b[35m"
+# define RESET 			"\033[0m"
 
 //////////// STRUCTS  //////////////
 //refatorar as structs

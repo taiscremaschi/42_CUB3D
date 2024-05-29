@@ -6,11 +6,35 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/28 10:38:44 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 09:33:23 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+void	ft_instruction(void)
+{
+	ft_printf(BLUE "╔═══════════════════════════════════════════"
+		"═════════╗" 
+		RESET "\n" BLUE "│" MARGENTA " "
+		"CONTROLS INFORMATION (Press '2' to 2D and 3 to 3D)" " " BLUE "│" RESET 
+		"\n" BLUE "╚════════════════════════════════════════════════════╝" RESET 
+		"\n" BLUE "╔═══════════════════════════════════════════"
+		"═════════╗" RESET "\n" BLUE "║" MARGENTA 
+		"                  Translation                       " BLUE "║" 
+		RESET "\n" BLUE "║" GREEN "    'W'    " YELLOW "   FRONT   " 
+		GREEN "     'S'    " YELLOW "   BACK   " BLUE "        ║"
+		"\n" BLUE "║" GREEN "    'D'  " YELLOW "     RIGHT    " 
+		GREEN "    'A'    " YELLOW "   LEFT  " BLUE "         ║" RESET BLUE "\n" 
+		BLUE "║" BLUE "                                                    ║""\n"
+		BLUE "║" MARGENTA "                    Rotation                     "
+		BLUE "   ║" RESET "\n" BLUE "║" GREEN "  LEFT ARROW  " YELLOW 
+		" LEFT   " GREEN "     RIGHT ARROW  " YELLOW " RIGHT" BLUE "      ║""\n"
+		BLUE "║" BLUE "                                                    ║"
+		RESET "\n" 
+		BLUE "╚════════════════════════════════════════════════════╝" RESET 
+		"\n");
+}
 
 void	init_img_clean(t_main *cub)
 {
@@ -52,6 +76,7 @@ int	main(int ac, char **av)
 	config_player(&main.player);
 	init_img(&main);
 	image_inicialize(&main);
+	ft_instruction();
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);
 	mlx_key_hook(main.win, deal_key, &main);
 	mlx_hook(main.win, 33, 1L << 2, end, &main);

@@ -23,6 +23,7 @@
 # include <stdlib.h>
 # include <strings.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -78,5 +79,13 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
+int		ft_printf(const char *st, ...);
+void	ft_hexanbr_fd(unsigned int n, int fd, int x, long int *ret);
+void	ft_print_pf(int n, int fd, long int *ret);
+void	ft_putnbr_pf_fd(int n, int fd, long int *ret);
+void	ft_uniprint(unsigned int n, int fd, long int *ret);
+void	ft_adressp(unsigned long int n, int fd, long int *ret);
+void	ft_putchar_pf_fd(char c, int fd, long int *ret);
+void	ft_putstr_pf_fd(char *s, int fd, long int *ret);
 
 #endif
