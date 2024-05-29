@@ -6,7 +6,7 @@
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:02:26 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/08 16:37:28 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/29 09:01:53 by tbolzan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ bool	search_colors(t_main *main, char *color, char type)
 	char	**color_content;
 	int		i;
 	int		tmp;
-
+	
 	color_content = ft_split(color, ',');
 	i = 0;
 	tmp = 0;
