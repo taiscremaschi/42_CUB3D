@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:48:15 by paula             #+#    #+#             */
-/*   Updated: 2024/05/29 13:41:31 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 14:03:18 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,19 @@ void	draw_line2(t_main *cub, t_vector start, t_vector end, int color)
 
 static void	draw_pov(t_main *cub)
 {
-	t_vector	visao_cima;
+	t_vector	vision;
 	t_vector	temp;
 	t_vector	player;
 
-	rotate2(cub->player.angle, &visao_cima);
+	rotate2(cub->player.angle, &vision);
 	temp.dx = cub->player.x;
 	temp.dy = cub->player.y;
 	player.dx = cub->player.x;
 	player.dy = cub->player.y;
-	while (!player_hit(cub, visao_cima, temp.dx, temp.dy))
+	while (!player_hit(cub, vision, temp.dx, temp.dy))
 	{
-		temp.dx -= visao_cima.dx;
-		temp.dy -= visao_cima.dy;
+		temp.dx -= vision.dx;
+		temp.dy -= vision.dy;
 	}
 	draw_line_to_frame(cub, player, temp, 0xFF00FF);
 	temp.dx = cub->player.x;
