@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/05/29 10:17:36 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:39:29 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,8 @@
 
 void	render_mini(t_main *cub)
 {
-	static double	angle;
-	static double	px;
-	static double	py;
 	t_coordInt		i;
 
-	angle = 0;
-	px = 0;
-	py = 0;
-	if (cub->player.angle == angle && cub->player.x == px
-		&& cub->player.y == py)
-		return ;
-	angle = cub->player.angle;
-	px = cub->player.x;
-	py = cub->player.y;
 	i.y = -1;
 	while (cub->map[++i.y] != NULL)
 	{
