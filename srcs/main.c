@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/29 09:33:23 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 09:41:34 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,25 @@
 void	ft_instruction(void)
 {
 	ft_printf(BLUE "╔═══════════════════════════════════════════"
-		"═════════╗" 
+		"═════════╗"
 		RESET "\n" BLUE "│" MARGENTA " "
-		"CONTROLS INFORMATION (Press '2' to 2D and 3 to 3D)" " " BLUE "│" RESET 
-		"\n" BLUE "╚════════════════════════════════════════════════════╝" RESET 
+		"CONTROLS INFORMATION (Press '2' to 2D and 3 to 3D)" " " BLUE "│" RESET
+		"\n" BLUE "╚════════════════════════════════════════════════════╝" RESET
 		"\n" BLUE "╔═══════════════════════════════════════════"
-		"═════════╗" RESET "\n" BLUE "║" MARGENTA 
-		"                  Translation                       " BLUE "║" 
-		RESET "\n" BLUE "║" GREEN "    'W'    " YELLOW "   FRONT   " 
+		"═════════╗" RESET "\n" BLUE "║" MARGENTA
+		"                  Translation                       " BLUE "║"
+		RESET "\n" BLUE "║" GREEN "    'W'    " YELLOW "   FRONT   "
 		GREEN "     'S'    " YELLOW "   BACK   " BLUE "        ║"
-		"\n" BLUE "║" GREEN "    'D'  " YELLOW "     RIGHT    " 
-		GREEN "    'A'    " YELLOW "   LEFT  " BLUE "         ║" RESET BLUE "\n" 
-		BLUE "║" BLUE "                                                    ║""\n"
+		"\n" BLUE "║" GREEN "    'D'  " YELLOW "     RIGHT    "
+		GREEN "    'A'    " YELLOW "   LEFT  " BLUE "         ║" RESET BLUE "\n"
+		BLUE "║" BLUE "                                                    ║"
+		"\n"
 		BLUE "║" MARGENTA "                    Rotation                     "
-		BLUE "   ║" RESET "\n" BLUE "║" GREEN "  LEFT ARROW  " YELLOW 
+		BLUE "   ║" RESET "\n" BLUE "║" GREEN "  LEFT ARROW  " YELLOW
 		" LEFT   " GREEN "     RIGHT ARROW  " YELLOW " RIGHT" BLUE "      ║""\n"
 		BLUE "║" BLUE "                                                    ║"
-		RESET "\n" 
-		BLUE "╚════════════════════════════════════════════════════╝" RESET 
+		RESET "\n"
+		BLUE "╚════════════════════════════════════════════════════╝" RESET
 		"\n");
 }
 
