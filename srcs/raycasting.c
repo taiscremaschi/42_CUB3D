@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/06/05 13:55:03 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/05 14:48:26 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,27 @@ void	draw_texture(t_raycast *ray, t_draw_wall *wall)
 		ray->tex_x = TEX_WIDTH - ray->tex_x - 1;
 	if (ray->side == 1 && ray->ray_dir.dy < 0)
 		ray->tex_x = TEX_WIDTH - ray->tex_x - 1;
-	//print_texture();
+}
+
+int		get_pixel(t_img *image, int x, int y)
+{
+	return (*(unsigned int *)(image->addr + (y * image->line_len + x
+			* (image->bpp / 8))));
+}
+
+void	print_with_texture(t_raycast *ray, int x_screen, t_main *cub, t_draw_wall *wall)
+{
+	double	step = 1.0 * TEX_HEIGTH / ray->line_height;
+	double tex_pos = (wall->draw_start - WINDOW_HEIGHT / 2 + ray->line_height / 2) * step;
+	int y = wall->draw_start;
+	
+	while(y < wall->draw_start)
+	{
+		ray->tex_y = (int)ray->tex_x & (TEX_HEIGTH - 1);
+		tex_pos += step;
+		wall->color = get_pixel(&wall->text, ray->tex_x, ray->tex_y);
+		y++;
+	}
 }
 
 void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
@@ -155,11 +175,13 @@ void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 	if (cub->show_texture == 0)
 	{
 		config_draw_color(cub, ray, &wall, 'c');
-		print_wall(x_screen, cub, wall);
+	//	print_wall(x_screen, cub, wall);
 	}
 	else
 	{
 		config_draw_color(cub, ray, &wall, 't');
 		draw_texture(ray, &wall);
+		print_with_texture(ray, x_screen, cub, &wall);
 	}
+	print_wall(x_screen, cub, wall);
 }

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/05 13:54:53 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/05 14:20:42 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef struct s_raycast
 	int			line_height;
 	char		hit_direction;
 	int			tex_x;
+	int			tex_y;
 }				t_raycast;
 
 typedef struct s_path
