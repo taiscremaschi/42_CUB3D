@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/05/29 10:09:55 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/05 10:17:42 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@ void	ft_instruction(void)
 {
 	ft_printf(BLUE "╔═══════════════════════════════════════════"
 		"═════════╗"
-		RESET "\n" BLUE "│" MARGENTA " "
-		"CONTROLS INFORMATION (Press '2' to 2D and 3 to 3D)" " " BLUE "│" RESET
-		"\n" BLUE "╚════════════════════════════════════════════════════╝" RESET
+		RESET "\n" MARGENTA " "
+		"                CONTROLS INFORMATION:" "\n"
+		"    Press '2' to 2D and 3 to 3D"
+		"\n" "    Press 't' to textures and 'c' to colors" BLUE "\n"
+		"╚════════════════════════════════════════════════════╝" RESET
 		"\n" BLUE "╔═══════════════════════════════════════════"
 		"═════════╗" RESET "\n" BLUE "║" MARGENTA
 		"                  Translation                       " BLUE "║"
-		RESET "\n" BLUE "║" GREEN "    'W'    " YELLOW "   FRONT   "
-		GREEN "     'S'    " YELLOW "   BACK   " BLUE "        ║"
-		"\n" BLUE "║" GREEN "    'D'  " YELLOW "     RIGHT    "
-		GREEN "    'A'    " YELLOW "   LEFT  " BLUE "         ║" RESET BLUE "\n"
+		RESET "\n" BLUE "║" GREEN "    'w'    " YELLOW "   FRONT   "
+		GREEN "     's'    " YELLOW "   BACK   " BLUE "        ║"
+		"\n" BLUE "║" GREEN "    'd'  " YELLOW "     RIGHT    "
+		GREEN "    'a'    " YELLOW "   LEFT  " BLUE "         ║" RESET BLUE "\n"
 		BLUE "║" BLUE "                                                    ║"
 		"\n"
 		BLUE "║" MARGENTA "                    Rotation                     "

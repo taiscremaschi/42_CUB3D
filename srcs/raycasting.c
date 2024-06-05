@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/05/29 11:00:21 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/05 10:03:54 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,18 @@ void	performing_dda(t_raycast *ray, t_main *cub)
 		save_direction(ray);
 }
 
+void	draw_color(t_raycast *ray, t_draw_wall	*wall)
+{
+	if (ray->hit_direction == 'S')
+		wall->color = CLR_S;
+	if (ray->hit_direction == 'N')
+		wall->color = CLR_N;
+	if (ray->hit_direction == 'W')
+		wall->color = CLR_W;
+	if (ray->hit_direction == 'E')
+		wall->color = CLR_E;
+}
+
 void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 {
 	t_draw_wall	wall;
@@ -116,13 +128,9 @@ void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 	else
 		wall.wall_x = pos.dx + ray->perp_wall_dist * ray->ray_dir.dx;
 	wall.wall_x -= floor((wall.wall_x));
-	if (ray->hit_direction == 'S')
-		wall.color = CLR_S;
-	if (ray->hit_direction == 'N')
-		wall.color = CLR_N;
-	if (ray->hit_direction == 'W')
-		wall.color = CLR_W;
-	if (ray->hit_direction == 'E')
-		wall.color = CLR_E;
+	if (cub->show_texture == 0)
+		draw_color(ray, &wall);
+	else
+		printf("texturas\n");
 	print_wall(x_screen, cub, wall);
 }

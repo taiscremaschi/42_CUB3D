@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/29 10:22:40 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/05 09:53:38 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define AA_LEFT 97
 # define D_RIGHT 100
 # define S_DOWN 115
+# define TEXTURE 116
 
 //	Screen Resolution
 # define WINDOW_WIDTH 1000
@@ -54,15 +55,19 @@
 # define CLR_E 0xFF63A7
 # define CLR_W 0xFFD7A0
 
-# define GREEN 			"\033[0;32m"
-# define RED 			"\033[0;31m"
-# define YELLOW 		"\x1b[33m"
-# define BLUE 			"\x1b[34m"
-# define MARGENTA 		"\x1b[35m"
-# define RESET 			"\033[0m"
+// TEXTURES
+# define TEX_HEIGTH 64
+# define TEX_WIDTH 64
+
+# define GREEN "\033[0;32m"
+# define RED "\033[0;31m"
+# define YELLOW "\x1b[33m"
+# define BLUE "\x1b[34m"
+# define MARGENTA "\x1b[35m"
+# define RESET "\033[0m"
 
 //////////// STRUCTS  //////////////
-//refatorar as structs
+// refatorar as structs
 typedef struct s_draw_wall
 {
 	int			draw_start;
@@ -174,6 +179,7 @@ typedef struct s_main
 	int			height;
 	void		*mlx;
 	int			is_mini;
+	int			show_texture;
 	t_rgb		rgb;
 	t_img		img;
 	t_player	player;
