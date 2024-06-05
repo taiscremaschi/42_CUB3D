@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/06/05 10:03:54 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/05 13:25:40 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	performing_dda(t_raycast *ray, t_main *cub)
 		save_direction(ray);
 }
 
-void	draw_color(t_raycast *ray, t_draw_wall	*wall)
+void	draw_color(t_raycast *ray, t_draw_wall *wall)
 {
 	if (ray->hit_direction == 'S')
 		wall->color = CLR_S;
@@ -109,6 +109,16 @@ void	draw_color(t_raycast *ray, t_draw_wall	*wall)
 		wall->color = CLR_W;
 	if (ray->hit_direction == 'E')
 		wall->color = CLR_E;
+}
+
+void	draw_texture(t_raycast *ray, t_draw_wall *wall)
+{
+	ray->tex_x = (int)(wall->wall_x * (double)TEX_WIDTH);
+	if (ray->side == 0 && ray->ray_dir.dx > 0)
+		ray->tex_x = TEX_WIDTH - ray->tex_x - 1;
+	if (ray->side == 1 && ray->ray_dir.dy < 0)
+		ray->tex_x = TEX_WIDTH - ray->tex_x - 1;
+	//print_texture();
 }
 
 void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
@@ -129,8 +139,10 @@ void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 		wall.wall_x = pos.dx + ray->perp_wall_dist * ray->ray_dir.dx;
 	wall.wall_x -= floor((wall.wall_x));
 	if (cub->show_texture == 0)
+	{
 		draw_color(ray, &wall);
+		print_wall(x_screen, cub, wall);
+	}
 	else
-		printf("texturas\n");
-	print_wall(x_screen, cub, wall);
+		draw_texture(ray, &wall);
 }
