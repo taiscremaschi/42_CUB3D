@@ -40,6 +40,7 @@ all: ${NAME}
 install:
 	python3 -m pip install --upgrade pip setuptools
 	python3 -m pip install norminette -U
+	sudo apt update
 	sudo apt install valgrind -y
 
 check:
