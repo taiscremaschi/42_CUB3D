@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/06/05 14:48:26 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/05 17:46:17 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,17 +142,34 @@ int		get_pixel(t_img *image, int x, int y)
 
 void	print_with_texture(t_raycast *ray, int x_screen, t_main *cub, t_draw_wall *wall)
 {
-	double	step = 1.0 * TEX_HEIGTH / ray->line_height;
-	double tex_pos = (wall->draw_start - WINDOW_HEIGHT / 2 + ray->line_height / 2) * step;
-	int y = wall->draw_start;
-	
-	while(y < wall->draw_start)
+	int	d;
+	int	color;
+
+	color = 0;
+	while (wall->draw_start < wall->draw_end)
 	{
-		ray->tex_y = (int)ray->tex_x & (TEX_HEIGTH - 1);
-		tex_pos += step;
-		wall->color = get_pixel(&wall->text, ray->tex_x, ray->tex_y);
-		y++;
+		d = wall->draw_start * 256 - WINDOW_HEIGHT * 128 + \
+		ray->line_height * 128;
+		ray->tex_y = ((d * TEX_HEIGTH) / \
+		ray->line_height) / 256;
+		if (ray->tex_y <= -1 || ray->tex_x <= -1)
+			return ;
+		if (cub->map[ray->map.dy][ray->map.dx] == '1')
+			color = get_pixel(&wall->text, ray->tex_x, ray->tex_y);
+		ft_mlx_pixel_put(&cub->img, x_screen, wall->draw_start, color);
+		wall->draw_start++;
+	// double	step = 1.0 * TEX_HEIGTH / ray->line_height;
+	// double tex_pos = (wall->draw_start - WINDOW_HEIGHT / 2 + ray->line_height / 2) * step;
+	
+	// while(wall->draw_start < wall->draw_end)
+	// {
+	// 	tex_pos += step;
+	// 	ray->tex_y = (int)ray->tex_x & (TEX_HEIGTH - 1);
+	// 	wall->color = get_pixel(&wall->text, ray->tex_x, ray->tex_y);
+	// 	ft_mlx_put_image_frame(&cub->img, ray->tex_x, ray->tex_y, &wall->text);
+	// 	wall->draw_start++;
 	}
+	
 }
 
 void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
@@ -175,7 +192,7 @@ void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 	if (cub->show_texture == 0)
 	{
 		config_draw_color(cub, ray, &wall, 'c');
-	//	print_wall(x_screen, cub, wall);
+		print_wall(x_screen, cub, wall);
 	}
 	else
 	{
@@ -183,5 +200,4 @@ void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 		draw_texture(ray, &wall);
 		print_with_texture(ray, x_screen, cub, &wall);
 	}
-	print_wall(x_screen, cub, wall);
 }
