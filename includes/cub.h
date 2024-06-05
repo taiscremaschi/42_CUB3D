@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/05 10:30:43 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/05 13:54:53 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,25 @@
 
 //////////// STRUCTS  //////////////
 // refatorar as structs
+
+typedef struct s_img
+{
+	void		*mlx_img;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+	int			width;
+	int			height;
+}				t_img;
+
 typedef struct s_draw_wall
 {
 	int			draw_start;
 	int			draw_end;
 	int			color;
 	double		wall_x;
+	t_img		text;
 }				t_draw_wall;
 
 typedef struct s_rgb
@@ -149,17 +162,6 @@ typedef struct s_player
 	char		position;
 	double		angle;
 }				t_player;
-
-typedef struct s_img
-{
-	void		*mlx_img;
-	char		*addr;
-	int			bpp;
-	int			line_len;
-	int			endian;
-	int			width;
-	int			height;
-}				t_img;
 
 typedef struct s_picture
 {

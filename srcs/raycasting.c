@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/06/05 13:25:40 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/05 13:55:03 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,30 @@ void	performing_dda(t_raycast *ray, t_main *cub)
 		save_direction(ray);
 }
 
-void	draw_color(t_raycast *ray, t_draw_wall *wall)
+void	config_draw_color(t_main *cub, t_raycast *ray, t_draw_wall *wall, char c)
 {
-	if (ray->hit_direction == 'S')
-		wall->color = CLR_S;
-	if (ray->hit_direction == 'N')
-		wall->color = CLR_N;
-	if (ray->hit_direction == 'W')
-		wall->color = CLR_W;
-	if (ray->hit_direction == 'E')
-		wall->color = CLR_E;
+	if (c == 'c')
+	{
+		if (ray->hit_direction == 'S')
+			wall->color = CLR_S;
+		if (ray->hit_direction == 'N')
+			wall->color = CLR_N;
+		if (ray->hit_direction == 'W')
+			wall->color = CLR_W;
+		if (ray->hit_direction == 'E')
+			wall->color = CLR_E;
+	}
+	else
+	{
+		if (ray->hit_direction == 'S')
+			wall->text = cub->picture.p_south;
+		if (ray->hit_direction == 'N')
+			wall->text = cub->picture.p_north;
+		if (ray->hit_direction == 'W')
+			wall->text = cub->picture.p_west;
+		if (ray->hit_direction == 'E')
+			wall->text = cub->picture.p_east;
+	}
 }
 
 void	draw_texture(t_raycast *ray, t_draw_wall *wall)
@@ -140,9 +154,12 @@ void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 	wall.wall_x -= floor((wall.wall_x));
 	if (cub->show_texture == 0)
 	{
-		draw_color(ray, &wall);
+		config_draw_color(cub, ray, &wall, 'c');
 		print_wall(x_screen, cub, wall);
 	}
 	else
+	{
+		config_draw_color(cub, ray, &wall, 't');
 		draw_texture(ray, &wall);
+	}
 }
