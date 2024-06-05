@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:48:15 by paula             #+#    #+#             */
-/*   Updated: 2024/05/29 14:03:18 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/04 16:41:00 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,6 @@ static void	draw_pov(t_main *cub)
 		temp.dx -= vision.dx;
 		temp.dy -= vision.dy;
 	}
-	draw_line_to_frame(cub, player, temp, 0xFF00FF);
-	temp.dx = cub->player.x;
-	temp.dy = cub->player.y;
 	draw_line_to_frame(cub, player, temp, 0xFF00FF);
 }
 
