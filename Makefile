@@ -39,7 +39,8 @@ all: ${NAME}
 
 install:
 	python3 -m pip install --upgrade pip setuptools
-	python3 -m pip install norminette
+	python3 -m pip install norminette -U
+	sudo apt update
 	sudo apt install valgrind -y
 
 check:
@@ -83,8 +84,5 @@ re:			fclean all
 
 valgrind: clean fclean all
 	valgrind --leak-check=full ./fdf ./maps/my_teste/pde-souz.fdf
-
-valgrind_c: clean fclean all
-	valgrind --leak-check=full ./fdf ./maps/./42maps/t2.fdf
 
 .PHONY: all clean fclean re 

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/28 11:15:26 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:22:40 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,15 @@
 # define CLR_E 0xFF63A7
 # define CLR_W 0xFFD7A0
 
-//////////// STRUCTS  //////////////
+# define GREEN 			"\033[0;32m"
+# define RED 			"\033[0;31m"
+# define YELLOW 		"\x1b[33m"
+# define BLUE 			"\x1b[34m"
+# define MARGENTA 		"\x1b[35m"
+# define RESET 			"\033[0m"
 
+//////////// STRUCTS  //////////////
+//refatorar as structs
 typedef struct s_draw_wall
 {
 	int			draw_start;
@@ -109,7 +116,7 @@ typedef struct s_raycast
 	char		hit_direction;
 }				t_raycast;
 
-typedef struct s_textures
+typedef struct s_path
 {
 	char		*north;
 	char		*south;
@@ -121,7 +128,7 @@ typedef struct s_textures
 	t_rgb		floor_rgb;
 	t_rgb		ceiling_rgb;
 	int			line_help;
-}				t_textures;
+}				t_path;
 
 typedef struct s_player
 {
@@ -154,8 +161,6 @@ typedef struct s_picture
 	t_img		p_south;
 	t_img		p_west;
 	t_img		p_east;
-	t_img		wall;
-	t_img		floor;
 	t_img		wall2d;
 	t_img		floor2d;
 	t_img		clean;
@@ -173,7 +178,7 @@ typedef struct s_main
 	t_img		img;
 	t_player	player;
 	t_picture	picture;
-	t_textures	textures;
+	t_path		path;
 }				t_main;
 
 /////////////////////////// ALGORITHM //////////////////
@@ -214,7 +219,7 @@ void			check_arg_and_fd(char **av, int fd);
 void			parsing_map(char **av, t_main *main);
 
 /////////////////////////// TEXTURES  //////////////////
-int				save_textures(int *j, char *line, char **filename, int size);
+int				save_path(int *j, char *line, char **filename, int size);
 int				compare_args(char *line, int *j, t_main *main);
 int				search_and_save_args(t_main *main, char *line);
 bool			acess_paths(t_main *main);

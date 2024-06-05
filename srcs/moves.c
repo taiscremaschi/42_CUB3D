@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 09:41:22 by paula             #+#    #+#             */
-/*   Updated: 2024/05/23 09:58:27 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:12:46 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,11 @@ static void	simple_move(int key, t_main *cub)
 static void	is_minimap(int key, t_main *cub)
 {
 	if (key == '2')
-	{
 		cub->is_mini = 1;
-	}
 	else if (key == '3')
 		cub->is_mini = 0;
 }
 
-// ft_bzero(cub->img->addr, (WINDOW_HEIGHT * WINDOW_WIDTH
-// 		* sizeof(cub->img->bpp)));
-// draw_file(cub);
-// mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->img->mlx_img, 0,
-// 	0);
 int	deal_key(int key, t_main *cub)
 {
 	is_minimap(key, cub);

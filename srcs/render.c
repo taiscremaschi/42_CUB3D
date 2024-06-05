@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/05/28 10:29:41 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:39:29 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,8 @@
 
 void	render_mini(t_main *cub)
 {
-	static double	angle;
-	static double	px;
-	static double	py;
 	t_coordInt		i;
 
-	angle = 0;
-	px = 0;
-	py = 0;
-	if (cub->player.angle == angle && cub->player.x == px
-		&& cub->player.y == py)
-		return ;
-	angle = cub->player.angle;
-	px = cub->player.x;
-	py = cub->player.y;
 	i.y = -1;
 	while (cub->map[++i.y] != NULL)
 	{
@@ -54,16 +42,16 @@ void	put_ceiling_floor(t_main *cub)
 		if (y < (WINDOW_HEIGHT / 2))
 			while (x < WINDOW_WIDTH)
 				ft_mlx_pixel_put(&cub->img, x++, y,
-					((cub->textures.ceiling_rgb.r << 16)
-						+ (cub->textures.ceiling_rgb.g << 8)
-						+ (cub->textures.ceiling_rgb.b)));
+					((cub->path.ceiling_rgb.r << 16)
+						+ (cub->path.ceiling_rgb.g << 8)
+						+ (cub->path.ceiling_rgb.b)));
 		else
 		{
 			while (x < WINDOW_WIDTH)
 				ft_mlx_pixel_put(&cub->img, x++, y,
-					((cub->textures.floor_rgb.r << 16)
-						+ (cub->textures.floor_rgb.g << 8)
-						+ (cub->textures.floor_rgb.b)));
+					((cub->path.floor_rgb.r << 16)
+						+ (cub->path.floor_rgb.g << 8)
+						+ (cub->path.floor_rgb.b)));
 		}
 		y++;
 	}

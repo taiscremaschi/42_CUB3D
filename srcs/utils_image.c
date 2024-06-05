@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:48:15 by paula             #+#    #+#             */
-/*   Updated: 2024/05/28 11:13:04 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/04 16:41:00 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,29 +74,19 @@ void	draw_line2(t_main *cub, t_vector start, t_vector end, int color)
 
 static void	draw_pov(t_main *cub)
 {
-	t_vector	visao_cima;
-	t_vector	visao_baixo;
+	t_vector	vision;
 	t_vector	temp;
 	t_vector	player;
 
-	rotate2(cub->player.angle + PI / 6, &visao_cima);
-	rotate2(cub->player.angle - PI / 6, &visao_baixo);
+	rotate2(cub->player.angle, &vision);
 	temp.dx = cub->player.x;
 	temp.dy = cub->player.y;
 	player.dx = cub->player.x;
 	player.dy = cub->player.y;
-	while (!player_hit(cub, visao_cima, temp.dx, temp.dy))
+	while (!player_hit(cub, vision, temp.dx, temp.dy))
 	{
-		temp.dx -= visao_cima.dx;
-		temp.dy -= visao_cima.dy;
-	}
-	draw_line_to_frame(cub, player, temp, 0xFF00FF);
-	temp.dx = cub->player.x;
-	temp.dy = cub->player.y;
-	while (!player_hit(cub, visao_baixo, temp.dx, temp.dy))
-	{
-		temp.dx -= visao_baixo.dx;
-		temp.dy -= visao_baixo.dy;
+		temp.dx -= vision.dx;
+		temp.dy -= vision.dy;
 	}
 	draw_line_to_frame(cub, player, temp, 0xFF00FF);
 }
@@ -114,13 +104,13 @@ void	draw_player(t_main *cub)
 	end.dx = cub->player.x - cub->player.vector_front.dx * 15;
 	end.dy = cub->player.y - cub->player.vector_front.dy * 15;
 	rotate2(cub->player.angle + PI / 2, &rigth);
-	rigth.dx = end.dx - rigth.dx * 10;
-	rigth.dy = end.dy - rigth.dy * 10;
+	rigth.dx = start.dx - rigth.dx * 10;
+	rigth.dy = start.dy - rigth.dy * 10;
 	rotate2(cub->player.angle - PI / 2, &left);
-	left.dx = end.dx - left.dx * 10;
-	left.dy = end.dy - left.dy * 10;
+	left.dx = start.dx - left.dx * 10;
+	left.dy = start.dy - left.dy * 10;
 	draw_line_to_frame(cub, start, end, 0xFF0000);
-	draw_line_to_frame(cub, end, rigth, 0x0000FF);
-	draw_line_to_frame(cub, end, left, 0x0000FF);
+	draw_line_to_frame(cub, start, rigth, 0x0000FF);
+	draw_line_to_frame(cub, start, left, 0x0000FF);
 	draw_pov(cub);
 }

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:53:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/14 08:43:04 by paula            ###   ########.fr       */
+/*   Updated: 2024/05/29 10:16:48 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ void	end_parsing(t_main *main, char *str)
 	if (main->map)
 		free_map(main->map);
 	free_map(main->file_content);
-	free(main->textures.ceiling_color);
-	free(main->textures.south);
-	free(main->textures.east);
-	free(main->textures.west);
-	free(main->textures.north);
-	free(main->textures.floor_color);
+	free(main->path.ceiling_color);
+	free(main->path.south);
+	free(main->path.east);
+	free(main->path.west);
+	free(main->path.north);
+	free(main->path.floor_color);
 	exit(ft_putstr_fd(str, 2));
 }
 
 void	inicialize_txt(t_main *main)
 {
-	main->textures.ceiling_color = NULL;
-	main->textures.east = NULL;
-	main->textures.floor_color = NULL;
-	main->textures.north = NULL;
-	main->textures.south = NULL;
-	main->textures.west = NULL;
+	main->path.ceiling_color = NULL;
+	main->path.east = NULL;
+	main->path.floor_color = NULL;
+	main->path.north = NULL;
+	main->path.south = NULL;
+	main->path.west = NULL;
 	main->map = NULL;
 }
 

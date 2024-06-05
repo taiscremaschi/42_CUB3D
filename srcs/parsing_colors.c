@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_colors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:02:26 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/29 09:18:18 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:17:22 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ void	save_color(t_main *main, int tmp, int i, char type)
 	if (type == 'c')
 	{
 		if (i == 0)
-			main->textures.ceiling_rgb.r = tmp;
+			main->path.ceiling_rgb.r = tmp;
 		if (i == 1)
-			main->textures.ceiling_rgb.g = tmp;
+			main->path.ceiling_rgb.g = tmp;
 		if (i == 2)
-			main->textures.ceiling_rgb.b = tmp;
+			main->path.ceiling_rgb.b = tmp;
 	}
 	if (type == 'f')
 	{
 		if (i == 0)
-			main->textures.floor_rgb.r = tmp;
+			main->path.floor_rgb.r = tmp;
 		if (i == 1)
-			main->textures.floor_rgb.g = tmp;
+			main->path.floor_rgb.g = tmp;
 		if (i == 2)
-			main->textures.floor_rgb.b = tmp;
+			main->path.floor_rgb.b = tmp;
 	}
 }
 
@@ -103,9 +103,9 @@ bool	search_colors(t_main *main, char *color, char type)
 
 bool	parsing_colors(t_main *main)
 {
-	if (!search_colors(main, main->textures.ceiling_color, 'c'))
+	if (!search_colors(main, main->path.ceiling_color, 'c'))
 		return (false);
-	if (!search_colors(main, main->textures.floor_color, 'f'))
+	if (!search_colors(main, main->path.floor_color, 'f'))
 		return (false);
 	return (true);
 }

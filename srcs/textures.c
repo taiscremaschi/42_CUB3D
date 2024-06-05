@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
+/*   path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../includes/cub.h"
 
-int	save_textures(int *j, char *line, char **filename, int size)
+int	save_path(int *j, char *line, char **filename, int size)
 {
 	int	flag;
 
@@ -38,19 +38,19 @@ int	compare_args(char *line, int *j, t_main *main)
 	int	count;
 
 	count = 0;
-	if (ft_strncmp(&line[*j], "NO ", 3) == 0 && !main->textures.north)
-		count += save_textures(j, line, &main->textures.north, 3);
-	else if (ft_strncmp(&line[*j], "SO ", 3) == 0 && !main->textures.south)
-		count += save_textures(j, line, &main->textures.south, 3);
-	else if (ft_strncmp(&line[*j], "WE ", 3) == 0 && !main->textures.west)
-		count += save_textures(j, line, &main->textures.west, 3);
-	else if (ft_strncmp(&line[*j], "EA ", 3) == 0 && !main->textures.east)
-		count += save_textures(j, line, &main->textures.east, 3);
-	else if (ft_strncmp(&line[*j], "F ", 2) == 0 && !main->textures.floor_color)
-		count += save_textures(j, line, &main->textures.floor_color, 2);
+	if (ft_strncmp(&line[*j], "NO ", 3) == 0 && !main->path.north)
+		count += save_path(j, line, &main->path.north, 3);
+	else if (ft_strncmp(&line[*j], "SO ", 3) == 0 && !main->path.south)
+		count += save_path(j, line, &main->path.south, 3);
+	else if (ft_strncmp(&line[*j], "WE ", 3) == 0 && !main->path.west)
+		count += save_path(j, line, &main->path.west, 3);
+	else if (ft_strncmp(&line[*j], "EA ", 3) == 0 && !main->path.east)
+		count += save_path(j, line, &main->path.east, 3);
+	else if (ft_strncmp(&line[*j], "F ", 2) == 0 && !main->path.floor_color)
+		count += save_path(j, line, &main->path.floor_color, 2);
 	else if (ft_strncmp(&line[*j], "C ", 2) == 0
-		&& !main->textures.ceiling_color)
-		count += save_textures(j, line, &main->textures.ceiling_color, 2);
+		&& !main->path.ceiling_color)
+		count += save_path(j, line, &main->path.ceiling_color, 2);
 	else
 		count = -1;
 	return (count);
@@ -81,19 +81,19 @@ int	search_and_save_args(t_main *main, char *line)
 		if (line)
 			free(line);
 	}
-	main->textures.line_help = i;
+	main->path.line_help = i;
 	return (count);
 }
 
 bool	acess_paths(t_main *main)
 {
-	if (access(main->textures.north, F_OK) == -1)
+	if (access(main->path.north, F_OK) == -1)
 		return (false);
-	if (access(main->textures.south, F_OK) == -1)
+	if (access(main->path.south, F_OK) == -1)
 		return (false);
-	if (access(main->textures.west, F_OK) == -1)
+	if (access(main->path.west, F_OK) == -1)
 		return (false);
-	if (access(main->textures.east, F_OK) == -1)
+	if (access(main->path.east, F_OK) == -1)
 		return (false);
 	return (true);
 }
