@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/06/05 10:17:42 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 09:23:55 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	init_img(t_main *cub)
 	cub->img.height = WINDOW_HEIGHT;
 	init_img_clean(cub);
 	cub->is_mini = 0;
+	cub->show_texture = 1;
 }
 
 int	main(int ac, char **av)
