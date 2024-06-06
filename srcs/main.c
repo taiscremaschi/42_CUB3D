@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 10:16:44 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:43:05 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,37 +39,6 @@ void	ft_instruction(void)
 		"\n");
 }
 
-void	init_img_clean(t_main *cub)
-{
-	cub->picture.clean.mlx_img = mlx_new_image(cub->mlx, WINDOW_WIDTH,
-			WINDOW_HEIGHT);
-	cub->picture.clean.addr = mlx_get_data_addr(cub->picture.clean.mlx_img,
-			&cub->picture.clean.bpp, &cub->picture.clean.line_len,
-			&cub->picture.clean.endian);
-	cub->picture.clean.width = WINDOW_WIDTH;
-	cub->picture.clean.height = WINDOW_HEIGHT;
-}
-
-void	init_img(t_main *cub)
-{
-	cub->mlx = mlx_init();
-	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
-	if (cub->win == NULL)
-	{
-		free(cub->win);
-		perror("error");
-		exit(EXIT_FAILURE);
-	}
-	cub->img.mlx_img = mlx_new_image(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	cub->img.addr = mlx_get_data_addr(cub->img.mlx_img, &cub->img.bpp,
-			&cub->img.line_len, &cub->img.endian);
-	cub->img.width = WINDOW_WIDTH;
-	cub->img.height = WINDOW_HEIGHT;
-	init_img_clean(cub);
-	cub->is_mini = 0;
-	cub->show_texture = 1;
-}
-
 int	main(int ac, char **av)
 {
 	t_main	main;
@@ -79,7 +48,7 @@ int	main(int ac, char **av)
 	parsing_map(av, &main);
 	init_everything(&main);
 	config_player(&main.player);
-	init_img(&main);
+	//init_img(&main);
 	image_inicialize(&main);
 	ft_instruction();
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);

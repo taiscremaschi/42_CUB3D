@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/06 15:37:30 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:41:13 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,8 +252,6 @@ void			ray_steps(t_raycast *ray, t_vector pos);
 void			performing_dda(t_raycast *ray, t_main *cub);
 void			draw_wall(t_raycast *ray, t_main *cub, int x_screen,
 					t_vector pos);
-void			draw_line2(t_main *cub, t_vector start, t_vector end,
-					int color);
 
 //////////////////////////////// PLAYER //////////////////
 void			config_player(t_player *player);
