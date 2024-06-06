@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/05 14:20:42 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 09:31:35 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,5 +277,9 @@ void			draw_line_to_frame(t_main *cub, t_vector start, t_vector end,
 					int color);
 void			ft_mlx_put_image_frame(t_img *frame, int x, int y,
 					t_img *image);
-
+void			draw_wall(t_raycast *ray, t_main *cub, int x_screen,
+					t_vector pos);
+void			config_draw_color(t_main *cub, t_raycast *ray, t_draw_wall *wall,
+					char c);
+int				get_pixel(t_img *image, int x, int y);
 #endif
