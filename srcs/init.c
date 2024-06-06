@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:58:18 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 15:43:31 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:45:20 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ void	init_everything(t_main *cub)
 	cub->player.vector_perpendicular.dx = 0;
 	cub->player.vector_perpendicular.dy = 0;
 	init_img(cub);
+	image_inicialize(cub);
 }

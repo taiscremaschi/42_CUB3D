@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:48:01 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/29 10:15:51 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:46:18 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,4 @@ void	parsing_map(char **av, t_main *main)
 	change_file_content(main);
 	search_height(main);
 	validate_map(main);
-	printf("player x %f player y %f\n", main->player.x, main->player.y);
 }

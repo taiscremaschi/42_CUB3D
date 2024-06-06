@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 15:43:05 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:45:13 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	main(int ac, char **av)
 	parsing_map(av, &main);
 	init_everything(&main);
 	config_player(&main.player);
-	//init_img(&main);
-	image_inicialize(&main);
 	ft_instruction();
 	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);
 	mlx_key_hook(main.win, deal_key, &main);
