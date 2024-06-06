@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:27:31 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 09:30:45 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 09:37:04 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@ static void	print_with_texture(t_raycast *ray, int x_screen, t_main *cub,
 	}
 }
 
+static void	texture_cmd(t_main *cub, t_raycast *ray, t_draw_wall wall,
+		int x_screen)
+{
+	config_draw_color(cub, ray, &wall, 't');
+	draw_texture(ray, &wall);
+	print_with_texture(ray, x_screen, cub, &wall);
+}
+
 void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 {
 	t_draw_wall	wall;
@@ -92,9 +100,5 @@ void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 		print_wall(x_screen, cub, wall);
 	}
 	else
-	{
-		config_draw_color(cub, ray, &wall, 't');
-		draw_texture(ray, &wall);
-		print_with_texture(ray, x_screen, cub, &wall);
-	}
+		texture_cmd(cub, ray, wall, x_screen);
 }

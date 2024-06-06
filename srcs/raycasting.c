@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 09:28:54 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 09:33:10 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	performing_dda(t_raycast *ray, t_main *cub)
 		save_direction(ray);
 }
 
-int		get_pixel(t_img *image, int x, int y)
+int	get_pixel(t_img *image, int x, int y)
 {
 	return (*(unsigned int *)(image->addr + (y * image->line_len + x
 			* (image->bpp / 8))));
