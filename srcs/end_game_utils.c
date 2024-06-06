@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_game_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolzan- <tbolzan-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:41:20 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/06 17:07:44 by tbolzan-         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:13:48 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	end(t_main *main)
 	free_map(main->map);
 	mlx_destroy_image(main->mlx, main->picture.floor2d.mlx_img);
 	mlx_destroy_image(main->mlx, main->picture.wall2d.mlx_img);
-	mlx_destroy_image(main->mlx, main->picture.clean.mlx_img );
-	mlx_destroy_image(main->mlx, main->img.mlx_img );
+	mlx_destroy_image(main->mlx, main->picture.clean.mlx_img);
+	mlx_destroy_image(main->mlx, main->img.mlx_img);
 	mlx_destroy_image(main->mlx, main->picture.p_east.mlx_img);
 	mlx_destroy_image(main->mlx, main->picture.p_west.mlx_img);
 	mlx_destroy_image(main->mlx, main->picture.p_north.mlx_img);
