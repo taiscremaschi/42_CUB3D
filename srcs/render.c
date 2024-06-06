@@ -6,13 +6,13 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 15:50:37 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:52:29 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	render_mini(t_main *cub)
+static void	render_mini(t_main *cub)
 {
 	t_coordint		i;
 

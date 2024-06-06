@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/06 15:48:46 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:54:22 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define WINDOW_HEIGHT 800
 
 // HIT
-# define EXTRA_STEP 5
+# define EXTRA_STEP 3
 
 // COLOR
 # define CLR_N 0xFF5500
