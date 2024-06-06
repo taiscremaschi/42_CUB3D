@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/05/29 10:39:29 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:19:27 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	render_mini(t_main *cub)
 {
-	t_coordInt		i;
+	t_coordint		i;
 
 	i.y = -1;
 	while (cub->map[++i.y] != NULL)

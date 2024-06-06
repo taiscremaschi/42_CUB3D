@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/06 10:14:44 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:19:57 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,11 @@ typedef struct s_coord
 	double		y;
 }				t_coord;
 
-typedef struct s_coordInt
+typedef struct s_coordint
 {
 	int			x;
 	int			y;
-}				t_coordInt;
+}				t_coordint;
 
 typedef struct s_vector
 {
@@ -114,19 +114,19 @@ typedef struct s_vector
 	double		dy;
 }				t_vector;
 
-typedef struct s_vectorInt
+typedef struct s_vectorint
 {
 	int			dx;
 	int			dy;
-}				t_vectorInt;
+}				t_vectorint;
 
 typedef struct s_raycast
 {
 	t_vector	ray_dir;
 	t_vector	side_dist;
 	t_vector	delta_dist;
-	t_vectorInt	step;
-	t_vectorInt	map;
+	t_vectorint	step;
+	t_vectorint	map;
 	double		perp_wall_dist;
 	int			hit;
 	int			side;
