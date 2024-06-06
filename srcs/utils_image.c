@@ -6,27 +6,14 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:48:15 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 15:54:09 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 16:05:12 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	print_wall(int x_screen, t_main *cub, t_draw_wall wall)
-{
-	t_vector	start;
-	t_vector	end;
-
-	start.dx = x_screen;
-	start.dy = 0;
-	end.dx = x_screen;
-	end.dy = WINDOW_HEIGHT;
-	start.dy = wall.draw_start;
-	end.dy = wall.draw_end;
-	draw_line_to_frame(cub, start, end, wall.color);
-}
-
-void	draw_line_to_frame(t_main *cub, t_vector start, t_vector end, int color)
+static void	draw_line_to_frame(t_main *cub, t_vector start, t_vector end,
+		int color)
 {
 	t_coord	del;
 	double	pixels;
@@ -47,6 +34,20 @@ void	draw_line_to_frame(t_main *cub, t_vector start, t_vector end, int color)
 		start.dy += del.y;
 		--pixels;
 	}
+}
+
+void	print_wall(int x_screen, t_main *cub, t_draw_wall wall)
+{
+	t_vector	start;
+	t_vector	end;
+
+	start.dx = x_screen;
+	start.dy = 0;
+	end.dx = x_screen;
+	end.dy = WINDOW_HEIGHT;
+	start.dy = wall.draw_start;
+	end.dy = wall.draw_end;
+	draw_line_to_frame(cub, start, end, wall.color);
 }
 
 static void	draw_pov(t_main *cub)

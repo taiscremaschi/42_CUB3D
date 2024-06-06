@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/06 15:54:22 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 16:06:18 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define WINDOW_HEIGHT 800
 
 // HIT
-# define EXTRA_STEP 3
+# define EXTRA_STEP 2
 
 // COLOR
 # define CLR_N 0xFF5500
@@ -266,8 +266,6 @@ void			put_2d_image(t_main *main, int x, int y);
 void			draw_player(t_main *cub);
 void			print_wall(int x_screen, t_main *cub, t_draw_wall wall);
 void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
-void			draw_line_to_frame(t_main *cub, t_vector start, t_vector end,
-					int color);
 void			ft_mlx_put_image_frame(t_img *frame, int x, int y,
 					t_img *image);
 void			draw_wall(t_raycast *ray, t_main *cub, int x_screen,
