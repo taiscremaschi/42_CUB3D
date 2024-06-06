@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 09:41:22 by paula             #+#    #+#             */
-/*   Updated: 2024/06/05 10:03:12 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 09:39:29 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,13 @@ static void	is_minimap(int key, t_main *cub)
 		cub->is_mini = 0;
 }
 
-static void	show_texture(int key, t_main *cub)
+int	deal_key(int key, t_main *cub)
 {
+	is_minimap(key, cub);
 	if (!cub->show_texture && key == 't')
 		cub->show_texture = 1;
 	if (cub->show_texture && key == 'c')
 		cub->show_texture = 0;
-}
-
-int	deal_key(int key, t_main *cub)
-{
-	is_minimap(key, cub);
-	show_texture(key, cub);
 	simple_move(key, cub);
 	return (0);
 }
