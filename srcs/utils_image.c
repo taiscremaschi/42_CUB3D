@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:48:15 by paula             #+#    #+#             */
-/*   Updated: 2024/06/04 16:41:00 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:37:27 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,6 @@ void	draw_line_to_frame(t_main *cub, t_vector start, t_vector end, int color)
 	while (pixels > 0)
 	{
 		ft_mlx_pixel_put(&cub->img, start.dx, start.dy, color);
-		start.dx += del.x;
-		start.dy += del.y;
-		--pixels;
-	}
-}
-
-void	draw_line2(t_main *cub, t_vector start, t_vector end, int color)
-{
-	t_coord	del;
-	double	pixels;
-
-	del.x = end.dx - start.dx;
-	del.y = end.dy - start.dy;
-	pixels = sqrt((del.x * del.x) + (del.y * del.y));
-	if (pixels > WINDOW_HEIGHT)
-		pixels = WINDOW_HEIGHT;
-	if (pixels < 0)
-		pixels = 0;
-	del.x /= pixels;
-	del.y /= pixels;
-	while (pixels > 0)
-	{
-		mlx_pixel_put(cub->mlx, cub->win, start.dx, start.dy, color);
 		start.dx += del.x;
 		start.dy += del.y;
 		--pixels;
