@@ -6,13 +6,13 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 15:45:13 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:47:18 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	ft_instruction(void)
+static void	ft_instruction(void)
 {
 	ft_printf(BLUE "╔═══════════════════════════════════════════"
 		"═════════╗"
