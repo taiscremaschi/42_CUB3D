@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/06 15:19:57 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:25:21 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,6 @@ typedef struct s_path
 	char		*east;
 	char		*floor_color;
 	char		*ceiling_color;
-	char		*player2d;
 	t_rgb		floor_rgb;
 	t_rgb		ceiling_rgb;
 	int			line_help;
