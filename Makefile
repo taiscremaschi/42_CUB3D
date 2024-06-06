@@ -83,7 +83,7 @@ fclean: clean
 re:			fclean all
 
 valgrind: clean fclean all
-	valgrind --leak-check=full ./cub3D maps/our_map.cub
+	valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/our_map.cub
 	valgrind --leak-check=full ./cub3D maps/map_err_map.cub
 
 map: clean fclean all
