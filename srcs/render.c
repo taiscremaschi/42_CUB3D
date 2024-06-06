@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 15:52:29 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 16:09:00 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	render_mini(t_main *cub)
 	draw_player(cub);
 }
 
-void	put_ceiling_floor(t_main *cub)
+static void	put_ceiling_floor(t_main *cub)
 {
 	int	x;
 	int	y;
@@ -54,7 +54,7 @@ void	put_ceiling_floor(t_main *cub)
 	}
 }
 
-void	render_3d(t_main *cub)
+static void	render_3d(t_main *cub)
 {
 	int			x_screen;
 	t_raycast	ray;

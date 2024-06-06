@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:31:25 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 09:33:10 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 16:09:43 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ray_steps(t_raycast *ray, t_vector pos)
 	}
 }
 
-// verificar
 static void	save_direction(t_raycast *ray)
 {
 	if (ray->side == 0)

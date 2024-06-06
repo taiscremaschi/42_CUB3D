@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:27:31 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 09:37:04 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 16:11:08 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	draw_wall(t_raycast *ray, t_main *cub, int x_screen, t_vector pos)
 	else
 		wall.wall_x = pos.dx + ray->perp_wall_dist * ray->ray_dir.dx;
 	wall.wall_x -= floor((wall.wall_x));
-	if (cub->show_texture == 0)
+	if (!cub->show_texture)
 	{
 		config_draw_color(cub, ray, &wall, 'c');
 		print_wall(x_screen, cub, wall);
