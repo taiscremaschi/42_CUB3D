@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/05/29 10:22:40 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 16:06:18 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define AA_LEFT 97
 # define D_RIGHT 100
 # define S_DOWN 115
+# define TEXTURE 116
 
 //	Screen Resolution
 # define WINDOW_WIDTH 1000
@@ -54,21 +55,38 @@
 # define CLR_E 0xFF63A7
 # define CLR_W 0xFFD7A0
 
-# define GREEN 			"\033[0;32m"
-# define RED 			"\033[0;31m"
-# define YELLOW 		"\x1b[33m"
-# define BLUE 			"\x1b[34m"
-# define MARGENTA 		"\x1b[35m"
-# define RESET 			"\033[0m"
+// TEXTURES
+# define TEX_HEIGTH 64
+# define TEX_WIDTH 64
+
+# define GREEN "\033[0;32m"
+# define RED "\033[0;31m"
+# define YELLOW "\x1b[33m"
+# define BLUE "\x1b[34m"
+# define MARGENTA "\x1b[35m"
+# define RESET "\033[0m"
 
 //////////// STRUCTS  //////////////
-//refatorar as structs
+// refatorar as structs
+
+typedef struct s_img
+{
+	void		*mlx_img;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+	int			width;
+	int			height;
+}				t_img;
+
 typedef struct s_draw_wall
 {
 	int			draw_start;
 	int			draw_end;
 	int			color;
 	double		wall_x;
+	t_img		text;
 }				t_draw_wall;
 
 typedef struct s_rgb
@@ -84,11 +102,11 @@ typedef struct s_coord
 	double		y;
 }				t_coord;
 
-typedef struct s_coordInt
+typedef struct s_coordint
 {
 	int			x;
 	int			y;
-}				t_coordInt;
+}				t_coordint;
 
 typedef struct s_vector
 {
@@ -96,24 +114,26 @@ typedef struct s_vector
 	double		dy;
 }				t_vector;
 
-typedef struct s_vectorInt
+typedef struct s_vectorint
 {
 	int			dx;
 	int			dy;
-}				t_vectorInt;
+}				t_vectorint;
 
 typedef struct s_raycast
 {
 	t_vector	ray_dir;
 	t_vector	side_dist;
 	t_vector	delta_dist;
-	t_vectorInt	step;
-	t_vectorInt	map;
+	t_vectorint	step;
+	t_vectorint	map;
 	double		perp_wall_dist;
 	int			hit;
 	int			side;
 	int			line_height;
 	char		hit_direction;
+	int			tex_x;
+	int			tex_y;
 }				t_raycast;
 
 typedef struct s_path
@@ -124,7 +144,6 @@ typedef struct s_path
 	char		*east;
 	char		*floor_color;
 	char		*ceiling_color;
-	char		*player2d;
 	t_rgb		floor_rgb;
 	t_rgb		ceiling_rgb;
 	int			line_help;
@@ -134,26 +153,11 @@ typedef struct s_player
 {
 	double		x;
 	double		y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
 	t_vector	vector_front;
 	t_vector	vector_perpendicular;
 	char		position;
 	double		angle;
 }				t_player;
-
-typedef struct s_img
-{
-	void		*mlx_img;
-	char		*addr;
-	int			bpp;
-	int			line_len;
-	int			endian;
-	int			width;
-	int			height;
-}				t_img;
 
 typedef struct s_picture
 {
@@ -174,12 +178,15 @@ typedef struct s_main
 	int			height;
 	void		*mlx;
 	int			is_mini;
+	int			show_texture;
 	t_rgb		rgb;
 	t_img		img;
 	t_player	player;
 	t_picture	picture;
 	t_path		path;
 }				t_main;
+
+void			init_everything(t_main *cub);
 
 /////////////////////////// ALGORITHM //////////////////
 void			check_map_with_alg(t_main *main, char **copy_map_temp);
@@ -245,10 +252,6 @@ void			ray_steps(t_raycast *ray, t_vector pos);
 void			performing_dda(t_raycast *ray, t_main *cub);
 void			draw_wall(t_raycast *ray, t_main *cub, int x_screen,
 					t_vector pos);
-// void		draw_line2(t_main *cub, double x1, double y1, double x2,
-// 				double y2, int color);
-void			draw_line2(t_main *cub, t_vector start, t_vector end,
-					int color);
 
 //////////////////////////////// PLAYER //////////////////
 void			config_player(t_player *player);
@@ -263,9 +266,11 @@ void			put_2d_image(t_main *main, int x, int y);
 void			draw_player(t_main *cub);
 void			print_wall(int x_screen, t_main *cub, t_draw_wall wall);
 void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
-void			draw_line_to_frame(t_main *cub, t_vector start, t_vector end,
-					int color);
 void			ft_mlx_put_image_frame(t_img *frame, int x, int y,
 					t_img *image);
-
+void			draw_wall(t_raycast *ray, t_main *cub, int x_screen,
+					t_vector pos);
+void			config_draw_color(t_main *cub, t_raycast *ray,
+					t_draw_wall *wall, char c);
+int				get_pixel(t_img *image, int x, int y);
 #endif

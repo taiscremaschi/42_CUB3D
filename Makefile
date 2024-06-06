@@ -3,7 +3,7 @@
 NAME = cub3D
 
 SRC = check_walls.c image.c validation.c parsing.c textures.c algorithm.c parsing_utils.c end_game_utils.c \
-		parsing_colors.c raycasting.c player.c moves.c utils_image.c render.c
+		parsing_colors.c raycasting.c player.c moves.c utils_image.c render.c draw.c init.c
 MAIN = main.c
 SRCS = $(SRC) $(MAIN)
 
@@ -83,6 +83,19 @@ fclean: clean
 re:			fclean all
 
 valgrind: clean fclean all
-	valgrind --leak-check=full ./fdf ./maps/my_teste/pde-souz.fdf
+	valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/our_map.cub
+	valgrind --leak-check=full ./cub3D maps/map_err_map.cub
+
+map: clean fclean all
+	./cub3D maps/map_area.cub
+	./cub3D maps/map_color1.cub
+	./cub3D maps/map_err_arg.cub
+	./cub3D maps/map_err_color.cub
+	./cub3D maps/map_err_map.cub
+	./cub3D maps/map_err_mpre_player.cub
+	./cub3D maps/map_err_path.cub
+	./cub3D maps/map_err_player.cub
+	./cub3D maps/map_err_wall.cub
+	./cub3D maps/map_err_wall2.cub
 
 .PHONY: all clean fclean re 
