@@ -1,11 +1,12 @@
-NO ./textures/greystone.xpm
-SO ./textures/redbrick.xpm
-EA ./textures/wood.xpm
-WE ./textures/wood.xpm
+NO ./cub3d-tester/textures/wood.xpm
+SO ./cub3d-tester/textures/wood.xpm
+EA ./cub3d-tester/textures/wood.xpm
+WE ./cub3d-tester/textures/wood.xpm
 F 122,122,122
+C 122,122,122
 
 
-11111111000001111
+11111111111111111
 10000000000000001
 10000000000000001
 10000000000000001

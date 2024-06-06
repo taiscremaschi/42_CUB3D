@@ -1,7 +1,7 @@
-NNO ./textures/greystone.xpm
-SO ./textures/redbrick.xpm
-EA ./textures/wood.xpm
-WE ./textures/wood.xpm
+NNO texture/wall1.xpm
+SO texture/wall1.xpm
+EA texture/wall1.xpm
+WE texture/wall1.xpm
 C 255,200,160
 F 122,122,122
 
