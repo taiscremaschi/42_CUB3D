@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/06 09:32:36 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 10:14:44 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,10 +154,6 @@ typedef struct s_player
 {
 	double		x;
 	double		y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
 	t_vector	vector_front;
 	t_vector	vector_perpendicular;
 	char		position;
@@ -190,6 +186,8 @@ typedef struct s_main
 	t_picture	picture;
 	t_path		path;
 }				t_main;
+
+void			init_everything(t_main *cub);
 
 /////////////////////////// ALGORITHM //////////////////
 void			check_map_with_alg(t_main *main, char **copy_map_temp);

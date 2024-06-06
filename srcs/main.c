@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 09:23:55 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/06 10:16:44 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit(write(2, "Error\n", 6));
 	parsing_map(av, &main);
+	init_everything(&main);
 	config_player(&main.player);
 	init_img(&main);
 	image_inicialize(&main);
