@@ -86,4 +86,16 @@ valgrind: clean fclean all
 	valgrind --leak-check=full ./cub3D maps/our_map.cub
 	valgrind --leak-check=full ./cub3D maps/map_err_map.cub
 
+map: clean fclean all
+	./cub3D maps/map_area.cub
+	./cub3D maps/map_color1.cub
+	./cub3D maps/map_err_arg.cub
+	./cub3D maps/map_err_color.cub
+	./cub3D maps/map_err_map.cub
+	./cub3D maps/map_err_mpre_player.cub
+	./cub3D maps/map_err_path.cub
+	./cub3D maps/map_err_player.cub
+	./cub3D maps/map_err_wall.cub
+	./cub3D maps/map_err_wall2.cub
+
 .PHONY: all clean fclean re 

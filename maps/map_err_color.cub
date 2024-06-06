@@ -1,8 +1,8 @@
 
-NO ./images/chao.xpm
-SO ./images/exit.xpm
-EA ./images/wall.xpm
-WE ./images/player.xpm
+NO texture/wall1.xpm
+SO texture/wall1.xpm
+EA texture/wall1.xpm
+WE texture/wall1.xpm
 C 255,200,1asa
 F 122,122,122
 
