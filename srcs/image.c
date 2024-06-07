@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 13:31:55 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 13:36:31 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	load_texture(t_img *img, t_main *cub, char *texture_path)
 {
 	img->mlx_img = mlx_xpm_file_to_image(cub->mlx, texture_path, &img->width,
-		&img->height);
+			&img->height);
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len,
-		&img->endian);
+			&img->endian);
 }
 
 void	image_inicialize(t_main *main)
@@ -57,7 +57,7 @@ void	ft_mlx_put_image_frame(t_img *frame, int x, int y, t_img *image)
 			if ((y + j) > frame->height || (x + i) > frame->width)
 				continue ;
 			dest = frame->addr + ((y + j) * frame->line_len + (x + i)
-				* (frame->bpp / 8));
+					* (frame->bpp / 8));
 			src = image->addr + (j * image->line_len + i * (image->bpp / 8));
 			*(unsigned int *)dest = *(unsigned int *)src;
 		}

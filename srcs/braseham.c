@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 12:45:05 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 13:03:00 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 13:35:53 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@ static float	mod(float i)
 		return (i);
 }
 
-void	bresenham_line(t_main *cub, t_vector start, t_vector end,
-		int color)
+void	bresenham_line(t_main *cub, t_vector start, t_vector end, int color)
 {
-	t_coord del;
+	t_coord	del;
 	int		max_num;
 
-    del.x = end.dx - start.dx;
+	del.x = end.dx - start.dx;
 	del.y = end.dy - start.dy;
 	max_num = max(mod(del.x), mod(del.y));
 	del.x /= max_num;
