@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 15:34:17 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 17:06:46 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	ft_instruction(void)
 		"\n");
 }
 
+int	released_key(int key, t_main *cub);
+
 int	main(int ac, char **av)
 {
 	t_main	main;
@@ -50,8 +52,8 @@ int	main(int ac, char **av)
 	init_everything(&main);
 	config_player(&main.player);
 	ft_instruction();
-	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);
-	mlx_key_hook(main.win, deal_key, &main);
+	mlx_hook(main.win, 2, 1L << 0, deal_key, &main);
+	mlx_hook(main.win, 3, 1L << 1, released_key, &main);
 	mlx_hook(main.win, 33, 1L << 2, end, &main);
 	mlx_loop_hook(main.mlx, render_image, &main);
 	mlx_loop(main.mlx);

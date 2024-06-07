@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 09:41:22 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 15:21:51 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 17:06:03 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,37 +62,46 @@ static void	moves_rl(int key, t_main *cub, t_vector dir)
 	}
 }
 
-static void	simple_move(int key, t_main *cub)
+int	deal_key(int key, t_main *cub)
+{
+	t_vector	dir;
+
+	if (key == 65307)
+		end(cub);
+	dir.dx = 0;
+	dir.dy = 0;
+	if (key == LEFT || key == 'q')
+		rotate_player(&cub->player, -0.1);
+	else if (key == RIGHT || key == 'e')
+		rotate_player(&cub->player, 0.1);
+	else if (key == W_UP || key == S_DOWN)
+		moves_up_down(key, cub, dir);
+	else if (key == D_RIGHT || key == AA_LEFT)
+		moves_rl(key, cub, dir);
+	return (0);
+}
+
+int	released_key(int key, t_main *cub)
 {
 	t_vector	dir;
 
 	dir.dx = 0;
 	dir.dy = 0;
-	if (key == LEFT || key == 'q')
+	if (!cub->show_texture && key == 't')
+		cub->show_texture = 1;
+	else if (cub->show_texture && key == 'c')
+		cub->show_texture = 0;
+	else if (key == LEFT || key == 'q')
 		rotate_player(&cub->player, -0.1);
-	if (key == RIGHT || key == 'e')
+	else if (key == RIGHT || key == 'e')
 		rotate_player(&cub->player, 0.1);
-	if (key == W_UP || key == S_DOWN)
+	else if (key == W_UP || key == S_DOWN)
 		moves_up_down(key, cub, dir);
-	if (key == D_RIGHT || key == AA_LEFT)
+	else if (key == D_RIGHT || key == AA_LEFT)
 		moves_rl(key, cub, dir);
-}
-
-static void	is_minimap(int key, t_main *cub)
-{
-	if (key == '2')
+	else if (key == '2')
 		cub->is_mini = 1;
 	else if (key == '3')
 		cub->is_mini = 0;
-}
-
-int	deal_key(int key, t_main *cub)
-{
-	is_minimap(key, cub);
-	if (!cub->show_texture && key == 't')
-		cub->show_texture = 1;
-	if (cub->show_texture && key == 'c')
-		cub->show_texture = 0;
-	simple_move(key, cub);
 	return (0);
 }

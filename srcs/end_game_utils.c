@@ -6,18 +6,11 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:41:20 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/06 17:13:48 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 17:00:37 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-int	read_esc(int keycode, t_main *main)
-{
-	if (keycode == 65307)
-		end(main);
-	return (0);
-}
 
 void	free_map(char **m)
 {
