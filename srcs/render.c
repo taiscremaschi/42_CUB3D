@@ -6,11 +6,13 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 16:09:00 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 13:32:39 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+void	put_2d_image_floor(t_main *main, int x, int y);
 
 static void	render_mini(t_main *cub)
 {
@@ -21,9 +23,16 @@ static void	render_mini(t_main *cub)
 	{
 		i.x = -1;
 		while (cub->map[i.y][++i.x] != '\0')
-			put_2d_image(cub, i.x, i.y);
+			put_2d_image(cub, i.x, i.y, 'f');
 	}
 	draw_player(cub);
+	i.y = -1;
+	while (cub->map[++i.y] != NULL)
+	{
+		i.x = -1;
+		while (cub->map[i.y][++i.x] != '\0')
+			put_2d_image(cub, i.x, i.y, 'w');
+	}
 }
 
 static void	put_ceiling_floor(t_main *cub)

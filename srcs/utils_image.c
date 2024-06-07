@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:48:15 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 16:05:12 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 13:25:10 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,31 +63,32 @@ static void	draw_pov(t_main *cub)
 	player.dy = cub->player.y;
 	while (!player_hit(cub, vision, temp.dx, temp.dy))
 	{
-		temp.dx -= vision.dx;
-		temp.dy -= vision.dy;
+		temp.dx -= (5 * vision.dx);
+		temp.dy -= (5 * vision.dy);
 	}
-	draw_line_to_frame(cub, player, temp, 0xFF00FF);
+	//draw_line_to_frame(cub, player, temp, 0xFF00FF);
+	bresenham_line(cub, player, temp, 0xFF00FF);
 }
 
 void	draw_player(t_main *cub)
 {
 	t_vector	start;
-	t_vector	end;
+//	t_vector	end;
 	t_vector	rigth;
 	t_vector	left;
 
 	ft_mlx_pixel_put(&cub->img, cub->player.x, cub->player.y, 0xFF0000);
 	start.dx = cub->player.x;
 	start.dy = cub->player.y;
-	end.dx = cub->player.x - cub->player.vector_front.dx * 15;
-	end.dy = cub->player.y - cub->player.vector_front.dy * 15;
+//	end.dx = cub->player.x - cub->player.vector_front.dx * 15;
+//	end.dy = cub->player.y - cub->player.vector_front.dy * 15;
 	rotate2(cub->player.angle + PI / 2, &rigth);
 	rigth.dx = start.dx - rigth.dx * 10;
 	rigth.dy = start.dy - rigth.dy * 10;
 	rotate2(cub->player.angle - PI / 2, &left);
 	left.dx = start.dx - left.dx * 10;
 	left.dy = start.dy - left.dy * 10;
-	draw_line_to_frame(cub, start, end, 0xFF0000);
+	//draw_line_to_frame(cub, start, end, 0xFF0000);
 	draw_line_to_frame(cub, start, rigth, 0x0000FF);
 	draw_line_to_frame(cub, start, left, 0x0000FF);
 	draw_pov(cub);

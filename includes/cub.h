@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/07 12:41:32 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 13:32:50 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,8 +261,12 @@ int				player_hit(t_main *cub, t_vector dir, double pos_x,
 int				deal_key(int key, t_main *cub);
 
 //////////////////////////////// DRAW //////////////////
-void			put_2d_image(t_main *main, int x, int y);
+void			put_2d_image(t_main *main, int x, int y, char c);
 void			draw_player(t_main *cub);
+//new
+void			bresenham_line(t_main *cub, t_vector start, t_vector end,
+					int color);
+//
 void			print_wall(int x_screen, t_main *cub, t_draw_wall wall);
 void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
 void			ft_mlx_put_image_frame(t_img *frame, int x, int y,
