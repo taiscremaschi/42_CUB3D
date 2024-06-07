@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 15:47:18 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 17:06:46 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,16 @@ static void	ft_instruction(void)
 		BLUE "║" BLUE "                                                    ║"
 		"\n"
 		BLUE "║" MARGENTA "                    Rotation                     "
-		BLUE "   ║" RESET "\n" BLUE "║" GREEN "  LEFT ARROW  " YELLOW
-		" LEFT   " GREEN "     RIGHT ARROW  " YELLOW " RIGHT" BLUE "      ║""\n"
+		BLUE "   ║" RESET "\n" BLUE "║" GREEN "LEFT ARROW /'q'" YELLOW
+		" LEFT   " GREEN " RIGHT ARROW /'e'" YELLOW " RIGHT" BLUE "      ║"
+		"\n"
 		BLUE "║" BLUE "                                                    ║"
 		RESET "\n"
 		BLUE "╚════════════════════════════════════════════════════╝" RESET
 		"\n");
 }
+
+int	released_key(int key, t_main *cub);
 
 int	main(int ac, char **av)
 {
@@ -49,8 +52,8 @@ int	main(int ac, char **av)
 	init_everything(&main);
 	config_player(&main.player);
 	ft_instruction();
-	mlx_hook(main.win, 2, 1L << 0, read_esc, &main);
-	mlx_key_hook(main.win, deal_key, &main);
+	mlx_hook(main.win, 2, 1L << 0, deal_key, &main);
+	mlx_hook(main.win, 3, 1L << 1, released_key, &main);
 	mlx_hook(main.win, 33, 1L << 2, end, &main);
 	mlx_loop_hook(main.mlx, render_image, &main);
 	mlx_loop(main.mlx);

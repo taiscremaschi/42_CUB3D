@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 16:09:00 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 18:08:33 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,23 @@
 
 static void	render_mini(t_main *cub)
 {
-	t_coordint		i;
+	t_coordint	i;
 
 	i.y = -1;
 	while (cub->map[++i.y] != NULL)
 	{
 		i.x = -1;
 		while (cub->map[i.y][++i.x] != '\0')
-			put_2d_image(cub, i.x, i.y);
+			put_2d_image(cub, i.x, i.y, 'f');
 	}
 	draw_player(cub);
+	i.y = -1;
+	while (cub->map[++i.y] != NULL)
+	{
+		i.x = -1;
+		while (cub->map[i.y][++i.x] != '\0')
+			put_2d_image(cub, i.x, i.y, 'w');
+	}
 }
 
 static void	put_ceiling_floor(t_main *cub)
@@ -77,8 +84,37 @@ static void	render_3d(t_main *cub)
 	}
 }
 
+void	call_moves(t_main *main)
+{
+	t_vector	dir;
+
+	main->moves.counter++;
+	if (main->moves.press_speed == 1)
+	{
+		if (main->moves.counter % 2 != 0)
+			return ;
+	}
+	else if ((main->moves.counter % 4) != 0)
+		return ;
+	dir.dx = 0;
+	dir.dy = 0;
+	if (main->moves.press_l == 1 || main->moves.press_q == 1)
+		rotate_player(&main->player, -0.1);
+	else if (main->moves.press_r == 1 || main->moves.press_e == 1)
+		rotate_player(&main->player, 0.1);
+	if (main->moves.press_w == 1)
+		moves_up_down(W_UP, main, dir);
+	if (main->moves.press_s == 1)
+		moves_up_down(S_DOWN, main, dir);
+	if (main->moves.press_d == 1)
+		moves_rl(D_RIGHT, main, dir);
+	if (main->moves.press_a == 1)
+		moves_rl(AA_LEFT, main, dir);
+}
+
 int	render_image(t_main *main)
 {
+	call_moves(main);
 	if (main->is_mini)
 	{
 		ft_mlx_put_image_frame(&main->img, 0, 0, &main->picture.clean);

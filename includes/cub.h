@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/06 16:06:18 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 18:12:35 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../libft/gnl/get_next_line_bonus.h"
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
-// # include "../mlx_linux/mlx_int.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
@@ -149,6 +148,20 @@ typedef struct s_path
 	int			line_help;
 }				t_path;
 
+typedef struct s_ctrl
+{
+	int			press_w;
+	int			press_s;
+	int			press_a;
+	int			press_d;
+	int			press_q;
+	int			press_e;
+	int			press_r;
+	int			press_l;
+	int			press_speed;
+	int			counter;
+}				t_ctrl;
+
 typedef struct s_player
 {
 	double		x;
@@ -184,6 +197,7 @@ typedef struct s_main
 	t_player	player;
 	t_picture	picture;
 	t_path		path;
+	t_ctrl		moves;
 }				t_main;
 
 void			init_everything(t_main *cub);
@@ -260,10 +274,17 @@ void			rotate2(double angle, t_vector *vector);
 int				player_hit(t_main *cub, t_vector dir, double pos_x,
 					double pos_y);
 int				deal_key(int key, t_main *cub);
+void			moves_up_down(int key, t_main *cub, t_vector dir);
+void			moves_rl(int key, t_main *cub, t_vector dir);
+void			ui_options(t_main *cub, int key);
 
 //////////////////////////////// DRAW //////////////////
-void			put_2d_image(t_main *main, int x, int y);
+void			put_2d_image(t_main *main, int x, int y, char c);
 void			draw_player(t_main *cub);
+// new
+void			bresenham_line(t_main *cub, t_vector start, t_vector end,
+					int color);
+//
 void			print_wall(int x_screen, t_main *cub, t_draw_wall wall);
 void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
 void			ft_mlx_put_image_frame(t_img *frame, int x, int y,
@@ -273,4 +294,5 @@ void			draw_wall(t_raycast *ray, t_main *cub, int x_screen,
 void			config_draw_color(t_main *cub, t_raycast *ray,
 					t_draw_wall *wall, char c);
 int				get_pixel(t_img *image, int x, int y);
+void			put_2d_image_floor(t_main *main, int x, int y);
 #endif
