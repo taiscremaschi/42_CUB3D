@@ -6,14 +6,14 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 09:41:22 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 17:06:03 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 17:55:27 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
 // direction
-static void	moves_up_down(int key, t_main *cub, t_vector dir)
+void	moves_up_down(int key, t_main *cub, t_vector dir)
 {
 	if (key == W_UP)
 	{
@@ -38,7 +38,7 @@ static void	moves_up_down(int key, t_main *cub, t_vector dir)
 }
 
 // camera
-static void	moves_rl(int key, t_main *cub, t_vector dir)
+ void	moves_rl(int key, t_main *cub, t_vector dir)
 {
 	if (key == D_RIGHT)
 	{
@@ -62,43 +62,76 @@ static void	moves_rl(int key, t_main *cub, t_vector dir)
 	}
 }
 
-int	deal_key(int key, t_main *cub)
+void	moves(t_main *cub)
 {
 	t_vector	dir;
 
-	if (key == 65307)
-		end(cub);
 	dir.dx = 0;
 	dir.dy = 0;
-	if (key == LEFT || key == 'q')
+	if (cub->moves.press_l == 1 || cub->moves.press_q == 1)
 		rotate_player(&cub->player, -0.1);
-	else if (key == RIGHT || key == 'e')
+	else if (cub->moves.press_r == 1 || cub->moves.press_e == 1)
 		rotate_player(&cub->player, 0.1);
-	else if (key == W_UP || key == S_DOWN)
-		moves_up_down(key, cub, dir);
-	else if (key == D_RIGHT || key == AA_LEFT)
-		moves_rl(key, cub, dir);
+	if (cub->moves.press_w == 1)
+		moves_up_down(W_UP, cub, dir);
+	if (cub->moves.press_s == 1)
+		moves_up_down(S_DOWN, cub, dir);
+	if (cub->moves.press_d == 1)
+		moves_rl(D_RIGHT, cub, dir);
+	if (cub->moves.press_a == 1)
+		moves_up_down(AA_LEFT, cub, dir);
+}
+
+int	deal_key(int key, t_main *cub)
+{
+
+	if(key == W_UP)
+		cub->moves.press_w = 1;
+	if(key == D_RIGHT)
+		cub->moves.press_d = 1;
+	if(key == S_DOWN)
+		cub->moves.press_s = 1;
+	if(key == AA_LEFT)
+		cub->moves.press_a = 1;
+	if(key == RIGHT)
+		cub->moves.press_r = 1;
+	if(key == LEFT)
+		cub->moves.press_l = 1;
+	if(key == 'e')
+		cub->moves.press_e = 1;
+	if(key == 'q')
+		cub->moves.press_q = 1;
+	if(key == 'z')
+		cub->moves.press_speed = 1;
+	if (key == 65307)
+		end(cub);
 	return (0);
 }
 
 int	released_key(int key, t_main *cub)
 {
-	t_vector	dir;
-
-	dir.dx = 0;
-	dir.dy = 0;
+	if(key == W_UP)
+		cub->moves.press_w = 0;
+	if(key == D_RIGHT)
+		cub->moves.press_d = 0;
+	if(key == S_DOWN)
+		cub->moves.press_s = 0;
+	if(key == AA_LEFT)
+		cub->moves.press_a = 0;
+	if(key == RIGHT)
+		cub->moves.press_r = 0;
+	if(key == LEFT)
+		cub->moves.press_l = 0;
+	if(key == 'e')
+		cub->moves.press_e = 0;
+	if(key == 'q')
+		cub->moves.press_q = 0;
+	if(key == 'z')
+		cub->moves.press_speed = 0;
 	if (!cub->show_texture && key == 't')
 		cub->show_texture = 1;
 	else if (cub->show_texture && key == 'c')
 		cub->show_texture = 0;
-	else if (key == LEFT || key == 'q')
-		rotate_player(&cub->player, -0.1);
-	else if (key == RIGHT || key == 'e')
-		rotate_player(&cub->player, 0.1);
-	else if (key == W_UP || key == S_DOWN)
-		moves_up_down(key, cub, dir);
-	else if (key == D_RIGHT || key == AA_LEFT)
-		moves_rl(key, cub, dir);
 	else if (key == '2')
 		cub->is_mini = 1;
 	else if (key == '3')

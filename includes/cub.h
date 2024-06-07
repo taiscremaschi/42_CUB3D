@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/07 13:52:11 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 17:48:34 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,20 @@ typedef struct s_path
 	int			line_help;
 }				t_path;
 
+typedef struct s_ctrl
+{
+	int			press_w;
+	int			press_s;
+	int			press_a;
+	int			press_d;
+	int			press_q;
+	int			press_e;
+	int			press_r;
+	int			press_l;
+	int			press_speed;
+	int			counter;
+}				t_ctrl;
+
 typedef struct s_player
 {
 	double		x;
@@ -183,6 +197,7 @@ typedef struct s_main
 	t_player	player;
 	t_picture	picture;
 	t_path		path;
+	t_ctrl		moves;
 }				t_main;
 
 void			init_everything(t_main *cub);
@@ -263,7 +278,7 @@ int				deal_key(int key, t_main *cub);
 //////////////////////////////// DRAW //////////////////
 void			put_2d_image(t_main *main, int x, int y, char c);
 void			draw_player(t_main *cub);
-//new
+// new
 void			bresenham_line(t_main *cub, t_vector start, t_vector end,
 					int color);
 //
