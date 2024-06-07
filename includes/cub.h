@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/07 17:48:34 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 18:04:46 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,6 +274,8 @@ void			rotate2(double angle, t_vector *vector);
 int				player_hit(t_main *cub, t_vector dir, double pos_x,
 					double pos_y);
 int				deal_key(int key, t_main *cub);
+void			moves_up_down(int key, t_main *cub, t_vector dir);
+void			moves_rl(int key, t_main *cub, t_vector dir);
 
 //////////////////////////////// DRAW //////////////////
 void			put_2d_image(t_main *main, int x, int y, char c);

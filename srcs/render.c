@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 17:53:56 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 18:04:49 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,6 @@ static void	render_3d(t_main *cub)
 		x_screen++;
 	}
 }
-
-void		moves_up_down(int key, t_main *cub, t_vector dir);
-void		moves_rl(int key, t_main *cub, t_vector dir);
 
 void	call_moves(t_main *main)
 {
