@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 09:41:22 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 09:39:29 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 13:58:00 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ static void	simple_move(int key, t_main *cub)
 
 	dir.dx = 0;
 	dir.dy = 0;
-	if (key == LEFT)
+	if (key == LEFT || key == 'q')
 		rotate_player(&cub->player, -0.1);
-	if (key == RIGHT)
+	if (key == RIGHT || key == 'e')
 		rotate_player(&cub->player, 0.1);
 	if (key == W_UP || key == S_DOWN)
 		moves_up_down(key, cub, dir);
