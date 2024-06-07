@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/07 18:04:46 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 18:12:35 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,6 +276,7 @@ int				player_hit(t_main *cub, t_vector dir, double pos_x,
 int				deal_key(int key, t_main *cub);
 void			moves_up_down(int key, t_main *cub, t_vector dir);
 void			moves_rl(int key, t_main *cub, t_vector dir);
+void			ui_options(t_main *cub, int key);
 
 //////////////////////////////// DRAW //////////////////
 void			put_2d_image(t_main *main, int x, int y, char c);
@@ -293,4 +294,5 @@ void			draw_wall(t_raycast *ray, t_main *cub, int x_screen,
 void			config_draw_color(t_main *cub, t_raycast *ray,
 					t_draw_wall *wall, char c);
 int				get_pixel(t_img *image, int x, int y);
+void			put_2d_image_floor(t_main *main, int x, int y);
 #endif

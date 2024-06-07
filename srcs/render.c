@@ -6,13 +6,11 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 18:04:49 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 18:08:33 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-void		put_2d_image_floor(t_main *main, int x, int y);
 
 static void	render_mini(t_main *cub)
 {
@@ -91,16 +89,13 @@ void	call_moves(t_main *main)
 	t_vector	dir;
 
 	main->moves.counter++;
-	if(main->moves.press_speed == 1)
+	if (main->moves.press_speed == 1)
 	{
-		if(main->moves.counter % 2 != 0)
-			return;
-	}
-	else
-	{
-		if ((main->moves.counter % 4) != 0)
+		if (main->moves.counter % 2 != 0)
 			return ;
 	}
+	else if ((main->moves.counter % 4) != 0)
+		return ;
 	dir.dx = 0;
 	dir.dy = 0;
 	if (main->moves.press_l == 1 || main->moves.press_q == 1)
