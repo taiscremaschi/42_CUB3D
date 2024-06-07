@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 15:47:18 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:34:17 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ static void	ft_instruction(void)
 		BLUE "║" BLUE "                                                    ║"
 		"\n"
 		BLUE "║" MARGENTA "                    Rotation                     "
-		BLUE "   ║" RESET "\n" BLUE "║" GREEN "  LEFT ARROW  " YELLOW
-		" LEFT   " GREEN "     RIGHT ARROW  " YELLOW " RIGHT" BLUE "      ║""\n"
+		BLUE "   ║" RESET "\n" BLUE "║" GREEN "LEFT ARROW /'q'" YELLOW
+		" LEFT   " GREEN " RIGHT ARROW /'e'" YELLOW " RIGHT" BLUE "      ║"
+		"\n"
 		BLUE "║" BLUE "                                                    ║"
 		RESET "\n"
 		BLUE "╚════════════════════════════════════════════════════╝" RESET
