@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:48:15 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 14:04:31 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:29:24 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,20 @@ void	print_wall(int x_screen, t_main *cub, t_draw_wall wall)
 	draw_line_to_frame(cub, start, end, wall.color);
 }
 
+int	player_hit_2d(t_main *cub, t_vector dir, double pos_x, double pos_y)
+{
+	int	x;
+	int	y;
+
+	y = (int)floor((pos_y - (dir.dy)) / (MINI_WIDTH));
+	x = (int)floor((pos_x - (dir.dx)) / (MINI_WIDTH));
+	if (y < 0 || x < 0 || y > cub->height - 1)
+		return (1);
+	if (cub->map[y][x] == '1' || cub->map[y][x] == '\0')
+		return (1);
+	return (0);
+}
+
 static void	draw_pov(t_main *cub)
 {
 	t_vector	vision;
@@ -61,12 +75,11 @@ static void	draw_pov(t_main *cub)
 	temp.dy = cub->player.y;
 	player.dx = cub->player.x;
 	player.dy = cub->player.y;
-	while (!player_hit(cub, vision, temp.dx, temp.dy))
+	while (!player_hit_2d(cub, vision, temp.dx, temp.dy))
 	{
-		temp.dx -= (5 * vision.dx);
-		temp.dy -= (5 * vision.dy);
+		temp.dx -= (10 * vision.dx);
+		temp.dy -= (10 * vision.dy);
 	}
-	//draw_line_to_frame(cub, player, temp, 0xFF00FF);
 	bresenham_line(cub, player, temp, 0xFF00FF);
 }
 
