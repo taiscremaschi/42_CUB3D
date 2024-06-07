@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:41 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 13:36:31 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:46:52 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	put_2d_image(t_main *main, int x, int y, char c)
 	}
 	if (c == 'f')
 	{
-		if (main->map[y][x] != '\n' || main->map[y][x] == '0')
+		if ((main->map[y][x] != '\n' && main->map[y][x] != ' ')
+			|| main->map[y][x] == '0')
 			ft_mlx_put_image_frame(&main->img, (x * MINI_WIDTH), (y
 					* MINI_WIDTH), &main->picture.floor2d);
 	}
