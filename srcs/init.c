@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:58:18 by paula             #+#    #+#             */
-/*   Updated: 2024/06/06 15:45:20 by paula            ###   ########.fr       */
+/*   Updated: 2024/06/07 18:03:10 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,20 @@ static void	init_img(t_main *cub)
 	cub->show_texture = 1;
 }
 
+static void	init_moves(t_main *cub)
+{
+	cub->moves.counter = 0;
+	cub->moves.press_w = 0;
+	cub->moves.press_s = 0;
+	cub->moves.press_a = 0;
+	cub->moves.press_d = 0;
+	cub->moves.press_q = 0;
+	cub->moves.press_e = 0;
+	cub->moves.press_r = 0;
+	cub->moves.press_l = 0;
+	cub->moves.press_speed = 0;
+}
+
 void	init_everything(t_main *cub)
 {
 	cub->player.angle = 0;
@@ -50,6 +64,7 @@ void	init_everything(t_main *cub)
 	cub->player.vector_front.dy = 0;
 	cub->player.vector_perpendicular.dx = 0;
 	cub->player.vector_perpendicular.dy = 0;
+	init_moves(cub);
 	init_img(cub);
 	image_inicialize(cub);
 }
