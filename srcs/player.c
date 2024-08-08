@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 15:29:32 by paula            ###   ########.fr       */
+/*   Updated: 2024/08/08 18:37:14 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,19 @@ int	player_hit(t_main *cub, t_vector dir, double pos_x, double pos_y)
 {
 	int	x;
 	int	y;
+	int	x1;
+	int	y1;
 
-	y = (int)floor((pos_y + (dir.dy * EXTRA_STEP)) / (MINI_WIDTH));
-	x = (int)floor((pos_x + (dir.dx * EXTRA_STEP)) / (MINI_WIDTH));
-	if (y < 0 || x < 0 || y > cub->height - 1)
+	y = (int)floor(pos_y / MINI_WIDTH);
+	x = (int)floor(pos_x / MINI_WIDTH);
+	y1 = (int)floor((pos_y + (dir.dy * EXTRA_STEP)) / (MINI_WIDTH));
+	x1 = (int)floor((pos_x + (dir.dx * EXTRA_STEP)) / (MINI_WIDTH));
+	if (y1 < 0 || x1 < 0 || y > cub->height - 1)
 		return (1);
-	if (cub->map[y][x] == '1' || cub->map[y][x] == '\0')
+	if ((cub->map[y1][x] == '1' || cub->map[y1][x] == '\0')
+		&& ((cub->map[y][x1] == '1' || cub->map[y][x1] == '\0')))
+		return (1);
+	if ((cub->map[y1][x1] == '1' || cub->map[y1][x1] == '\0'))
 		return (1);
 	return (0);
 }

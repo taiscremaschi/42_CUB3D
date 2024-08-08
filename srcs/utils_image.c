@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:48:15 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 15:29:24 by paula            ###   ########.fr       */
+/*   Updated: 2024/08/08 18:43:42 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,19 @@ int	player_hit_2d(t_main *cub, t_vector dir, double pos_x, double pos_y)
 {
 	int	x;
 	int	y;
+	int	x1;
+	int	y1;
 
-	y = (int)floor((pos_y - (dir.dy)) / (MINI_WIDTH));
-	x = (int)floor((pos_x - (dir.dx)) / (MINI_WIDTH));
-	if (y < 0 || x < 0 || y > cub->height - 1)
+	y = (int)floor(pos_y / MINI_WIDTH);
+	x = (int)floor(pos_x / MINI_WIDTH);
+	y1 = (int)floor((pos_y + (dir.dy)) / (MINI_WIDTH));
+	x1 = (int)floor((pos_x + (dir.dx)) / (MINI_WIDTH));
+	if (y1 < 0 || x1 < 0 || y > cub->height - 1)
 		return (1);
-	if (cub->map[y][x] == '1' || cub->map[y][x] == '\0')
+	if ((cub->map[y1][x] == '1' || cub->map[y1][x] == '\0')
+		&& ((cub->map[y][x1] == '1' || cub->map[y][x1] == '\0')))
+		return (1);
+	if ((cub->map[y1][x1] == '1' || cub->map[y1][x1] == '\0'))
 		return (1);
 	return (0);
 }
@@ -77,8 +84,8 @@ static void	draw_pov(t_main *cub)
 	player.dy = cub->player.y;
 	while (!player_hit_2d(cub, vision, temp.dx, temp.dy))
 	{
-		temp.dx -= (10 * vision.dx);
-		temp.dy -= (10 * vision.dy);
+		temp.dx -= (1 * vision.dx);
+		temp.dy -= (1 * vision.dy);
 	}
 	bresenham_line(cub, player, temp, 0xFF00FF);
 }

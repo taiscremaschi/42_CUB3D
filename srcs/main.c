@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 17:06:46 by paula            ###   ########.fr       */
+/*   Updated: 2024/08/08 20:29:40 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_instruction(void)
 		"═════════╗"
 		RESET "\n" MARGENTA " "
 		"                CONTROLS INFORMATION:" "\n"
-		"    Press '2' to 2D and 3 to 3D"
+		"    Press '2' to 2D and 3 to 3D and 'z' to speed"
 		"\n" "    Press 't' to textures and 'c' to colors" BLUE "\n"
 		"╚════════════════════════════════════════════════════╝" RESET
 		"\n" BLUE "╔═══════════════════════════════════════════"
