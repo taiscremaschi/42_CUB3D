@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:59 by paula             #+#    #+#             */
-/*   Updated: 2024/08/08 20:29:40 by paula            ###   ########.fr       */
+/*   Updated: 2024/08/09 11:58:27 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit(write(2, "Error\n", 6));
 	parsing_map(av, &main);
-	init_everything(&main);
+	if (init_everything(&main) == 1)
+		end(&main);
 	config_player(&main.player);
 	ft_instruction();
 	mlx_hook(main.win, 2, 1L << 0, deal_key, &main);

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:41:20 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/06/07 17:00:37 by paula            ###   ########.fr       */
+/*   Updated: 2024/08/09 12:27:47 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	free_map(char **m)
 int	end(t_main *main)
 {
 	free_map(main->map);
-	mlx_destroy_image(main->mlx, main->picture.floor2d.mlx_img);
-	mlx_destroy_image(main->mlx, main->picture.wall2d.mlx_img);
-	mlx_destroy_image(main->mlx, main->picture.clean.mlx_img);
-	mlx_destroy_image(main->mlx, main->img.mlx_img);
-	mlx_destroy_image(main->mlx, main->picture.p_east.mlx_img);
-	mlx_destroy_image(main->mlx, main->picture.p_west.mlx_img);
-	mlx_destroy_image(main->mlx, main->picture.p_north.mlx_img);
-	mlx_destroy_image(main->mlx, main->picture.p_south.mlx_img);
+	my_mlx_destroy_image(main->mlx, main->picture.floor2d.mlx_img);
+	my_mlx_destroy_image(main->mlx, main->picture.wall2d.mlx_img);
+	my_mlx_destroy_image(main->mlx, main->picture.clean.mlx_img);
+	my_mlx_destroy_image(main->mlx, main->img.mlx_img);
+	my_mlx_destroy_image(main->mlx, main->picture.p_east.mlx_img);
+	my_mlx_destroy_image(main->mlx, main->picture.p_west.mlx_img);
+	my_mlx_destroy_image(main->mlx, main->picture.p_north.mlx_img);
+	my_mlx_destroy_image(main->mlx, main->picture.p_south.mlx_img);
 	mlx_destroy_window(main->mlx, main->win);
 	mlx_destroy_display(main->mlx);
 	mlx_loop_end(main->mlx);
@@ -47,4 +47,10 @@ int	end(t_main *main)
 	free(main->path.floor_color);
 	free(main->mlx);
 	exit(0);
+}
+
+void	my_mlx_destroy_image(void *mlx_ptr, void *img_ptr)
+{
+	if (img_ptr != NULL)
+		mlx_destroy_image(mlx_ptr, img_ptr);
 }

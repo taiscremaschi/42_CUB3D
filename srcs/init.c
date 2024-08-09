@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:58:18 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 18:04:13 by paula            ###   ########.fr       */
+/*   Updated: 2024/08/09 12:32:03 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,21 @@ static void	init_moves(t_main *cub)
 	cub->moves.press_speed = 0;
 }
 
-void	init_everything(t_main *cub)
+static void	inti_text(t_main *cub)
 {
+	cub->picture.floor2d.mlx_img = NULL;
+	cub->picture.wall2d.mlx_img = NULL;
+	cub->picture.clean.mlx_img = NULL;
+	cub->img.mlx_img = NULL;
+	cub->picture.p_east.mlx_img = NULL;
+	cub->picture.p_west.mlx_img = NULL;
+	cub->picture.p_north.mlx_img = NULL;
+	cub->picture.p_south.mlx_img = NULL;
+}
+
+int	init_everything(t_main *cub)
+{
+	inti_text(cub);
 	cub->player.angle = 0;
 	cub->player.vector_front.dx = 0;
 	cub->player.vector_front.dy = 0;
@@ -66,5 +79,5 @@ void	init_everything(t_main *cub)
 	cub->player.vector_perpendicular.dy = 0;
 	init_moves(cub);
 	init_img(cub);
-	image_inicialize(cub);
+	return (image_inicialize(cub));
 }
