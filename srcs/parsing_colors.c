@@ -34,20 +34,7 @@ void	save_color(t_main *main, int tmp, int i, char type)
 	}
 }
 
-bool	check_args_colors(char **color_content)
-{
-	int		i;
 
-	i = 0;
-	while (color_content[i])
-		i++;
-	if (i != 3)
-	{
-		free_map(color_content);
-		return (false);
-	}
-	return (true);
-}
 
 bool	check_color_digit(char **color_content)
 {
@@ -73,12 +60,32 @@ bool	check_color_digit(char **color_content)
 	return (true);
 }
 
+bool check_comma(char *color)
+{
+	int comma;
+	int i;
+
+	comma = 0;
+	i = 0;
+
+	while (color[i])
+	{
+		if(color[i] == ',')
+			comma++;
+		i++;
+	}
+	if(comma != 2)
+		return (false);
+	return (true);
+}
+
 bool	search_colors(t_main *main, char *color, char type)
 {
 	char	**color_content;
 	int		i;
 	int		tmp;
-
+	if (!check_comma(color))
+		return (false);
 	color_content = ft_split(color, ',');
 	i = 0;
 	tmp = 0;
