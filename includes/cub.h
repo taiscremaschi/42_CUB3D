@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:57:32 by tbolzan-          #+#    #+#             */
-/*   Updated: 2024/08/09 12:19:42 by paula            ###   ########.fr       */
+/*   Updated: 2024/08/09 12:32:52 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,8 +200,8 @@ typedef struct s_main
 	t_ctrl		moves;
 }				t_main;
 
-int			init_everything(t_main *cub);
-void		my_mlx_destroy_image(void *mlx_ptr, void *img_ptr);
+int				init_everything(t_main *cub);
+void			my_mlx_destroy_image(void *mlx_ptr, void *img_ptr);
 
 /////////////////////////// ALGORITHM //////////////////
 void			check_map_with_alg(t_main *main, char **copy_map_temp);
@@ -220,7 +220,7 @@ int				player_hit(t_main *cub, t_vector dir, double pos_x,
 					double pos_y);
 
 ////////////////////////////// IMAGES //////////////
-int			image_inicialize(t_main *main);
+int				image_inicialize(t_main *main);
 int				render_image(t_main *main);
 
 ////////////////////////////// END GAME UTILS ///////////////
