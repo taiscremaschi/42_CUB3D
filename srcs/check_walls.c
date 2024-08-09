@@ -19,7 +19,7 @@ bool	check_x_left(char **map_copy, int x, int y)
 		if (map_copy[y][x] == '1')
 			return (true);
 		if (map_copy[y][x] == '\n' || map_copy[y][x] == ' '
-			|| map_copy[y][x] == '\t')
+			|| map_copy[y][x] == '\t' || map_copy[y][x] == '\0')
 			return (false);
 		x--;
 	}
@@ -33,7 +33,7 @@ bool	check_x_right(char **map_copy, int x, int y)
 		if (map_copy[y][x] == '1')
 			return (true);
 		if (map_copy[y][x] == '\n' || map_copy[y][x] == ' '
-			|| map_copy[y][x] == '\t')
+			|| map_copy[y][x] == '\t' || map_copy[y][x] == '\0')
 			return (false);
 	}
 	return (false);
@@ -47,7 +47,7 @@ bool	check_y_up(char **map_copy, int x, int y)
 		if (map_copy[y][x] == '1')
 			return (true);
 		if (map_copy[y][x] == '\n' || map_copy[y][x] == ' '
-			|| map_copy[y][x] == '\t')
+			|| map_copy[y][x] == '\t' || map_copy[y][x] == '\0')
 			return (false);
 	}
 	return (false);
@@ -61,7 +61,7 @@ bool	check_y_down(char **map_copy, int x, int y, int height)
 		if (map_copy[y][x] == '1')
 			return (true);
 		if (map_copy[y][x] == '\n' || map_copy[y][x] == ' '
-			|| map_copy[y][x] == '\t')
+			|| map_copy[y][x] == '\t' || map_copy[y][x] == '\0')
 			return (false);
 	}
 	return (false);
