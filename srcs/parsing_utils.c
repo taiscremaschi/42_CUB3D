@@ -76,3 +76,18 @@ char	**copy_map(t_main *main)
 	map_copy[i] = NULL;
 	return (map_copy);
 }
+
+bool	check_args_colors(char **color_content)
+{
+	int		i;
+
+	i = 0;
+	while (color_content[i])
+		i++;
+	if (i != 3)
+	{
+		free_map(color_content);
+		return (false);
+	}
+	return (true);
+}

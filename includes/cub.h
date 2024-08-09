@@ -234,6 +234,7 @@ void			inicialize_txt(t_main *main);
 void			search_height(t_main *main);
 char			**copy_map(t_main *main);
 void			end_parsing(t_main *main, char *str);
+bool			check_args_colors(char **color_content);
 
 //////////////////// PARSING ///////////////////
 void			change_map(t_main *main);
