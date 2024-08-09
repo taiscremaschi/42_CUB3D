@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:58:18 by paula             #+#    #+#             */
-/*   Updated: 2024/06/07 18:04:13 by paula            ###   ########.fr       */
+/*   Updated: 2024/08/09 12:24:10 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void	init_img_clean(t_main *cub)
 {
 	cub->picture.clean.mlx_img = mlx_new_image(cub->mlx, WINDOW_WIDTH,
-			WINDOW_HEIGHT);
+		WINDOW_HEIGHT);
 	cub->picture.clean.addr = mlx_get_data_addr(cub->picture.clean.mlx_img,
-			&cub->picture.clean.bpp, &cub->picture.clean.line_len,
-			&cub->picture.clean.endian);
+		&cub->picture.clean.bpp, &cub->picture.clean.line_len,
+		&cub->picture.clean.endian);
 	cub->picture.clean.width = WINDOW_WIDTH;
 	cub->picture.clean.height = WINDOW_HEIGHT;
 }
@@ -35,7 +35,7 @@ static void	init_img(t_main *cub)
 	}
 	cub->img.mlx_img = mlx_new_image(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	cub->img.addr = mlx_get_data_addr(cub->img.mlx_img, &cub->img.bpp,
-			&cub->img.line_len, &cub->img.endian);
+		&cub->img.line_len, &cub->img.endian);
 	cub->img.width = WINDOW_WIDTH;
 	cub->img.height = WINDOW_HEIGHT;
 	init_img_clean(cub);
@@ -57,8 +57,21 @@ static void	init_moves(t_main *cub)
 	cub->moves.press_speed = 0;
 }
 
-void	init_everything(t_main *cub)
+static void	inti_text(t_main *cub)
 {
+	cub->picture.floor2d.mlx_img = NULL;
+	cub->picture.wall2d.mlx_img = NULL;
+	cub->picture.clean.mlx_img = NULL;
+	cub->img.mlx_img = NULL;
+	cub->picture.p_east.mlx_img = NULL;
+	cub->picture.p_west.mlx_img = NULL;
+	cub->picture.p_north.mlx_img = NULL;
+	cub->picture.p_south.mlx_img = NULL;
+}
+
+int	init_everything(t_main *cub)
+{
+	inti_text(cub);
 	cub->player.angle = 0;
 	cub->player.vector_front.dx = 0;
 	cub->player.vector_front.dy = 0;
@@ -66,5 +79,5 @@ void	init_everything(t_main *cub)
 	cub->player.vector_perpendicular.dy = 0;
 	init_moves(cub);
 	init_img(cub);
-	image_inicialize(cub);
+	return (image_inicialize(cub));
 }
