@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:31:23 by paula             #+#    #+#             */
-/*   Updated: 2024/08/08 20:27:12 by paula            ###   ########.fr       */
+/*   Updated: 2024/08/09 09:14:39 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ void	call_moves(t_main *main)
 	main->moves.counter++;
 	if (main->moves.press_speed == 1)
 	{
-		if (main->moves.counter % 1 != 0)
+		if (main->moves.counter % 2 != 0)
 			return ;
 	}
-	else if ((main->moves.counter % 2) != 0)
+	else if ((main->moves.counter % 5) != 0)
 		return ;
 	dir.dx = 0;
 	dir.dy = 0;
